@@ -1,0 +1,15 @@
+{
+  "name": "boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "docker compose up -d && turbo dev",
+    "lint": "turbo lint",
+    "test": "turbo test",
+    "taze": "pnpx taze -r"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.8"
+  },
+  "packageManager": "pnpm@10.18.0"
+}

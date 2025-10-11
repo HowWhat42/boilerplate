@@ -19,6 +19,14 @@ type LogoutPost = {
   request: unknown
   response: MakeTuyauResponse<import('../app/auth/controllers/auth_controller.ts').default['logout'], false>
 }
+type AuthPasswordForgotPost = {
+  request: MakeTuyauRequest<InferInput<typeof import('../app/auth/validators/password_reset.ts')['forgotPasswordValidator']>>
+  response: MakeTuyauResponse<import('../app/auth/controllers/password_controller.ts').default['forgotPassword'], true>
+}
+type AuthPasswordResetIdPost = {
+  request: MakeTuyauRequest<InferInput<typeof import('../app/auth/validators/password_reset.ts')['resetPasswordValidator']>>
+  response: MakeTuyauResponse<import('../app/auth/controllers/password_controller.ts').default['resetPassword'], true>
+}
 export interface ApiDefinition {
   'login': {
     '$url': {
@@ -34,6 +42,22 @@ export interface ApiDefinition {
     '$url': {
     };
     '$post': LogoutPost;
+  };
+  'auth': {
+    'password': {
+      'forgot': {
+        '$url': {
+        };
+        '$post': AuthPasswordForgotPost;
+      };
+      'reset': {
+        ':token': {
+          '$url': {
+          };
+          '$post': AuthPasswordResetIdPost;
+        };
+      };
+    };
   };
 }
 const routes = [
@@ -57,6 +81,20 @@ const routes = [
     path: '/logout',
     method: ["POST"],
     types: {} as LogoutPost,
+  },
+  {
+    params: [],
+    name: 'auth.password.forgot',
+    path: '/auth/password/forgot',
+    method: ["POST"],
+    types: {} as AuthPasswordForgotPost,
+  },
+  {
+    params: ["token"],
+    name: 'auth.password.reset',
+    path: '/auth/password/reset/:token',
+    method: ["POST"],
+    types: {} as AuthPasswordResetIdPost,
   },
 ] as const;
 export const api = {

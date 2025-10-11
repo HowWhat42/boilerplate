@@ -8,26 +8,26 @@ import {
 } from '@boilerplate/design-system/components/ui/field'
 import { Input } from '@boilerplate/design-system/components/ui/input'
 import { useAppForm } from '@/hooks/form-hook'
-import { z } from 'zod'
 import { Form } from '@boilerplate/design-system/components/ui/form'
 import { Link } from '@tanstack/react-router'
-
-const loginSchema = z.object({
-  email: z.email(),
-  password: z.string().min(8),
-})
+import { loginFormSchema } from '@/lib/schemas/auth'
+import { useAuth } from '@/hooks/use-auth'
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<'form'>) {
+  const { signIn } = useAuth()
   const form = useAppForm({
     defaultValues: {
       email: '',
       password: '',
     },
     validators: {
-      onChange: loginSchema,
+      onChange: loginFormSchema,
+    },
+    onSubmit: (data) => {
+      signIn(data.value)
     },
   })
   return (

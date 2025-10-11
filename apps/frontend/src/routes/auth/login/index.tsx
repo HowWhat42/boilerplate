@@ -26,9 +26,12 @@ function RouteComponent() {
       </div>
       <div className="bg-muted relative hidden lg:block">
         <img
-          src="/placeholder.svg"
-          alt="Image"
-          className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+          alt="Neon city"
+          loading="lazy"
+          src={
+            'https://images.pexels.com/photos/1083807/pexels-photo-1083807.jpeg'
+          }
+          className="absolute inset-0 h-full w-full object-cover bg-gradient-to-b from-transparent to-zinc-900 opacity-75"
         />
       </div>
     </div>

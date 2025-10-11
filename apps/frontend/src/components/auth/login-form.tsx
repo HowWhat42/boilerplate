@@ -69,6 +69,7 @@ export function LoginForm({
               <Input
                 id="password"
                 type="password"
+                placeholder="••••••••••••"
                 required
                 value={field.state.value}
                 onChange={(e) => field.handleChange(e.target.value)}

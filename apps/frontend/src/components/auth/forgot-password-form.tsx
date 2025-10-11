@@ -4,39 +4,44 @@ import {
   Field,
   FieldDescription,
   FieldLabel,
-  FieldSeparator,
 } from '@boilerplate/design-system/components/ui/field'
 import { Input } from '@boilerplate/design-system/components/ui/input'
 import { useAppForm } from '@/hooks/form-hook'
 import { Form } from '@boilerplate/design-system/components/ui/form'
 import { Link } from '@tanstack/react-router'
-import { loginFormSchema } from '@/lib/schemas/auth'
-import { useAuth } from '@/hooks/use-auth'
+import { forgotPasswordFormSchema } from '@/lib/schemas/auth'
+import { useMutation } from '@tanstack/react-query'
+import { forgotPasswordMutationOptions } from '@/lib/queries/auth'
 
-export function LoginForm({
+export function ForgotPasswordForm({
   className,
   ...props
 }: React.ComponentProps<'form'>) {
-  const { signIn } = useAuth()
+  const forgotPasswordMutation = useMutation(forgotPasswordMutationOptions())
   const form = useAppForm({
     defaultValues: {
       email: '',
-      password: '',
     },
     validators: {
-      onChange: loginFormSchema,
+      onChange: forgotPasswordFormSchema,
     },
     onSubmit: (data) => {
-      signIn(data.value)
+      forgotPasswordMutation.mutateAsync({
+        payload: { email: data.value.email },
+      })
     },
   })
   return (
     <form.AppForm>
       <Form className={cn('space-y-6', className)} {...props}>
         <div className="flex flex-col items-center gap-1 text-center">
-          <h1 className="text-2xl font-bold">Login to your account</h1>
+          <h1 className="text-2xl font-bold">Forgot your password?</h1>
           <p className="text-muted-foreground text-sm text-balance">
-            Enter your credentials below to login to your account
+            Enter your email address and if it exists, we'll send you a link to
+            reset your password, otherwise{' '}
+            <Link to="/auth/login" className="underline underline-offset-4">
+              create an account
+            </Link>
           </p>
         </div>
         <form.AppField name="email">
@@ -54,46 +59,22 @@ export function LoginForm({
             </Field>
           )}
         </form.AppField>
-        <form.AppField name="password">
-          {(field) => (
-            <Field>
-              <div className="flex items-center">
-                <FieldLabel htmlFor="password">Password</FieldLabel>
-                <Link
-                  to="/auth/forgot-password"
-                  className="ml-auto text-sm underline-offset-4 hover:underline"
-                >
-                  Forgot your password?
-                </Link>
-              </div>
-              <Input
-                id="password"
-                type="password"
-                placeholder="••••••••••••"
-                required
-                value={field.state.value}
-                onChange={(e) => field.handleChange(e.target.value)}
-              />
-            </Field>
-          )}
-        </form.AppField>
         <form.Subscribe
           selector={(state) => [state.canSubmit, state.isSubmitting]}
         >
           {([canSubmit, isSubmitting]) => (
             <Field>
               <Button type="submit" disabled={!canSubmit || isSubmitting}>
-                {isSubmitting ? 'Logging in...' : 'Login'}
+                {isSubmitting ? 'Sending...' : 'Send reset link'}
               </Button>
             </Field>
           )}
         </form.Subscribe>
-        <FieldSeparator />
         <Field>
           <FieldDescription className="text-center">
-            Don&apos;t have an account?{' '}
-            <Link to="/auth/signup" className="underline underline-offset-4">
-              Sign up
+            Remember your password?{' '}
+            <Link to="/auth/login" className="underline underline-offset-4">
+              Back to login
             </Link>
           </FieldDescription>
         </Field>

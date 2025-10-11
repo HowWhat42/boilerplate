@@ -4,70 +4,75 @@ import {
   Field,
   FieldDescription,
   FieldLabel,
-  FieldSeparator,
 } from '@boilerplate/design-system/components/ui/field'
 import { Input } from '@boilerplate/design-system/components/ui/input'
 import { useAppForm } from '@/hooks/form-hook'
 import { Form } from '@boilerplate/design-system/components/ui/form'
 import { Link } from '@tanstack/react-router'
-import { loginFormSchema } from '@/lib/schemas/auth'
-import { useAuth } from '@/hooks/use-auth'
+import { resetPasswordFormSchema } from '@/lib/schemas/auth'
+import { useMutation } from '@tanstack/react-query'
+import { resetPasswordMutationOptions } from '@/lib/queries/auth'
+import { PasswordStrength } from '@boilerplate/design-system/components/ui/password-strength'
 
-export function LoginForm({
+interface ResetPasswordFormProps extends React.ComponentProps<'form'> {
+  token: string
+}
+
+export function ResetPasswordForm({
+  token,
   className,
   ...props
-}: React.ComponentProps<'form'>) {
-  const { signIn } = useAuth()
+}: ResetPasswordFormProps) {
+  const resetPasswordMutation = useMutation(resetPasswordMutationOptions(token))
   const form = useAppForm({
     defaultValues: {
-      email: '',
       password: '',
+      confirmPassword: '',
     },
     validators: {
-      onChange: loginFormSchema,
+      onChange: resetPasswordFormSchema,
     },
     onSubmit: (data) => {
-      signIn(data.value)
+      resetPasswordMutation.mutateAsync({
+        payload: { password: data.value.password },
+      })
     },
   })
   return (
     <form.AppForm>
       <Form className={cn('space-y-6', className)} {...props}>
         <div className="flex flex-col items-center gap-1 text-center">
-          <h1 className="text-2xl font-bold">Login to your account</h1>
+          <h1 className="text-2xl font-bold">Reset your password</h1>
           <p className="text-muted-foreground text-sm text-balance">
-            Enter your credentials below to login to your account
+            Enter your new password below
           </p>
         </div>
-        <form.AppField name="email">
+        <form.AppField name="password">
           {(field) => (
             <Field>
-              <FieldLabel htmlFor="email">Email</FieldLabel>
+              <FieldLabel htmlFor="password">New Password</FieldLabel>
               <Input
-                id="email"
-                type="email"
-                placeholder="m@example.com"
+                id="password"
+                type="password"
+                placeholder="••••••••••••"
                 required
                 value={field.state.value}
                 onChange={(e) => field.handleChange(e.target.value)}
               />
+              <FieldDescription>
+                <PasswordStrength password={field.state.value} />
+              </FieldDescription>
             </Field>
           )}
         </form.AppField>
-        <form.AppField name="password">
+        <form.AppField name="confirmPassword">
           {(field) => (
             <Field>
-              <div className="flex items-center">
-                <FieldLabel htmlFor="password">Password</FieldLabel>
-                <Link
-                  to="/auth/forgot-password"
-                  className="ml-auto text-sm underline-offset-4 hover:underline"
-                >
-                  Forgot your password?
-                </Link>
-              </div>
+              <FieldLabel htmlFor="confirmPassword">
+                Confirm Password
+              </FieldLabel>
               <Input
-                id="password"
+                id="confirmPassword"
                 type="password"
                 placeholder="••••••••••••"
                 required
@@ -83,17 +88,16 @@ export function LoginForm({
           {([canSubmit, isSubmitting]) => (
             <Field>
               <Button type="submit" disabled={!canSubmit || isSubmitting}>
-                {isSubmitting ? 'Logging in...' : 'Login'}
+                {isSubmitting ? 'Resetting...' : 'Reset password'}
               </Button>
             </Field>
           )}
         </form.Subscribe>
-        <FieldSeparator />
         <Field>
           <FieldDescription className="text-center">
-            Don&apos;t have an account?{' '}
-            <Link to="/auth/signup" className="underline underline-offset-4">
-              Sign up
+            Remember your password?{' '}
+            <Link to="/auth/login" className="underline underline-offset-4">
+              Back to login
             </Link>
           </FieldDescription>
         </Field>

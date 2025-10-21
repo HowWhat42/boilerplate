@@ -29,10 +29,9 @@ const mailConfig = defineConfig({
 
 MailMessage.templateEngine = {
   async render(templatePath: string, _: any, data: any) {
-    const emailModule = await import(templatePath)
-    const EmailComponent = emailModule.default
+    const emailModule = await import(templatePath).then((module) => module.default)
 
-    return await render(EmailComponent(data))
+    return render(emailModule(data))
   },
 }
 

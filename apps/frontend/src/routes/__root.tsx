@@ -10,6 +10,7 @@ import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
 
 import appCss from '../styles.css?url'
 import '@boilerplate/design-system/styles/globals.css'
+import { Toaster } from '@boilerplate/design-system/components/ui/sonner'
 
 import type { QueryClient } from '@tanstack/react-query'
 
@@ -50,6 +51,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
+        <Toaster expand position="top-center" />
         <TanStackDevtools
           config={{
             position: 'bottom-right',

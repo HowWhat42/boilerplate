@@ -9,6 +9,7 @@ import {
   logoutMutationOptions,
 } from "@/lib/queries/auth";
 import { getRouter } from "@/router";
+import { toast } from "sonner";
 
 export type User = InferResponseType<typeof tuyau.me.$get>;
 
@@ -35,6 +36,7 @@ function useAuth(): AuthData {
         },
         {
           onSuccess: () => {
+            toast.success("Connexion réussie");
             void getRouter().navigate({ to: redirectTo || "/", replace: true });
           },
         },

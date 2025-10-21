@@ -7,6 +7,10 @@
 import type { MakeTuyauRequest, MakeTuyauResponse } from '@tuyau/utils/types'
 import type { InferInput } from '@vinejs/vine/types'
 
+type RegisterPost = {
+  request: MakeTuyauRequest<InferInput<typeof import('../app/auth/validators/register.ts')['registerValidator']>>
+  response: MakeTuyauResponse<import('../app/auth/controllers/auth_controller.ts').default['register'], true>
+}
 type LoginPost = {
   request: MakeTuyauRequest<InferInput<typeof import('../app/auth/validators/login.ts')['loginValidator']>>
   response: MakeTuyauResponse<import('../app/auth/controllers/auth_controller.ts').default['login'], true>
@@ -19,6 +23,14 @@ type LogoutPost = {
   request: unknown
   response: MakeTuyauResponse<import('../app/auth/controllers/auth_controller.ts').default['logout'], false>
 }
+type AuthEmailVerifyIdPost = {
+  request: unknown
+  response: MakeTuyauResponse<import('../app/auth/controllers/email_controller.ts').default['verifyEmail'], false>
+}
+type AuthEmailResendPost = {
+  request: MakeTuyauRequest<InferInput<typeof import('../app/auth/validators/email_verification.ts')['resendVerificationEmailValidator']>>
+  response: MakeTuyauResponse<import('../app/auth/controllers/email_controller.ts').default['resendVerificationEmail'], true>
+}
 type AuthPasswordForgotPost = {
   request: MakeTuyauRequest<InferInput<typeof import('../app/auth/validators/password_reset.ts')['forgotPasswordValidator']>>
   response: MakeTuyauResponse<import('../app/auth/controllers/password_controller.ts').default['forgotPassword'], true>
@@ -28,6 +40,11 @@ type AuthPasswordResetIdPost = {
   response: MakeTuyauResponse<import('../app/auth/controllers/password_controller.ts').default['resetPassword'], true>
 }
 export interface ApiDefinition {
+  'register': {
+    '$url': {
+    };
+    '$post': RegisterPost;
+  };
   'login': {
     '$url': {
     };
@@ -44,6 +61,20 @@ export interface ApiDefinition {
     '$post': LogoutPost;
   };
   'auth': {
+    'email': {
+      'verify': {
+        ':token': {
+          '$url': {
+          };
+          '$post': AuthEmailVerifyIdPost;
+        };
+      };
+      'resend': {
+        '$url': {
+        };
+        '$post': AuthEmailResendPost;
+      };
+    };
     'password': {
       'forgot': {
         '$url': {
@@ -61,6 +92,13 @@ export interface ApiDefinition {
   };
 }
 const routes = [
+  {
+    params: [],
+    name: 'auth.register',
+    path: '/register',
+    method: ["POST"],
+    types: {} as RegisterPost,
+  },
   {
     params: [],
     name: 'auth.login',
@@ -81,6 +119,20 @@ const routes = [
     path: '/logout',
     method: ["POST"],
     types: {} as LogoutPost,
+  },
+  {
+    params: ["token"],
+    name: 'auth.email.verify',
+    path: '/auth/email/verify/:token',
+    method: ["POST"],
+    types: {} as AuthEmailVerifyIdPost,
+  },
+  {
+    params: [],
+    name: 'auth.email.resend',
+    path: '/auth/email/resend',
+    method: ["POST"],
+    types: {} as AuthEmailResendPost,
   },
   {
     params: [],

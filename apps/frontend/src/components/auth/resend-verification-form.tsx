@@ -4,40 +4,40 @@ import {
   Field,
   FieldDescription,
   FieldLabel,
-  FieldSeparator,
 } from '@boilerplate/design-system/components/ui/field'
 import { Input } from '@boilerplate/design-system/components/ui/input'
-import { PasswordField } from '@boilerplate/design-system/components/ui/password_field'
 import { useAppForm } from '@/hooks/form-hook'
 import { Form } from '@boilerplate/design-system/components/ui/form'
 import { Link } from '@tanstack/react-router'
-import { loginFormSchema } from '@/lib/schemas/auth'
-import { useAuth } from '@/hooks/use-auth'
+import { resendVerificationFormSchema } from '@/lib/schemas/auth'
+import { useMutation } from '@tanstack/react-query'
+import { resendVerificationMutationOptions } from '@/lib/queries/auth'
 
-export function LoginForm({
+export function ResendVerificationForm({
   className,
   ...props
 }: React.ComponentProps<'form'>) {
-  const { signIn } = useAuth()
+  const resendVerificationMutation = useMutation(resendVerificationMutationOptions())
   const form = useAppForm({
     defaultValues: {
       email: '',
-      password: '',
     },
     validators: {
-      onChange: loginFormSchema,
+      onChange: resendVerificationFormSchema,
     },
     onSubmit: (data) => {
-      signIn(data.value)
+      resendVerificationMutation.mutateAsync({
+        payload: { email: data.value.email },
+      })
     },
   })
   return (
     <form.AppForm>
       <Form className={cn('space-y-6', className)} {...props}>
         <div className="flex flex-col items-center gap-1 text-center">
-          <h1 className="text-2xl font-bold">Login to your account</h1>
+          <h1 className="text-2xl font-bold">Resend verification email</h1>
           <p className="text-muted-foreground text-sm text-balance">
-            Enter your credentials below to login to your account
+            Enter your email address and we'll send you a new verification link
           </p>
         </div>
         <form.AppField name="email">
@@ -55,45 +55,22 @@ export function LoginForm({
             </Field>
           )}
         </form.AppField>
-        <form.AppField name="password">
-          {(field) => (
-            <Field>
-              <div className="flex items-center">
-                <FieldLabel htmlFor="password">Password</FieldLabel>
-                <Link
-                  to="/auth/forgot-password"
-                  className="ml-auto text-sm underline-offset-4 hover:underline"
-                >
-                  Forgot your password?
-                </Link>
-              </div>
-              <PasswordField
-                id="password"
-                placeholder="••••••••••••"
-                required
-                value={field.state.value}
-                onChange={(e) => field.handleChange(e.target.value)}
-              />
-            </Field>
-          )}
-        </form.AppField>
         <form.Subscribe
           selector={(state) => [state.canSubmit, state.isSubmitting]}
         >
           {([canSubmit, isSubmitting]) => (
             <Field>
               <Button type="submit" disabled={!canSubmit || isSubmitting}>
-                {isSubmitting ? 'Logging in...' : 'Login'}
+                {isSubmitting ? 'Sending...' : 'Send verification email'}
               </Button>
             </Field>
           )}
         </form.Subscribe>
-        <FieldSeparator />
         <Field>
           <FieldDescription className="text-center">
-            Don&apos;t have an account?{' '}
-            <Link to="/auth/signup" className="underline underline-offset-4">
-              Sign up
+            Already verified?{' '}
+            <Link to="/auth/login" className="underline underline-offset-4">
+              Back to login
             </Link>
           </FieldDescription>
         </Field>

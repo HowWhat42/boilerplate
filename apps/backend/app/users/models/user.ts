@@ -5,6 +5,7 @@ import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import { withTimestamps } from '#common/mixins/with_timestamps'
 import { withUUID } from '#common/mixins/with_uuid'
 import type { Address } from '#common/types/address'
+import { DateTime } from 'luxon'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -28,6 +29,9 @@ export default class User extends compose(BaseModel, AuthFinder, withUUID(), wit
     prepare: (value: Address) => JSON.stringify(value),
   })
   declare address: Address
+
+  @column.dateTime()
+  declare emailVerifiedAt: DateTime | null
 
   @computed()
   get fullName(): string {

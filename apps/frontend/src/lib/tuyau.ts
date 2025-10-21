@@ -14,11 +14,11 @@ export const queryClient = new QueryClient({
     mutations: {
       onError: (error: unknown) => {
         if (error instanceof TuyauHTTPError) {
-          toast.error("Une erreur est survenue", {
+          toast.error("An error occurred", {
             description: (error.value as Error).message,
           });
         } else {
-          toast.error("Une erreur est survenue");
+          toast.error("An error occurred");
         }
       },
     },

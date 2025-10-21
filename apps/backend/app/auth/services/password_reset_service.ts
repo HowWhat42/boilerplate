@@ -37,7 +37,7 @@ export class PasswordResetService {
       .first()
   }
 
-  async forgotPassword(email: string) {
+  async forgotPassword(email: string, ip: string) {
     const user = await User.findBy('email', email)
 
     if (!user) {
@@ -49,16 +49,16 @@ export class PasswordResetService {
 
     const { token } = await this.generateToken(user)
 
-    const resetUrl = `${env.get('TRAINING_APP_URL')}/auth/reset-password?token=${token}`
+    const resetUrl = `${env.get('APP_URL')}/auth/reset-password?token=${token}`
 
     await mail.send((message) => {
       message
-        .to(user.email)
-        .subject('Réinitialisez votre mot de passe Tatoo Formation')
-        .htmlView('emails/password_reset', {
-          userName: user.fullName,
+        .to(email)
+        .subject('Reset your password')
+        .htmlView('#resources/views/emails/reset_password', {
+          fullName: user.fullName,
           resetUrl,
-          recipientEmail: user.email,
+          resetFromIp: ip,
           baseUrl: env.get('APP_URL'),
         })
     })

@@ -1,8 +1,9 @@
 import env from '#start/env'
-import { defineConfig, transports } from '@adonisjs/mail'
+import { defineConfig, transports, Message as MailMessage } from '@adonisjs/mail'
+import { render } from '@react-email/render'
 
 const mailConfig = defineConfig({
-  default: 'resend',
+  default: 'smtp',
 
   from: {
     name: 'Boilerplate',
@@ -25,6 +26,15 @@ const mailConfig = defineConfig({
     }),
   },
 })
+
+MailMessage.templateEngine = {
+  async render(templatePath: string, _: any, data: any) {
+    const emailModule = await import(templatePath)
+    const EmailComponent = emailModule.default
+
+    return await render(EmailComponent(data))
+  },
+}
 
 export default mailConfig
 

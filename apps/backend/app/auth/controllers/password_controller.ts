@@ -12,7 +12,8 @@ export default class PasswordController {
   @Post('/forgot', 'forgot')
   async forgotPassword({ request, response }: HttpContext) {
     const { email } = await request.validateUsing(forgotPasswordValidator)
-    const result = await this.passwordResetService.forgotPassword(email)
+
+    const result = await this.passwordResetService.forgotPassword(email, request.ip())
 
     return response.ok(result)
   }

@@ -28,6 +28,7 @@ export default class User extends compose(BaseModel, AuthFinder, withUUID(), wit
     prepare: (value: Address) => JSON.stringify(value),
   })
   declare address: Address
+
   @computed()
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`

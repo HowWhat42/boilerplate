@@ -6,7 +6,6 @@ import {
   Heading,
   Hr,
   Html,
-  Img,
   Link,
   Preview,
   pixelBasedPreset,
@@ -18,10 +17,9 @@ import {
 interface VerifyEmailProps {
   fullName: string
   verificationUrl: string
-  baseUrl: string
 }
 
-export const VerifyEmail = ({ fullName, verificationUrl, baseUrl }: VerifyEmailProps) => {
+export const VerifyEmail = ({ fullName, verificationUrl }: VerifyEmailProps) => {
   const previewText = `Verify your email address`
 
   return (
@@ -35,15 +33,6 @@ export const VerifyEmail = ({ fullName, verificationUrl, baseUrl }: VerifyEmailP
         <Body className="mx-auto my-auto bg-white px-2 font-sans">
           <Preview>{previewText}</Preview>
           <Container className="mx-auto my-[40px] max-w-[465px] rounded border border-[#eaeaea] border-solid p-[20px]">
-            <Section className="mt-[32px]">
-              <Img
-                src={`${baseUrl}/static/vercel-logo.png`}
-                width="40"
-                height="37"
-                alt="Vercel Logo"
-                className="mx-auto my-0"
-              />
-            </Section>
             <Heading className="mx-0 my-[30px] p-0 text-center font-normal text-[24px] text-black">
               Verify your email address
             </Heading>
@@ -85,7 +74,6 @@ export const VerifyEmail = ({ fullName, verificationUrl, baseUrl }: VerifyEmailP
 VerifyEmail.PreviewProps = {
   fullName: 'John Doe',
   verificationUrl: 'https://example.com/verify-email?token=abc123',
-  baseUrl: 'https://example.com',
 } as VerifyEmailProps
 
 export default VerifyEmail

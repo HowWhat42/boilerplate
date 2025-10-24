@@ -52,15 +52,11 @@ export class PasswordResetService {
     const resetUrl = `${env.get('APP_URL')}/auth/reset-password?token=${token}`
 
     await mail.send((message) => {
-      message
-        .to(email)
-        .subject('Reset your password')
-        .htmlView('#resources/views/emails/reset_password', {
-          fullName: user.fullName,
-          resetUrl,
-          resetFromIp: ip,
-          baseUrl: env.get('APP_URL'),
-        })
+      message.to(email).subject('Reset your password').htmlView('#emails/reset_password', {
+        fullName: user.fullName,
+        resetUrl,
+        resetFromIp: ip,
+      })
     })
 
     return {

@@ -27,7 +27,7 @@
     "#users/*": "./app/users/*.js",
     "#auth/*": "./app/auth/*.js",
     "#common/*": "./app/common/*.js",
-    "#resources/*": "./resources/*.js"
+    "#emails/*": "./emails/*.js"
   },
   "devDependencies": {
     "@adonisjs/assembler": "^7.8.2",
@@ -38,6 +38,7 @@
     "@japa/assert": "^4.1.1",
     "@japa/plugin-adonisjs": "^4.0.0",
     "@japa/runner": "^4.4.0",
+    "@react-email/preview-server": "4.3.1",
     "@swc/core": "1.11.24",
     "@tuyau/utils": "^0.0.9",
     "@types/luxon": "^3.7.1",

@@ -67,7 +67,6 @@ export class EmailVerificationService {
       }
     }
 
-    // Check if already verified
     if (user.emailVerifiedAt) {
       return {
         success: true,
@@ -80,14 +79,10 @@ export class EmailVerificationService {
     const verificationUrl = `${env.get('APP_URL')}/auth/verify-email?token=${token}`
 
     await mail.send((message) => {
-      message
-        .to(email)
-        .subject('Verify your email address')
-        .htmlView('#resources/views/emails/verify_email', {
-          fullName: user.fullName,
-          verificationUrl,
-          baseUrl: env.get('APP_URL'),
-        })
+      message.to(email).subject('Verify your email address').htmlView('#emails/verify_email', {
+        fullName: user.fullName,
+        verificationUrl,
+      })
     })
 
     return {
@@ -99,7 +94,6 @@ export class EmailVerificationService {
   async verifyEmail(token: EmailVerificationToken) {
     const user = await User.findOrFail(token.userId)
 
-    // Check if already verified
     if (user.emailVerifiedAt) {
       return {
         success: true,

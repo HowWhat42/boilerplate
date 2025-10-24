@@ -6,11 +6,9 @@ import {
   Heading,
   Hr,
   Html,
-  Img,
   Link,
   Preview,
   pixelBasedPreset,
-  Section,
   Tailwind,
   Text,
 } from '@react-email/components'
@@ -19,14 +17,12 @@ interface ResetPasswordEmailProps {
   fullName: string
   resetUrl: string
   resetFromIp: string
-  baseUrl: string
 }
 
 export const ResetPasswordEmail = ({
   fullName,
   resetUrl,
   resetFromIp,
-  baseUrl,
 }: ResetPasswordEmailProps) => {
   const previewText = `Reset your password`
 
@@ -41,15 +37,6 @@ export const ResetPasswordEmail = ({
         <Body className="mx-auto my-auto bg-white px-2 font-sans">
           <Preview>{previewText}</Preview>
           <Container className="mx-auto my-[40px] max-w-[465px] rounded border border-[#eaeaea] border-solid p-[20px]">
-            <Section className="mt-[32px]">
-              <Img
-                src={`${baseUrl}/static/vercel-logo.png`}
-                width="40"
-                height="37"
-                alt="Vercel Logo"
-                className="mx-auto my-0"
-              />
-            </Section>
             <Heading className="mx-0 my-[30px] p-0 text-center font-normal text-[24px] text-black">
               Reset your password
             </Heading>
@@ -89,7 +76,6 @@ ResetPasswordEmail.PreviewProps = {
   fullName: 'John Doe',
   resetUrl: 'https://example.com/reset-password',
   resetFromIp: '204.13.186.218',
-  baseUrl: 'https://example.com',
 } as ResetPasswordEmailProps
 
 export default ResetPasswordEmail

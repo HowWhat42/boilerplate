@@ -9,15 +9,29 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as Char123LocaleChar125RouteRouteImport } from './routes/{-$locale}/route'
 import { Route as AuthRouteRouteImport } from './routes/auth/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as Char123LocaleChar125AuthRouteRouteImport } from './routes/{-$locale}/auth/route'
 import { Route as AuthVerifyEmailIndexRouteImport } from './routes/auth/verify-email/index'
 import { Route as AuthSignupIndexRouteImport } from './routes/auth/signup/index'
 import { Route as AuthResetPasswordIndexRouteImport } from './routes/auth/reset-password/index'
 import { Route as AuthResendVerificationIndexRouteImport } from './routes/auth/resend-verification/index'
 import { Route as AuthLoginIndexRouteImport } from './routes/auth/login/index'
 import { Route as AuthForgotPasswordIndexRouteImport } from './routes/auth/forgot-password/index'
+import { Route as Char123LocaleChar125AuthVerifyEmailIndexRouteImport } from './routes/{-$locale}/auth/verify-email/index'
+import { Route as Char123LocaleChar125AuthSignupIndexRouteImport } from './routes/{-$locale}/auth/signup/index'
+import { Route as Char123LocaleChar125AuthResetPasswordIndexRouteImport } from './routes/{-$locale}/auth/reset-password/index'
+import { Route as Char123LocaleChar125AuthResendVerificationIndexRouteImport } from './routes/{-$locale}/auth/resend-verification/index'
+import { Route as Char123LocaleChar125AuthLoginIndexRouteImport } from './routes/{-$locale}/auth/login/index'
+import { Route as Char123LocaleChar125AuthForgotPasswordIndexRouteImport } from './routes/{-$locale}/auth/forgot-password/index'
 
+const Char123LocaleChar125RouteRoute =
+  Char123LocaleChar125RouteRouteImport.update({
+    id: '/{-$locale}',
+    path: '/{-$locale}',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AuthRouteRoute = AuthRouteRouteImport.update({
   id: '/auth',
   path: '/auth',
@@ -28,6 +42,12 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Char123LocaleChar125AuthRouteRoute =
+  Char123LocaleChar125AuthRouteRouteImport.update({
+    id: '/auth',
+    path: '/auth',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
 const AuthVerifyEmailIndexRoute = AuthVerifyEmailIndexRouteImport.update({
   id: '/verify-email/',
   path: '/verify-email/',
@@ -59,78 +79,170 @@ const AuthForgotPasswordIndexRoute = AuthForgotPasswordIndexRouteImport.update({
   path: '/forgot-password/',
   getParentRoute: () => AuthRouteRoute,
 } as any)
+const Char123LocaleChar125AuthVerifyEmailIndexRoute =
+  Char123LocaleChar125AuthVerifyEmailIndexRouteImport.update({
+    id: '/verify-email/',
+    path: '/verify-email/',
+    getParentRoute: () => Char123LocaleChar125AuthRouteRoute,
+  } as any)
+const Char123LocaleChar125AuthSignupIndexRoute =
+  Char123LocaleChar125AuthSignupIndexRouteImport.update({
+    id: '/signup/',
+    path: '/signup/',
+    getParentRoute: () => Char123LocaleChar125AuthRouteRoute,
+  } as any)
+const Char123LocaleChar125AuthResetPasswordIndexRoute =
+  Char123LocaleChar125AuthResetPasswordIndexRouteImport.update({
+    id: '/reset-password/',
+    path: '/reset-password/',
+    getParentRoute: () => Char123LocaleChar125AuthRouteRoute,
+  } as any)
+const Char123LocaleChar125AuthResendVerificationIndexRoute =
+  Char123LocaleChar125AuthResendVerificationIndexRouteImport.update({
+    id: '/resend-verification/',
+    path: '/resend-verification/',
+    getParentRoute: () => Char123LocaleChar125AuthRouteRoute,
+  } as any)
+const Char123LocaleChar125AuthLoginIndexRoute =
+  Char123LocaleChar125AuthLoginIndexRouteImport.update({
+    id: '/login/',
+    path: '/login/',
+    getParentRoute: () => Char123LocaleChar125AuthRouteRoute,
+  } as any)
+const Char123LocaleChar125AuthForgotPasswordIndexRoute =
+  Char123LocaleChar125AuthForgotPasswordIndexRouteImport.update({
+    id: '/forgot-password/',
+    path: '/forgot-password/',
+    getParentRoute: () => Char123LocaleChar125AuthRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRouteRouteWithChildren
+  '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
+  '/{-$locale}/auth': typeof Char123LocaleChar125AuthRouteRouteWithChildren
   '/auth/forgot-password': typeof AuthForgotPasswordIndexRoute
   '/auth/login': typeof AuthLoginIndexRoute
   '/auth/resend-verification': typeof AuthResendVerificationIndexRoute
   '/auth/reset-password': typeof AuthResetPasswordIndexRoute
   '/auth/signup': typeof AuthSignupIndexRoute
   '/auth/verify-email': typeof AuthVerifyEmailIndexRoute
+  '/{-$locale}/auth/forgot-password': typeof Char123LocaleChar125AuthForgotPasswordIndexRoute
+  '/{-$locale}/auth/login': typeof Char123LocaleChar125AuthLoginIndexRoute
+  '/{-$locale}/auth/resend-verification': typeof Char123LocaleChar125AuthResendVerificationIndexRoute
+  '/{-$locale}/auth/reset-password': typeof Char123LocaleChar125AuthResetPasswordIndexRoute
+  '/{-$locale}/auth/signup': typeof Char123LocaleChar125AuthSignupIndexRoute
+  '/{-$locale}/auth/verify-email': typeof Char123LocaleChar125AuthVerifyEmailIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRouteRouteWithChildren
+  '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
+  '/{-$locale}/auth': typeof Char123LocaleChar125AuthRouteRouteWithChildren
   '/auth/forgot-password': typeof AuthForgotPasswordIndexRoute
   '/auth/login': typeof AuthLoginIndexRoute
   '/auth/resend-verification': typeof AuthResendVerificationIndexRoute
   '/auth/reset-password': typeof AuthResetPasswordIndexRoute
   '/auth/signup': typeof AuthSignupIndexRoute
   '/auth/verify-email': typeof AuthVerifyEmailIndexRoute
+  '/{-$locale}/auth/forgot-password': typeof Char123LocaleChar125AuthForgotPasswordIndexRoute
+  '/{-$locale}/auth/login': typeof Char123LocaleChar125AuthLoginIndexRoute
+  '/{-$locale}/auth/resend-verification': typeof Char123LocaleChar125AuthResendVerificationIndexRoute
+  '/{-$locale}/auth/reset-password': typeof Char123LocaleChar125AuthResetPasswordIndexRoute
+  '/{-$locale}/auth/signup': typeof Char123LocaleChar125AuthSignupIndexRoute
+  '/{-$locale}/auth/verify-email': typeof Char123LocaleChar125AuthVerifyEmailIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/auth': typeof AuthRouteRouteWithChildren
+  '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
+  '/{-$locale}/auth': typeof Char123LocaleChar125AuthRouteRouteWithChildren
   '/auth/forgot-password/': typeof AuthForgotPasswordIndexRoute
   '/auth/login/': typeof AuthLoginIndexRoute
   '/auth/resend-verification/': typeof AuthResendVerificationIndexRoute
   '/auth/reset-password/': typeof AuthResetPasswordIndexRoute
   '/auth/signup/': typeof AuthSignupIndexRoute
   '/auth/verify-email/': typeof AuthVerifyEmailIndexRoute
+  '/{-$locale}/auth/forgot-password/': typeof Char123LocaleChar125AuthForgotPasswordIndexRoute
+  '/{-$locale}/auth/login/': typeof Char123LocaleChar125AuthLoginIndexRoute
+  '/{-$locale}/auth/resend-verification/': typeof Char123LocaleChar125AuthResendVerificationIndexRoute
+  '/{-$locale}/auth/reset-password/': typeof Char123LocaleChar125AuthResetPasswordIndexRoute
+  '/{-$locale}/auth/signup/': typeof Char123LocaleChar125AuthSignupIndexRoute
+  '/{-$locale}/auth/verify-email/': typeof Char123LocaleChar125AuthVerifyEmailIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/auth'
+    | '/{-$locale}'
+    | '/{-$locale}/auth'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/resend-verification'
     | '/auth/reset-password'
     | '/auth/signup'
     | '/auth/verify-email'
+    | '/{-$locale}/auth/forgot-password'
+    | '/{-$locale}/auth/login'
+    | '/{-$locale}/auth/resend-verification'
+    | '/{-$locale}/auth/reset-password'
+    | '/{-$locale}/auth/signup'
+    | '/{-$locale}/auth/verify-email'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/auth'
+    | '/{-$locale}'
+    | '/{-$locale}/auth'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/resend-verification'
     | '/auth/reset-password'
     | '/auth/signup'
     | '/auth/verify-email'
+    | '/{-$locale}/auth/forgot-password'
+    | '/{-$locale}/auth/login'
+    | '/{-$locale}/auth/resend-verification'
+    | '/{-$locale}/auth/reset-password'
+    | '/{-$locale}/auth/signup'
+    | '/{-$locale}/auth/verify-email'
   id:
     | '__root__'
     | '/'
     | '/auth'
+    | '/{-$locale}'
+    | '/{-$locale}/auth'
     | '/auth/forgot-password/'
     | '/auth/login/'
     | '/auth/resend-verification/'
     | '/auth/reset-password/'
     | '/auth/signup/'
     | '/auth/verify-email/'
+    | '/{-$locale}/auth/forgot-password/'
+    | '/{-$locale}/auth/login/'
+    | '/{-$locale}/auth/resend-verification/'
+    | '/{-$locale}/auth/reset-password/'
+    | '/{-$locale}/auth/signup/'
+    | '/{-$locale}/auth/verify-email/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRouteRoute: typeof AuthRouteRouteWithChildren
+  Char123LocaleChar125RouteRoute: typeof Char123LocaleChar125RouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/{-$locale}': {
+      id: '/{-$locale}'
+      path: '/{-$locale}'
+      fullPath: '/{-$locale}'
+      preLoaderRoute: typeof Char123LocaleChar125RouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth': {
       id: '/auth'
       path: '/auth'
@@ -144,6 +256,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/{-$locale}/auth': {
+      id: '/{-$locale}/auth'
+      path: '/auth'
+      fullPath: '/{-$locale}/auth'
+      preLoaderRoute: typeof Char123LocaleChar125AuthRouteRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
     }
     '/auth/verify-email/': {
       id: '/auth/verify-email/'
@@ -187,6 +306,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthForgotPasswordIndexRouteImport
       parentRoute: typeof AuthRouteRoute
     }
+    '/{-$locale}/auth/verify-email/': {
+      id: '/{-$locale}/auth/verify-email/'
+      path: '/verify-email'
+      fullPath: '/{-$locale}/auth/verify-email'
+      preLoaderRoute: typeof Char123LocaleChar125AuthVerifyEmailIndexRouteImport
+      parentRoute: typeof Char123LocaleChar125AuthRouteRoute
+    }
+    '/{-$locale}/auth/signup/': {
+      id: '/{-$locale}/auth/signup/'
+      path: '/signup'
+      fullPath: '/{-$locale}/auth/signup'
+      preLoaderRoute: typeof Char123LocaleChar125AuthSignupIndexRouteImport
+      parentRoute: typeof Char123LocaleChar125AuthRouteRoute
+    }
+    '/{-$locale}/auth/reset-password/': {
+      id: '/{-$locale}/auth/reset-password/'
+      path: '/reset-password'
+      fullPath: '/{-$locale}/auth/reset-password'
+      preLoaderRoute: typeof Char123LocaleChar125AuthResetPasswordIndexRouteImport
+      parentRoute: typeof Char123LocaleChar125AuthRouteRoute
+    }
+    '/{-$locale}/auth/resend-verification/': {
+      id: '/{-$locale}/auth/resend-verification/'
+      path: '/resend-verification'
+      fullPath: '/{-$locale}/auth/resend-verification'
+      preLoaderRoute: typeof Char123LocaleChar125AuthResendVerificationIndexRouteImport
+      parentRoute: typeof Char123LocaleChar125AuthRouteRoute
+    }
+    '/{-$locale}/auth/login/': {
+      id: '/{-$locale}/auth/login/'
+      path: '/login'
+      fullPath: '/{-$locale}/auth/login'
+      preLoaderRoute: typeof Char123LocaleChar125AuthLoginIndexRouteImport
+      parentRoute: typeof Char123LocaleChar125AuthRouteRoute
+    }
+    '/{-$locale}/auth/forgot-password/': {
+      id: '/{-$locale}/auth/forgot-password/'
+      path: '/forgot-password'
+      fullPath: '/{-$locale}/auth/forgot-password'
+      preLoaderRoute: typeof Char123LocaleChar125AuthForgotPasswordIndexRouteImport
+      parentRoute: typeof Char123LocaleChar125AuthRouteRoute
+    }
   }
 }
 
@@ -212,9 +373,55 @@ const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
   AuthRouteRouteChildren,
 )
 
+interface Char123LocaleChar125AuthRouteRouteChildren {
+  Char123LocaleChar125AuthForgotPasswordIndexRoute: typeof Char123LocaleChar125AuthForgotPasswordIndexRoute
+  Char123LocaleChar125AuthLoginIndexRoute: typeof Char123LocaleChar125AuthLoginIndexRoute
+  Char123LocaleChar125AuthResendVerificationIndexRoute: typeof Char123LocaleChar125AuthResendVerificationIndexRoute
+  Char123LocaleChar125AuthResetPasswordIndexRoute: typeof Char123LocaleChar125AuthResetPasswordIndexRoute
+  Char123LocaleChar125AuthSignupIndexRoute: typeof Char123LocaleChar125AuthSignupIndexRoute
+  Char123LocaleChar125AuthVerifyEmailIndexRoute: typeof Char123LocaleChar125AuthVerifyEmailIndexRoute
+}
+
+const Char123LocaleChar125AuthRouteRouteChildren: Char123LocaleChar125AuthRouteRouteChildren =
+  {
+    Char123LocaleChar125AuthForgotPasswordIndexRoute:
+      Char123LocaleChar125AuthForgotPasswordIndexRoute,
+    Char123LocaleChar125AuthLoginIndexRoute:
+      Char123LocaleChar125AuthLoginIndexRoute,
+    Char123LocaleChar125AuthResendVerificationIndexRoute:
+      Char123LocaleChar125AuthResendVerificationIndexRoute,
+    Char123LocaleChar125AuthResetPasswordIndexRoute:
+      Char123LocaleChar125AuthResetPasswordIndexRoute,
+    Char123LocaleChar125AuthSignupIndexRoute:
+      Char123LocaleChar125AuthSignupIndexRoute,
+    Char123LocaleChar125AuthVerifyEmailIndexRoute:
+      Char123LocaleChar125AuthVerifyEmailIndexRoute,
+  }
+
+const Char123LocaleChar125AuthRouteRouteWithChildren =
+  Char123LocaleChar125AuthRouteRoute._addFileChildren(
+    Char123LocaleChar125AuthRouteRouteChildren,
+  )
+
+interface Char123LocaleChar125RouteRouteChildren {
+  Char123LocaleChar125AuthRouteRoute: typeof Char123LocaleChar125AuthRouteRouteWithChildren
+}
+
+const Char123LocaleChar125RouteRouteChildren: Char123LocaleChar125RouteRouteChildren =
+  {
+    Char123LocaleChar125AuthRouteRoute:
+      Char123LocaleChar125AuthRouteRouteWithChildren,
+  }
+
+const Char123LocaleChar125RouteRouteWithChildren =
+  Char123LocaleChar125RouteRoute._addFileChildren(
+    Char123LocaleChar125RouteRouteChildren,
+  )
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRouteRoute: AuthRouteRouteWithChildren,
+  Char123LocaleChar125RouteRoute: Char123LocaleChar125RouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

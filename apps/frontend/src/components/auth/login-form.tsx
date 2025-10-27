@@ -10,14 +10,16 @@ import { Input } from '@boilerplate/design-system/components/ui/input'
 import { PasswordField } from '@boilerplate/design-system/components/ui/password_field'
 import { useAppForm } from '@/hooks/form-hook'
 import { Form } from '@boilerplate/design-system/components/ui/form'
-import { Link } from '@tanstack/react-router'
 import { loginFormSchema } from '@/lib/schemas/auth'
 import { useAuth } from '@/hooks/use-auth'
+import { LocalizedLink } from '@/components/localized-link'
+import { useIntlayer } from 'react-intlayer'
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<'form'>) {
+  const content = useIntlayer('auth')
   const { signIn } = useAuth()
   const form = useAppForm({
     defaultValues: {
@@ -35,15 +37,15 @@ export function LoginForm({
     <form.AppForm>
       <Form className={cn('space-y-6', className)} {...props}>
         <div className="flex flex-col items-center gap-1 text-center">
-          <h1 className="text-2xl font-bold">Login to your account</h1>
+          <h1 className="text-2xl font-bold">{content.loginTitle}</h1>
           <p className="text-muted-foreground text-sm text-balance">
-            Enter your credentials below to login to your account
+            {content.loginDescription}
           </p>
         </div>
         <form.AppField name="email">
           {(field) => (
             <Field>
-              <FieldLabel htmlFor="email">Email</FieldLabel>
+              <FieldLabel htmlFor="email">{content.fields.email}</FieldLabel>
               <Input
                 id="email"
                 type="email"
@@ -59,13 +61,15 @@ export function LoginForm({
           {(field) => (
             <Field>
               <div className="flex items-center">
-                <FieldLabel htmlFor="password">Password</FieldLabel>
-                <Link
+                <FieldLabel htmlFor="password">
+                  {content.fields.password}
+                </FieldLabel>
+                <LocalizedLink
                   to="/auth/forgot-password"
                   className="ml-auto text-sm underline-offset-4 hover:underline"
                 >
-                  Forgot your password?
-                </Link>
+                  {content.forgotPasswordTitle}
+                </LocalizedLink>
               </div>
               <PasswordField
                 id="password"
@@ -83,7 +87,7 @@ export function LoginForm({
           {([canSubmit, isSubmitting]) => (
             <Field>
               <Button type="submit" disabled={!canSubmit || isSubmitting}>
-                {isSubmitting ? 'Logging in...' : 'Login'}
+                {isSubmitting ? content.loggingIn : content.login}
               </Button>
             </Field>
           )}
@@ -91,10 +95,13 @@ export function LoginForm({
         <FieldSeparator />
         <Field>
           <FieldDescription className="text-center">
-            Don&apos;t have an account?{' '}
-            <Link to="/auth/signup" className="underline underline-offset-4">
-              Sign up
-            </Link>
+            {content.dontHaveAccount}
+            <LocalizedLink
+              to="/auth/signup"
+              className="underline underline-offset-4"
+            >
+              {content.register}
+            </LocalizedLink>
           </FieldDescription>
         </Field>
       </Form>

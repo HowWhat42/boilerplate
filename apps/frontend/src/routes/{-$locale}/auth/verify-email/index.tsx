@@ -4,6 +4,7 @@ import { useMutation } from '@tanstack/react-query'
 import { createFileRoute, useRouter } from '@tanstack/react-router'
 import { useEffect } from 'react'
 import { z } from 'zod'
+import { useIntlayer } from 'react-intlayer'
 
 const searchSchema = z.object({
   token: z.string(),
@@ -16,6 +17,7 @@ export const Route = createFileRoute('/{-$locale}/auth/verify-email/')({
 
 function RouteComponent() {
   const { token } = Route.useSearch()
+  const content = useIntlayer('auth')
   const verifyEmailMutation = useMutation(verifyEmailMutationOptions(token))
   const router = useRouter()
 
@@ -29,27 +31,25 @@ function RouteComponent() {
       <div className="flex flex-col items-center gap-1 text-center">
         {verifyEmailMutation.isPending && (
           <>
-            <h1 className="text-2xl font-bold">Verifying your email...</h1>
+            <h1 className="text-2xl font-bold">{content.verifyingEmail}</h1>
             <p className="text-muted-foreground text-sm text-balance">
-              Please wait while we verify your email address
+              {content.verifyingEmailDescription}
             </p>
           </>
         )}
         {verifyEmailMutation.isSuccess && (
           <>
-            <h1 className="text-2xl font-bold">Email verified!</h1>
+            <h1 className="text-2xl font-bold">{content.emailVerified}</h1>
             <p className="text-muted-foreground text-sm text-balance">
-              Your email has been successfully verified. You can now log in to
-              your account.
+              {content.emailVerifiedDescription}
             </p>
           </>
         )}
         {verifyEmailMutation.isError && (
           <>
-            <h1 className="text-2xl font-bold">Verification failed</h1>
+            <h1 className="text-2xl font-bold">{content.verificationFailed}</h1>
             <p className="text-muted-foreground text-sm text-balance">
-              The verification link is invalid or has expired. Please request a
-              new verification email.
+              {content.verificationFailedDescription}
             </p>
           </>
         )}
@@ -60,7 +60,7 @@ function RouteComponent() {
           type="button"
           onClick={() => router.navigate({ to: '/auth/login' })}
         >
-          Go to login
+          {content.goToLogin}
         </Button>
       )}
 
@@ -69,7 +69,7 @@ function RouteComponent() {
           type="button"
           onClick={() => router.navigate({ to: '/auth/resend-verification' })}
         >
-          Request new verification email
+          {content.requestNewVerificationEmail}
         </Button>
       )}
     </div>

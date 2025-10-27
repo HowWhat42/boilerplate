@@ -8,9 +8,9 @@ import { SiteHeader } from '@/components/home/site-header'
 import { SectionCards } from '@/components/home/section-cards'
 import { ChartAreaInteractive } from '@/components/home/chart-area-interactive'
 import { DataTable } from '@/components/home/data-table'
-import data from './data.json'
+import data from '../data.json'
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute('/{-$locale}/')({
   component: App,
 })
 

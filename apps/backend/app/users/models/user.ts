@@ -6,13 +6,20 @@ import { withTimestamps } from '#common/mixins/with_timestamps'
 import { withUUID } from '#common/mixins/with_uuid'
 import type { Address } from '#common/types/address'
 import { DateTime } from 'luxon'
+import { MorphMap } from '@holoyan/morph-map-js'
+import { hasPermissions } from '@holoyan/adonisjs-permissions'
+import type { AclModelInterface } from '@holoyan/adonisjs-permissions/types'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
   passwordColumnName: 'password',
 })
 
-export default class User extends compose(BaseModel, AuthFinder, withUUID(), withTimestamps()) {
+@MorphMap('users')
+export default class User
+  extends compose(BaseModel, AuthFinder, withUUID(), withTimestamps(), hasPermissions())
+  implements AclModelInterface
+{
   @column()
   declare firstName: string
 
@@ -36,5 +43,9 @@ export default class User extends compose(BaseModel, AuthFinder, withUUID(), wit
   @computed()
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`
+  }
+
+  getModelId(): string {
+    return this.id
   }
 }

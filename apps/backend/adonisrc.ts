@@ -33,6 +33,7 @@ export default defineConfig({
     () => import('@jrmc/adonis-attachment/commands'),
     () => import('@adonisjs/mail/commands'),
     () => import('@adonisjs/bouncer/commands'),
+    () => import('@foadonis/shopkeeper/commands')
   ],
 
   /*
@@ -62,7 +63,8 @@ export default defineConfig({
     () => import('@adonisjs/drive/drive_provider'),
     () => import('@adonisjs/mail/mail_provider'),
     () => import('@adonisjs/bouncer/bouncer_provider'),
-    () => import('@holoyan/adonisjs-permissions/role_permission_provider')
+    () => import('@holoyan/adonisjs-permissions/role_permission_provider'),
+    () => import('@foadonis/shopkeeper/shopkeeper_provider')
   ],
 
   /*

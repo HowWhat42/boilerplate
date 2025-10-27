@@ -7,6 +7,22 @@
 import type { MakeTuyauRequest, MakeTuyauResponse } from '@tuyau/utils/types'
 import type { InferInput } from '@vinejs/vine/types'
 
+type AdminImpersonateIdStartPost = {
+  request: unknown
+  response: MakeTuyauResponse<import('../app/admin/controllers/admin_impersonation_controller.ts').default['impersonateUser'], false>
+}
+type AdminImpersonateStopPost = {
+  request: unknown
+  response: MakeTuyauResponse<import('../app/admin/controllers/admin_impersonation_controller.ts').default['stopImpersonation'], false>
+}
+type AdminImpersonateStatusGet = {
+  request: unknown
+  response: MakeTuyauResponse<import('../app/admin/controllers/admin_impersonation_controller.ts').default['impersonationStatus'], false>
+}
+type AdminUsersGet = {
+  request: unknown
+  response: MakeTuyauResponse<import('../app/admin/controllers/admin_users_controller.ts').default['index'], false>
+}
 type RegisterPost = {
   request: MakeTuyauRequest<InferInput<typeof import('../app/auth/validators/register.ts')['registerValidator']>>
   response: MakeTuyauResponse<import('../app/auth/controllers/auth_controller.ts').default['register'], true>
@@ -40,6 +56,32 @@ type AuthPasswordResetIdPost = {
   response: MakeTuyauResponse<import('../app/auth/controllers/password_controller.ts').default['resetPassword'], true>
 }
 export interface ApiDefinition {
+  'admin': {
+    'impersonate': {
+      ':user_id': {
+        'start': {
+          '$url': {
+          };
+          '$post': AdminImpersonateIdStartPost;
+        };
+      };
+      'stop': {
+        '$url': {
+        };
+        '$post': AdminImpersonateStopPost;
+      };
+      'status': {
+        '$url': {
+        };
+        '$get': AdminImpersonateStatusGet;
+      };
+    };
+    'users': {
+      '$url': {
+      };
+      '$get': AdminUsersGet;
+    };
+  };
   'register': {
     '$url': {
     };
@@ -92,6 +134,34 @@ export interface ApiDefinition {
   };
 }
 const routes = [
+  {
+    params: ["user_id"],
+    name: 'admin.impersonate.start',
+    path: '/admin/impersonate/:user_id/start',
+    method: ["POST"],
+    types: {} as AdminImpersonateIdStartPost,
+  },
+  {
+    params: [],
+    name: 'admin.impersonate.stop',
+    path: '/admin/impersonate/stop',
+    method: ["POST"],
+    types: {} as AdminImpersonateStopPost,
+  },
+  {
+    params: [],
+    name: 'admin.impersonate.status',
+    path: '/admin/impersonate/status',
+    method: ["GET"],
+    types: {} as AdminImpersonateStatusGet,
+  },
+  {
+    params: [],
+    name: 'admin.users.index',
+    path: '/admin/users',
+    method: ["GET"],
+    types: {} as AdminUsersGet,
+  },
   {
     params: [],
     name: 'auth.register',

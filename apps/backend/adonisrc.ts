@@ -62,6 +62,7 @@ export default defineConfig({
     () => import('@adonisjs/drive/drive_provider'),
     () => import('@adonisjs/mail/mail_provider'),
     () => import('@adonisjs/bouncer/bouncer_provider'),
+    () => import('@holoyan/adonisjs-permissions/role_permission_provider')
   ],
 
   /*

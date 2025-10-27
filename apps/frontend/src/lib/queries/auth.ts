@@ -2,6 +2,7 @@ import { getRouter } from "@/router";
 import { queryClient, tuyau } from "@/lib/tuyau";
 import { toast } from "sonner";
 import { getCurrentUserQueryOptions } from "./users";
+import { localizedNavigate } from "@/lib/localized-navigate";
 
 export const loginMutationOptions = tuyau.login.$post.mutationOptions({
   onSuccess: async () => {
@@ -24,7 +25,7 @@ export const loginMutationOptions = tuyau.login.$post.mutationOptions({
 export const logoutMutationOptions = tuyau.logout.$post.mutationOptions({
   onSettled: () => {
     toast.success("Logout successful");
-    void getRouter().navigate({ to: "/auth/login" });
+    void localizedNavigate({ to: "/auth/login" });
     queryClient.removeQueries({
       queryKey: getCurrentUserQueryOptions().queryKey,
     });
@@ -37,7 +38,7 @@ export const forgotPasswordMutationOptions = () =>
       toast.success(
         "If an account exists with that email, you will receive an email to reset your password.",
       );
-      void getRouter().navigate({ to: "/auth/login" });
+      void localizedNavigate({ to: "/auth/login" });
     },
   });
 
@@ -81,7 +82,7 @@ export const registerMutationOptions = () =>
       toast.success("Registration successful", {
         description: "Please check your email to verify your account.",
       });
-      void getRouter().navigate({ to: "/auth/login" });
+      void localizedNavigate({ to: "/auth/login" });
     },
     onError: async (error) => {
       if (error instanceof Error) {

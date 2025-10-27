@@ -8,13 +8,13 @@ import {
   loginMutationOptions,
   logoutMutationOptions,
 } from "@/lib/queries/auth";
-import { getRouter } from "@/router";
 import { toast } from "sonner";
+import { localizedNavigate, LocalizedTo } from "@/lib/localized-navigate";
 
 export type User = InferResponseType<typeof tuyau.me.$get>;
 
 type AuthUtils = {
-  signIn: (data: z.infer<typeof loginFormSchema>, redirectTo?: string) => void;
+  signIn: (data: z.infer<typeof loginFormSchema>, redirectTo?: LocalizedTo) => void;
   signOut: () => void;
   ensureData: () => Promise<User | undefined>;
 };
@@ -29,7 +29,7 @@ function useAuth(): AuthData {
   const signOutMutation = useMutation(logoutMutationOptions);
 
   const utils: AuthUtils = {
-    signIn: (data: z.infer<typeof loginFormSchema>, redirectTo?: string) => {
+    signIn: (data: z.infer<typeof loginFormSchema>, redirectTo?: LocalizedTo) => {
       void loginMutation.mutateAsync(
         {
           payload: { email: data.email, password: data.password },
@@ -37,7 +37,7 @@ function useAuth(): AuthData {
         {
           onSuccess: () => {
             toast.success("Connexion réussie");
-            void getRouter().navigate({ to: redirectTo || "/", replace: true });
+            void localizedNavigate({ to: redirectTo || "/" });
           },
         },
       );

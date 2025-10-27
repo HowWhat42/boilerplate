@@ -9,16 +9,18 @@ import {
 import { Input } from '@boilerplate/design-system/components/ui/input'
 import { useAppForm } from '@/hooks/form-hook'
 import { Form } from '@boilerplate/design-system/components/ui/form'
-import { Link } from '@tanstack/react-router'
 import { registerFormSchema } from '@/lib/schemas/auth'
 import { useMutation } from '@tanstack/react-query'
 import { registerMutationOptions } from '@/lib/queries/auth'
 import { PasswordStrength } from '@boilerplate/design-system/components/ui/password-strength'
+import { LocalizedLink } from '@/components/localized-link'
+import { useIntlayer } from 'react-intlayer'
 
 export function RegisterForm({
   className,
   ...props
 }: React.ComponentProps<'form'>) {
+  const content = useIntlayer('auth')
   const registerMutation = useMutation(registerMutationOptions())
   const form = useAppForm({
     defaultValues: {
@@ -47,16 +49,18 @@ export function RegisterForm({
     <form.AppForm>
       <Form className={cn('space-y-2', className)} {...props}>
         <div className="flex flex-col items-center gap-1 text-center">
-          <h1 className="text-2xl font-bold">Create an account</h1>
+          <h1 className="text-2xl font-bold">{content.createAccount}</h1>
           <p className="text-muted-foreground text-sm text-balance">
-            Enter your information below to create your account
+            {content.createAccountDescription}
           </p>
         </div>
         <div className="grid grid-cols-2 gap-4">
           <form.AppField name="firstName">
             {(field) => (
               <Field>
-                <FieldLabel htmlFor="firstName">First Name</FieldLabel>
+                <FieldLabel htmlFor="firstName">
+                  {content.fields.firstName}
+                </FieldLabel>
                 <Input
                   id="firstName"
                   type="text"
@@ -71,7 +75,9 @@ export function RegisterForm({
           <form.AppField name="lastName">
             {(field) => (
               <Field>
-                <FieldLabel htmlFor="lastName">Last Name</FieldLabel>
+                <FieldLabel htmlFor="lastName">
+                  {content.fields.lastName}
+                </FieldLabel>
                 <Input
                   id="lastName"
                   type="text"
@@ -87,7 +93,7 @@ export function RegisterForm({
         <form.AppField name="email">
           {(field) => (
             <Field>
-              <FieldLabel htmlFor="email">Email</FieldLabel>
+              <FieldLabel htmlFor="email">{content.fields.email}</FieldLabel>
               <Input
                 id="email"
                 type="email"
@@ -102,7 +108,9 @@ export function RegisterForm({
         <form.AppField name="password">
           {(field) => (
             <Field>
-              <FieldLabel htmlFor="password">Password</FieldLabel>
+              <FieldLabel htmlFor="password">
+                {content.fields.password}
+              </FieldLabel>
               <Input
                 id="password"
                 type="password"
@@ -121,7 +129,7 @@ export function RegisterForm({
           {(field) => (
             <Field>
               <FieldLabel htmlFor="confirmPassword">
-                Confirm Password
+                {content.fields.confirmPassword}
               </FieldLabel>
               <Input
                 id="confirmPassword"
@@ -140,7 +148,7 @@ export function RegisterForm({
           {([canSubmit, isSubmitting]) => (
             <Field>
               <Button type="submit" disabled={!canSubmit || isSubmitting}>
-                {isSubmitting ? 'Creating account...' : 'Create account'}
+                {isSubmitting ? content.creatingAccount : content.createAccount}
               </Button>
             </Field>
           )}
@@ -148,10 +156,13 @@ export function RegisterForm({
         <FieldSeparator />
         <Field>
           <FieldDescription className="text-center">
-            Already have an account?{' '}
-            <Link to="/auth/login" className="underline underline-offset-4">
-              Sign in
-            </Link>
+            {content.alreadyHaveAccount}
+            <LocalizedLink
+              to="/auth/login"
+              className="underline underline-offset-4"
+            >
+              {content.signIn}
+            </LocalizedLink>
           </FieldDescription>
         </Field>
       </Form>

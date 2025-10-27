@@ -62,4 +62,21 @@ export default await Env.create(new URL('../', import.meta.url), {
   |----------------------------------------------------------
   */
   SENTRY_DSN: Env.schema.string.optional(),
+
+  /*
+  |----------------------------------------------------------
+  | Variables for configuring the Shopkeeper Stripe SDK
+  |----------------------------------------------------------
+  */
+  STRIPE_KEY: Env.schema.string(),
+  STRIPE_SECRET: Env.schema.string(),
+  STRIPE_WEBHOOK_SECRET: Env.schema.string.optional(),
+
+  /*
+  |----------------------------------------------------------
+  | Variables for configuring the Shopkeeper package
+  |----------------------------------------------------------
+  */
+  SHOPKEEPER_CURRENCY: Env.schema.string.optional(),
+  SHOPKEEPER_CURRENCY_LOCALE: Env.schema.string.optional(),
 })

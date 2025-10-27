@@ -9,6 +9,7 @@ import { DateTime } from 'luxon'
 import { MorphMap } from '@holoyan/morph-map-js'
 import { hasPermissions } from '@holoyan/adonisjs-permissions'
 import type { AclModelInterface } from '@holoyan/adonisjs-permissions/types'
+import { Billable } from '@foadonis/shopkeeper/mixins'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -17,7 +18,7 @@ const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
 
 @MorphMap('users')
 export default class User
-  extends compose(BaseModel, AuthFinder, withUUID(), withTimestamps(), hasPermissions())
+  extends compose(BaseModel, AuthFinder, Billable, withUUID(), withTimestamps(), hasPermissions())
   implements AclModelInterface
 {
   @column()

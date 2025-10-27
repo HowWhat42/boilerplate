@@ -69,6 +69,7 @@
     "@adonisjs/session": "^7.5.1",
     "@aws-sdk/client-s3": "^3.901.0",
     "@aws-sdk/s3-request-presigner": "^3.901.0",
+    "@foadonis/shopkeeper": "^0.1.7",
     "@holoyan/adonisjs-permissions": "^1.3.1",
     "@holoyan/morph-map-js": "^0.1.1",
     "@jrmc/adonis-attachment": "^5.0.1",

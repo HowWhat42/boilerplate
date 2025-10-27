@@ -6,8 +6,10 @@ import { Button } from '@boilerplate/design-system/components/ui/button'
 import { Input } from '@boilerplate/design-system/components/ui/input'
 import { UserIcon } from 'lucide-react'
 import Loader from '@/components/loader'
+import { useIntlayer } from 'react-intlayer'
 
 export function UsersList() {
+  const content = useIntlayer('admin')
   const [page, setPage] = useState(1)
   const [search, setSearch] = useState('')
   const { impersonate } = useImpersonation()
@@ -25,7 +27,7 @@ export function UsersList() {
       <div className="flex items-center gap-4">
         <Input
           type="text"
-          placeholder="Search users by name or email..."
+          placeholder={String(content.searchPlaceholder)}
           value={search}
           onChange={(e) => {
             setSearch(e.target.value)
@@ -36,17 +38,25 @@ export function UsersList() {
       </div>
 
       {isLoading ? (
-        <Loader text="Loading users..." />
+        <Loader text={String(content.loadingUsers)} />
       ) : (
         <>
           <div className="rounded-md border">
             <table className="w-full">
               <thead>
                 <tr className="border-b bg-muted/50">
-                  <th className="p-3 text-left font-medium">Name</th>
-                  <th className="p-3 text-left font-medium">Email</th>
-                  <th className="p-3 text-left font-medium">Created</th>
-                  <th className="p-3 text-right font-medium">Actions</th>
+                  <th className="p-3 text-left font-medium">
+                    {content.tableHeaders.name}
+                  </th>
+                  <th className="p-3 text-left font-medium">
+                    {content.tableHeaders.email}
+                  </th>
+                  <th className="p-3 text-left font-medium">
+                    {content.tableHeaders.created}
+                  </th>
+                  <th className="p-3 text-right font-medium">
+                    {content.tableHeaders.actions}
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -66,7 +76,7 @@ export function UsersList() {
                         onClick={() => handleImpersonate(user.id)}
                       >
                         <UserIcon className="size-4" />
-                        Impersonate
+                        {content.impersonate}
                       </Button>
                     </td>
                   </tr>
@@ -78,7 +88,7 @@ export function UsersList() {
           {data?.meta && (
             <div className="flex items-center justify-between">
               <div className="text-sm text-muted-foreground">
-                Showing {data.meta.total} users
+                {content.showingUsers({ count: data.meta.total })}
               </div>
               <div className="flex gap-2">
                 <Button
@@ -87,7 +97,7 @@ export function UsersList() {
                   onClick={() => setPage((p) => Math.max(1, p - 1))}
                   disabled={data.meta.currentPage === 1}
                 >
-                  Previous
+                  {content.previous}
                 </Button>
                 <Button
                   size="sm"
@@ -95,7 +105,7 @@ export function UsersList() {
                   onClick={() => setPage((p) => p + 1)}
                   disabled={data.meta.currentPage === data.meta.lastPage}
                 >
-                  Next
+                  {content.next}
                 </Button>
               </div>
             </div>

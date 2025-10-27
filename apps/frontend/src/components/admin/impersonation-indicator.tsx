@@ -1,8 +1,10 @@
 import { Button } from '@boilerplate/design-system/components/ui/button'
 import { LogOutIcon } from 'lucide-react'
 import { useImpersonation } from '@/hooks/use-impersonation'
+import { useIntlayer } from 'react-intlayer'
 
 export function ImpersonationIndicator() {
+  const content = useIntlayer('admin')
   const {
     isImpersonating,
     currentUser,
@@ -18,7 +20,7 @@ export function ImpersonationIndicator() {
   return (
     <div className="flex items-center gap-3 bg-secondary rounded-md p-2 h-8">
       <div className="text-sm">
-        <span className="text-muted-foreground">You are logged in as </span>
+        <span className="text-muted-foreground">{content.loggedInAs}</span>
         <span className="font-medium">
           {currentUser.firstName} {currentUser.lastName}
         </span>
@@ -31,7 +33,7 @@ export function ImpersonationIndicator() {
         disabled={isLoading}
       >
         <LogOutIcon className="size-4" />
-        Return to {originalAdmin.firstName}
+        {content.returnTo({ name: originalAdmin.firstName })}
       </Button>
     </div>
   )

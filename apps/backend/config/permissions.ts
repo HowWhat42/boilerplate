@@ -11,5 +11,5 @@ export const permissionsConfig: Permissions = {
     roles: 'roles',
     permissions: 'permissions',
   },
-  uuidSupport: false,
+  uuidSupport: true,
 }

@@ -18,7 +18,6 @@ export const Route = createFileRoute('/{-$locale}/(dashboard)')({
       })
     }
   },
-  ssr: false,
   component: LayoutComponent,
 })
 

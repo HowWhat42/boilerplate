@@ -5,7 +5,7 @@ services:
     ports:
       - '${DB_PORT:-5432}:5432'
     environment:
-      POSTGRES_MULTIPLE_DATABASES: tatoo,tatoo_test
+      POSTGRES_MULTIPLE_DATABASES: app,app_test
       PGPASSWORD: '${DB_PASSWORD:-secret}'
       POSTGRES_DB: '${DB_DATABASE:-default}'
       POSTGRES_USER: '${DB_USER?:err}'

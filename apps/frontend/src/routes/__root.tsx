@@ -12,13 +12,9 @@ import appCss from '../styles.css?url'
 import '@boilerplate/design-system/styles/globals.css'
 import { Toaster } from '@boilerplate/design-system/components/ui/sonner'
 
-import type { QueryClient } from '@tanstack/react-query'
+import { RouterContext } from '../router'
 
-interface MyRouterContext {
-  queryClient: QueryClient
-}
-
-export const Route = createRootRouteWithContext<MyRouterContext>()({
+export const Route = createRootRouteWithContext<RouterContext>()({
   head: () => ({
     meta: [
       {

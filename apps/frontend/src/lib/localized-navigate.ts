@@ -43,7 +43,7 @@ function getCurrentLocale(): string {
  * 
  * @example
  * localizedNavigate({ to: '/auth/login' })
- * // Navigates to: /en/auth/login (if current locale is 'en')
+ * Navigates to: /en/auth/login (if current locale is 'en')
  */
 export function localizedNavigate(options: LocalizedNavigateOptions) {
   const router = getRouter()

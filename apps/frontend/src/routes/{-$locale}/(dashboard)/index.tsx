@@ -8,21 +8,9 @@ import { SiteHeader } from '@/components/common/site-header'
 import { SectionCards } from '@/components/home/section-cards'
 import { ChartAreaInteractive } from '@/components/home/chart-area-interactive'
 import { DataTable } from '@/components/home/data-table'
-import data from '../data.json'
-import { queryClient } from '@/lib/tuyau'
-import { getCurrentUserQueryOptions } from '@/lib/queries/users'
-import { localizedNavigate } from '@/lib/localized-navigate'
+import data from '../../data.json'
 
-export const Route = createFileRoute('/{-$locale}/')({
-  beforeLoad: async () => {
-    try {
-      await queryClient.ensureQueryData(getCurrentUserQueryOptions())
-    } catch {
-      throw localizedNavigate({
-        to: '/auth/login',
-      })
-    }
-  },
+export const Route = createFileRoute('/{-$locale}/(dashboard)/')({
   component: App,
 })
 

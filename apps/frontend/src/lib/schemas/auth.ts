@@ -2,11 +2,11 @@ import z from "zod";
 
 export const loginFormSchema = z.object({
   email: z.email(),
-  password: z.string().min(8),
+  password: z.string(),
 })
 
 export const forgotPasswordFormSchema = z.object({
-  email: z.string().email(),
+  email: z.email(),
 })
 
 export const resetPasswordFormSchema = z.object({
@@ -24,11 +24,11 @@ export const resetPasswordFormSchema = z.object({
 })
 
 export const resendVerificationFormSchema = z.object({
-  email: z.string().email(),
+  email: z.email(),
 })
 
 export const registerFormSchema = z.object({
-  email: z.string().email(),
+  email: z.email(),
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
   password: z

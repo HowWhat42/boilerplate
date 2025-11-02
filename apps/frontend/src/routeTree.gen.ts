@@ -9,47 +9,41 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as Char123LocaleChar125RouteRouteImport } from './routes/{-$locale}/route'
-import { Route as Char123LocaleChar125IndexRouteImport } from './routes/{-$locale}/index'
 import { Route as Char123LocaleChar125AuthRouteRouteImport } from './routes/{-$locale}/auth/route'
-import { Route as Char123LocaleChar125AdminRouteRouteImport } from './routes/{-$locale}/admin/route'
-import { Route as Char123LocaleChar125AdminIndexRouteImport } from './routes/{-$locale}/admin/index'
+import { Route as Char123LocaleChar125dashboardRouteRouteImport } from './routes/{-$locale}/(dashboard)/route'
+import { Route as Char123LocaleChar125dashboardIndexRouteImport } from './routes/{-$locale}/(dashboard)/index'
+import { Route as Char123LocaleChar125dashboardAdminRouteRouteImport } from './routes/{-$locale}/(dashboard)/admin/route'
 import { Route as Char123LocaleChar125AuthVerifyEmailIndexRouteImport } from './routes/{-$locale}/auth/verify-email/index'
 import { Route as Char123LocaleChar125AuthSignupIndexRouteImport } from './routes/{-$locale}/auth/signup/index'
 import { Route as Char123LocaleChar125AuthResetPasswordIndexRouteImport } from './routes/{-$locale}/auth/reset-password/index'
 import { Route as Char123LocaleChar125AuthResendVerificationIndexRouteImport } from './routes/{-$locale}/auth/resend-verification/index'
 import { Route as Char123LocaleChar125AuthLoginIndexRouteImport } from './routes/{-$locale}/auth/login/index'
 import { Route as Char123LocaleChar125AuthForgotPasswordIndexRouteImport } from './routes/{-$locale}/auth/forgot-password/index'
+import { Route as Char123LocaleChar125dashboardAdminIndexRouteImport } from './routes/{-$locale}/(dashboard)/admin/index'
 
-const Char123LocaleChar125RouteRoute =
-  Char123LocaleChar125RouteRouteImport.update({
-    id: '/{-$locale}',
-    path: '/{-$locale}',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const Char123LocaleChar125IndexRoute =
-  Char123LocaleChar125IndexRouteImport.update({
-    id: '/',
-    path: '/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
 const Char123LocaleChar125AuthRouteRoute =
   Char123LocaleChar125AuthRouteRouteImport.update({
-    id: '/auth',
-    path: '/auth',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    id: '/{-$locale}/auth',
+    path: '/{-$locale}/auth',
+    getParentRoute: () => rootRouteImport,
   } as any)
-const Char123LocaleChar125AdminRouteRoute =
-  Char123LocaleChar125AdminRouteRouteImport.update({
-    id: '/admin',
-    path: '/admin',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+const Char123LocaleChar125dashboardRouteRoute =
+  Char123LocaleChar125dashboardRouteRouteImport.update({
+    id: '/{-$locale}/(dashboard)',
+    path: '/{-$locale}/',
+    getParentRoute: () => rootRouteImport,
   } as any)
-const Char123LocaleChar125AdminIndexRoute =
-  Char123LocaleChar125AdminIndexRouteImport.update({
+const Char123LocaleChar125dashboardIndexRoute =
+  Char123LocaleChar125dashboardIndexRouteImport.update({
     id: '/',
     path: '/',
-    getParentRoute: () => Char123LocaleChar125AdminRouteRoute,
+    getParentRoute: () => Char123LocaleChar125dashboardRouteRoute,
+  } as any)
+const Char123LocaleChar125dashboardAdminRouteRoute =
+  Char123LocaleChar125dashboardAdminRouteRouteImport.update({
+    id: '/admin',
+    path: '/admin',
+    getParentRoute: () => Char123LocaleChar125dashboardRouteRoute,
   } as any)
 const Char123LocaleChar125AuthVerifyEmailIndexRoute =
   Char123LocaleChar125AuthVerifyEmailIndexRouteImport.update({
@@ -87,13 +81,19 @@ const Char123LocaleChar125AuthForgotPasswordIndexRoute =
     path: '/forgot-password/',
     getParentRoute: () => Char123LocaleChar125AuthRouteRoute,
   } as any)
+const Char123LocaleChar125dashboardAdminIndexRoute =
+  Char123LocaleChar125dashboardAdminIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => Char123LocaleChar125dashboardAdminRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
-  '/{-$locale}/admin': typeof Char123LocaleChar125AdminRouteRouteWithChildren
+  '/{-$locale}': typeof Char123LocaleChar125dashboardRouteRouteWithChildren
   '/{-$locale}/auth': typeof Char123LocaleChar125AuthRouteRouteWithChildren
-  '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
-  '/{-$locale}/admin/': typeof Char123LocaleChar125AdminIndexRoute
+  '/{-$locale}/admin': typeof Char123LocaleChar125dashboardAdminRouteRouteWithChildren
+  '/{-$locale}/': typeof Char123LocaleChar125dashboardIndexRoute
+  '/{-$locale}/admin/': typeof Char123LocaleChar125dashboardAdminIndexRoute
   '/{-$locale}/auth/forgot-password': typeof Char123LocaleChar125AuthForgotPasswordIndexRoute
   '/{-$locale}/auth/login': typeof Char123LocaleChar125AuthLoginIndexRoute
   '/{-$locale}/auth/resend-verification': typeof Char123LocaleChar125AuthResendVerificationIndexRoute
@@ -103,8 +103,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/{-$locale}/auth': typeof Char123LocaleChar125AuthRouteRouteWithChildren
-  '/{-$locale}': typeof Char123LocaleChar125IndexRoute
-  '/{-$locale}/admin': typeof Char123LocaleChar125AdminIndexRoute
+  '/{-$locale}': typeof Char123LocaleChar125dashboardIndexRoute
+  '/{-$locale}/admin': typeof Char123LocaleChar125dashboardAdminIndexRoute
   '/{-$locale}/auth/forgot-password': typeof Char123LocaleChar125AuthForgotPasswordIndexRoute
   '/{-$locale}/auth/login': typeof Char123LocaleChar125AuthLoginIndexRoute
   '/{-$locale}/auth/resend-verification': typeof Char123LocaleChar125AuthResendVerificationIndexRoute
@@ -114,11 +114,11 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
-  '/{-$locale}/admin': typeof Char123LocaleChar125AdminRouteRouteWithChildren
+  '/{-$locale}/(dashboard)': typeof Char123LocaleChar125dashboardRouteRouteWithChildren
   '/{-$locale}/auth': typeof Char123LocaleChar125AuthRouteRouteWithChildren
-  '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
-  '/{-$locale}/admin/': typeof Char123LocaleChar125AdminIndexRoute
+  '/{-$locale}/(dashboard)/admin': typeof Char123LocaleChar125dashboardAdminRouteRouteWithChildren
+  '/{-$locale}/(dashboard)/': typeof Char123LocaleChar125dashboardIndexRoute
+  '/{-$locale}/(dashboard)/admin/': typeof Char123LocaleChar125dashboardAdminIndexRoute
   '/{-$locale}/auth/forgot-password/': typeof Char123LocaleChar125AuthForgotPasswordIndexRoute
   '/{-$locale}/auth/login/': typeof Char123LocaleChar125AuthLoginIndexRoute
   '/{-$locale}/auth/resend-verification/': typeof Char123LocaleChar125AuthResendVerificationIndexRoute
@@ -130,8 +130,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/{-$locale}'
-    | '/{-$locale}/admin'
     | '/{-$locale}/auth'
+    | '/{-$locale}/admin'
     | '/{-$locale}/'
     | '/{-$locale}/admin/'
     | '/{-$locale}/auth/forgot-password'
@@ -153,11 +153,11 @@ export interface FileRouteTypes {
     | '/{-$locale}/auth/verify-email'
   id:
     | '__root__'
-    | '/{-$locale}'
-    | '/{-$locale}/admin'
+    | '/{-$locale}/(dashboard)'
     | '/{-$locale}/auth'
-    | '/{-$locale}/'
-    | '/{-$locale}/admin/'
+    | '/{-$locale}/(dashboard)/admin'
+    | '/{-$locale}/(dashboard)/'
+    | '/{-$locale}/(dashboard)/admin/'
     | '/{-$locale}/auth/forgot-password/'
     | '/{-$locale}/auth/login/'
     | '/{-$locale}/auth/resend-verification/'
@@ -167,45 +167,39 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  Char123LocaleChar125RouteRoute: typeof Char123LocaleChar125RouteRouteWithChildren
+  Char123LocaleChar125dashboardRouteRoute: typeof Char123LocaleChar125dashboardRouteRouteWithChildren
+  Char123LocaleChar125AuthRouteRoute: typeof Char123LocaleChar125AuthRouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/{-$locale}': {
-      id: '/{-$locale}'
-      path: '/{-$locale}'
-      fullPath: '/{-$locale}'
-      preLoaderRoute: typeof Char123LocaleChar125RouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/{-$locale}/': {
-      id: '/{-$locale}/'
-      path: '/'
-      fullPath: '/{-$locale}/'
-      preLoaderRoute: typeof Char123LocaleChar125IndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
-    }
     '/{-$locale}/auth': {
       id: '/{-$locale}/auth'
-      path: '/auth'
+      path: '/{-$locale}/auth'
       fullPath: '/{-$locale}/auth'
       preLoaderRoute: typeof Char123LocaleChar125AuthRouteRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      parentRoute: typeof rootRouteImport
     }
-    '/{-$locale}/admin': {
-      id: '/{-$locale}/admin'
+    '/{-$locale}/(dashboard)': {
+      id: '/{-$locale}/(dashboard)'
+      path: '/{-$locale}'
+      fullPath: '/{-$locale}'
+      preLoaderRoute: typeof Char123LocaleChar125dashboardRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/{-$locale}/(dashboard)/': {
+      id: '/{-$locale}/(dashboard)/'
+      path: '/'
+      fullPath: '/{-$locale}/'
+      preLoaderRoute: typeof Char123LocaleChar125dashboardIndexRouteImport
+      parentRoute: typeof Char123LocaleChar125dashboardRouteRoute
+    }
+    '/{-$locale}/(dashboard)/admin': {
+      id: '/{-$locale}/(dashboard)/admin'
       path: '/admin'
       fullPath: '/{-$locale}/admin'
-      preLoaderRoute: typeof Char123LocaleChar125AdminRouteRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
-    }
-    '/{-$locale}/admin/': {
-      id: '/{-$locale}/admin/'
-      path: '/'
-      fullPath: '/{-$locale}/admin/'
-      preLoaderRoute: typeof Char123LocaleChar125AdminIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125AdminRouteRoute
+      preLoaderRoute: typeof Char123LocaleChar125dashboardAdminRouteRouteImport
+      parentRoute: typeof Char123LocaleChar125dashboardRouteRoute
     }
     '/{-$locale}/auth/verify-email/': {
       id: '/{-$locale}/auth/verify-email/'
@@ -249,21 +243,47 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125AuthForgotPasswordIndexRouteImport
       parentRoute: typeof Char123LocaleChar125AuthRouteRoute
     }
+    '/{-$locale}/(dashboard)/admin/': {
+      id: '/{-$locale}/(dashboard)/admin/'
+      path: '/'
+      fullPath: '/{-$locale}/admin/'
+      preLoaderRoute: typeof Char123LocaleChar125dashboardAdminIndexRouteImport
+      parentRoute: typeof Char123LocaleChar125dashboardAdminRouteRoute
+    }
   }
 }
 
-interface Char123LocaleChar125AdminRouteRouteChildren {
-  Char123LocaleChar125AdminIndexRoute: typeof Char123LocaleChar125AdminIndexRoute
+interface Char123LocaleChar125dashboardAdminRouteRouteChildren {
+  Char123LocaleChar125dashboardAdminIndexRoute: typeof Char123LocaleChar125dashboardAdminIndexRoute
 }
 
-const Char123LocaleChar125AdminRouteRouteChildren: Char123LocaleChar125AdminRouteRouteChildren =
+const Char123LocaleChar125dashboardAdminRouteRouteChildren: Char123LocaleChar125dashboardAdminRouteRouteChildren =
   {
-    Char123LocaleChar125AdminIndexRoute: Char123LocaleChar125AdminIndexRoute,
+    Char123LocaleChar125dashboardAdminIndexRoute:
+      Char123LocaleChar125dashboardAdminIndexRoute,
   }
 
-const Char123LocaleChar125AdminRouteRouteWithChildren =
-  Char123LocaleChar125AdminRouteRoute._addFileChildren(
-    Char123LocaleChar125AdminRouteRouteChildren,
+const Char123LocaleChar125dashboardAdminRouteRouteWithChildren =
+  Char123LocaleChar125dashboardAdminRouteRoute._addFileChildren(
+    Char123LocaleChar125dashboardAdminRouteRouteChildren,
+  )
+
+interface Char123LocaleChar125dashboardRouteRouteChildren {
+  Char123LocaleChar125dashboardAdminRouteRoute: typeof Char123LocaleChar125dashboardAdminRouteRouteWithChildren
+  Char123LocaleChar125dashboardIndexRoute: typeof Char123LocaleChar125dashboardIndexRoute
+}
+
+const Char123LocaleChar125dashboardRouteRouteChildren: Char123LocaleChar125dashboardRouteRouteChildren =
+  {
+    Char123LocaleChar125dashboardAdminRouteRoute:
+      Char123LocaleChar125dashboardAdminRouteRouteWithChildren,
+    Char123LocaleChar125dashboardIndexRoute:
+      Char123LocaleChar125dashboardIndexRoute,
+  }
+
+const Char123LocaleChar125dashboardRouteRouteWithChildren =
+  Char123LocaleChar125dashboardRouteRoute._addFileChildren(
+    Char123LocaleChar125dashboardRouteRouteChildren,
   )
 
 interface Char123LocaleChar125AuthRouteRouteChildren {
@@ -296,38 +316,22 @@ const Char123LocaleChar125AuthRouteRouteWithChildren =
     Char123LocaleChar125AuthRouteRouteChildren,
   )
 
-interface Char123LocaleChar125RouteRouteChildren {
-  Char123LocaleChar125AdminRouteRoute: typeof Char123LocaleChar125AdminRouteRouteWithChildren
-  Char123LocaleChar125AuthRouteRoute: typeof Char123LocaleChar125AuthRouteRouteWithChildren
-  Char123LocaleChar125IndexRoute: typeof Char123LocaleChar125IndexRoute
-}
-
-const Char123LocaleChar125RouteRouteChildren: Char123LocaleChar125RouteRouteChildren =
-  {
-    Char123LocaleChar125AdminRouteRoute:
-      Char123LocaleChar125AdminRouteRouteWithChildren,
-    Char123LocaleChar125AuthRouteRoute:
-      Char123LocaleChar125AuthRouteRouteWithChildren,
-    Char123LocaleChar125IndexRoute: Char123LocaleChar125IndexRoute,
-  }
-
-const Char123LocaleChar125RouteRouteWithChildren =
-  Char123LocaleChar125RouteRoute._addFileChildren(
-    Char123LocaleChar125RouteRouteChildren,
-  )
-
 const rootRouteChildren: RootRouteChildren = {
-  Char123LocaleChar125RouteRoute: Char123LocaleChar125RouteRouteWithChildren,
+  Char123LocaleChar125dashboardRouteRoute:
+    Char123LocaleChar125dashboardRouteRouteWithChildren,
+  Char123LocaleChar125AuthRouteRoute:
+    Char123LocaleChar125AuthRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
 
 import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
+import type { startInstance } from './start.ts'
 declare module '@tanstack/react-start' {
   interface Register {
     ssr: true
     router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
   }
 }

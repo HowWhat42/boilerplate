@@ -27,7 +27,7 @@ export function UsersList() {
       <div className="flex items-center gap-4">
         <Input
           type="text"
-          placeholder={String(content.searchPlaceholder)}
+          placeholder={content.searchPlaceholder.value}
           value={search}
           onChange={(e) => {
             setSearch(e.target.value)
@@ -38,7 +38,7 @@ export function UsersList() {
       </div>
 
       {isLoading ? (
-        <Loader text={String(content.loadingUsers)} />
+        <Loader text={content.loadingUsers.value} />
       ) : (
         <>
           <div className="rounded-md border">

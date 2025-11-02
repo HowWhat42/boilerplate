@@ -11,7 +11,7 @@ import { Form } from '@boilerplate/design-system/components/ui/form'
 import { resendVerificationFormSchema } from '@/lib/schemas/auth'
 import { useMutation } from '@tanstack/react-query'
 import { resendVerificationMutationOptions } from '@/lib/queries/auth'
-import { LocalizedLink } from '@/components/localized-link'
+import { LocalizedLink } from '@/components/common/localized-link'
 import { useIntlayer } from 'react-intlayer'
 
 export function ResendVerificationForm({

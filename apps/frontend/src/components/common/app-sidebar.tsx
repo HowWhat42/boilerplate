@@ -16,10 +16,10 @@ import {
   UsersIcon,
 } from 'lucide-react'
 
-import { NavDocuments } from '@/components/home/nav-documents'
-import { NavMain } from '@/components/home/nav-main'
-import { NavSecondary } from '@/components/home/nav-secondary'
-import { NavUser } from '@/components/home/nav-user'
+import { NavDocuments } from '@/components/common/nav-documents'
+import { NavMain } from '@/components/common/nav-main'
+import { NavSecondary } from '@/components/common/nav-secondary'
+import { NavUser } from '@/components/common/nav-user'
 import {
   Sidebar,
   SidebarContent,
@@ -29,13 +29,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@boilerplate/design-system/components/ui/sidebar'
+import { useAuth } from '@/hooks/use-auth'
 
 const data = {
-  user: {
-    name: 'shadcn',
-    email: 'm@example.com',
-    avatar: '/avatars/shadcn.jpg',
-  },
   navMain: [
     {
       title: 'Dashboard',
@@ -148,6 +144,21 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { user } = useAuth()
+
+  // Format user data for NavUser component
+  const userData = user
+    ? {
+        name: `${user.firstName} ${user.lastName}`,
+        email: user.email,
+        avatar: '/avatars/default.jpg', // You can update this if you have avatar in user object
+      }
+    : {
+        name: 'Guest',
+        email: '',
+        avatar: '/avatars/default.jpg',
+      }
+
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -171,7 +182,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={userData} />
       </SidebarFooter>
     </Sidebar>
   )

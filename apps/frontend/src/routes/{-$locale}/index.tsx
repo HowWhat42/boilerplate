@@ -3,14 +3,26 @@ import {
   SidebarInset,
   SidebarProvider,
 } from '@boilerplate/design-system/components/ui/sidebar'
-import { AppSidebar } from '@/components/home/app-sidebar'
-import { SiteHeader } from '@/components/home/site-header'
+import { AppSidebar } from '@/components/common/app-sidebar'
+import { SiteHeader } from '@/components/common/site-header'
 import { SectionCards } from '@/components/home/section-cards'
 import { ChartAreaInteractive } from '@/components/home/chart-area-interactive'
 import { DataTable } from '@/components/home/data-table'
 import data from '../data.json'
+import { queryClient } from '@/lib/tuyau'
+import { getCurrentUserQueryOptions } from '@/lib/queries/users'
+import { localizedNavigate } from '@/lib/localized-navigate'
 
 export const Route = createFileRoute('/{-$locale}/')({
+  beforeLoad: async () => {
+    try {
+      await queryClient.ensureQueryData(getCurrentUserQueryOptions())
+    } catch {
+      throw localizedNavigate({
+        to: '/auth/login',
+      })
+    }
+  },
   component: App,
 })
 

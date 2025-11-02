@@ -1,5 +1,5 @@
 import { getRouter } from '@/router'
-import { LOCALE_ROUTE } from '@/components/localized-link'
+import { LOCALE_ROUTE } from '@/components/common/localized-link'
 import type { FileRouteTypes } from '@/routeTree.gen'
 
 /**

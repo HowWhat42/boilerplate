@@ -12,7 +12,7 @@ import { resetPasswordFormSchema } from '@/lib/schemas/auth'
 import { useMutation } from '@tanstack/react-query'
 import { resetPasswordMutationOptions } from '@/lib/queries/auth'
 import { PasswordStrength } from '@boilerplate/design-system/components/ui/password-strength'
-import { LocalizedLink } from '@/components/localized-link'
+import { LocalizedLink } from '@/components/common/localized-link'
 import { useIntlayer } from 'react-intlayer'
 
 interface ResetPasswordFormProps extends React.ComponentProps<'form'> {

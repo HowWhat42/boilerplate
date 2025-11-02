@@ -1,6 +1,6 @@
 import { useLocale } from 'react-intlayer'
 import { useNavigate } from '@tanstack/react-router'
-import { LOCALE_ROUTE } from '@/components/localized-link'
+import { LOCALE_ROUTE } from '@/components/common/localized-link'
 import type { FileRouteTypes } from '@/routeTree.gen'
 
 export const useLocalizedNavigate = () => {

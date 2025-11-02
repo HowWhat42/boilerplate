@@ -5,7 +5,7 @@ import { useImpersonation } from '@/hooks/use-impersonation'
 import { Button } from '@boilerplate/design-system/components/ui/button'
 import { Input } from '@boilerplate/design-system/components/ui/input'
 import { UserIcon } from 'lucide-react'
-import Loader from '@/components/loader'
+import Loader from '@/components/common/loader'
 import { useIntlayer } from 'react-intlayer'
 
 export function UsersList() {

@@ -23,6 +23,6 @@ export default class UserDto extends BaseModelDto {
     this.createdAt = user.createdAt.toISO()!
     this.updatedAt = user.updatedAt.toISO()!
     this.address = user.address
-    this.fullName = `${this.firstName} ${this.lastName}`
+    this.fullName = user.fullName
   }
 }

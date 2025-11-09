@@ -33,7 +33,7 @@ export default defineConfig({
     () => import('@jrmc/adonis-attachment/commands'),
     () => import('@adonisjs/mail/commands'),
     () => import('@adonisjs/bouncer/commands'),
-    () => import('@foadonis/shopkeeper/commands')
+    () => import('@foadonis/shopkeeper/commands'),
   ],
 
   /*
@@ -64,7 +64,7 @@ export default defineConfig({
     () => import('@adonisjs/mail/mail_provider'),
     () => import('@adonisjs/bouncer/bouncer_provider'),
     () => import('@holoyan/adonisjs-permissions/role_permission_provider'),
-    () => import('@foadonis/shopkeeper/shopkeeper_provider')
+    () => import('@foadonis/shopkeeper/shopkeeper_provider'),
   ],
 
   /*
@@ -89,12 +89,12 @@ export default defineConfig({
   tests: {
     suites: [
       {
-        files: ['tests/unit/**/*.spec(.ts|.js)'],
+        files: ['app/**/tests/unit/**/*.spec(.ts|.js)'],
         name: 'unit',
         timeout: 2000,
       },
       {
-        files: ['tests/functional/**/*.spec(.ts|.js)'],
+        files: ['app/**/tests/functional/**/*.spec(.ts|.js)'],
         name: 'functional',
         timeout: 30000,
       },

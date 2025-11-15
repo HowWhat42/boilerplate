@@ -1,5 +1,6 @@
 import { createRouter } from '@tanstack/react-router'
 import { setupRouterSsrQueryIntegration } from '@tanstack/react-router-ssr-query'
+import * as Sentry from '@sentry/tanstackstart-react'
 import * as TanstackQuery from './integrations/tanstack-query/root-provider'
 
 // Import the generated route tree
@@ -61,6 +62,18 @@ export const getRouter = () => {
       )
     },
   })
+
+  if (!router.isServer) {
+    Sentry.init({
+      dsn: import.meta.env.VITE_SENTRY_DSN || '',
+      // Adds request headers and IP for users, for more info visit:
+      // https://docs.sentry.io/platforms/javascript/guides/tanstackstart-react/configuration/options/#sendDefaultPii
+      sendDefaultPii: true,
+      integrations: [Sentry.tanstackRouterBrowserTracingIntegration(router)],
+      enableLogs: true,
+      tracesSampleRate: 1.0,
+    })
+  }
 
   setupRouterSsrQueryIntegration({ router, queryClient })
 

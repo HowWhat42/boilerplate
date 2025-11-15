@@ -394,10 +394,10 @@ export function DataTable({
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event
     if (over && active.id !== over.id) {
-      setData((data) => {
+      setData((d) => {
         const oldIndex = dataIds.indexOf(active.id)
         const newIndex = dataIds.indexOf(over.id)
-        return arrayMove(data, oldIndex, newIndex)
+        return arrayMove(d, oldIndex, newIndex)
       })
     }
   }

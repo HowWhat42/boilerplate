@@ -39,7 +39,7 @@ export function useImpersonation(): ImpersonationData {
     originalAdmin: data.originalAdmin,
     isLoading: statusQuery.isLoading || stopMutation.isPending,
     impersonate: async (userId: string, redirectTo?: LocalizedTo) => {
-      startMutation.mutate(
+      await startMutation.mutateAsync(
         {
           params: { user_id: userId },
         },

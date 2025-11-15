@@ -6,12 +6,12 @@ import { localizedNavigate } from "@/lib/localized-navigate";
 
 export const loginMutationOptions = tuyau.login.$post.mutationOptions({
   onSuccess: async () => {
-    void queryClient.invalidateQueries({
+    await queryClient.invalidateQueries({
       queryKey: getCurrentUserQueryOptions().queryKey,
     });
-    void getRouter().invalidate();
+    await getRouter().invalidate();
   },
-  onError: async (error) => {
+  onError: (error) => {
     if (error instanceof Error) {
       toast.error("Identifiants incorrects", {
         description: "Please check your credentials or create an account",
@@ -38,25 +38,25 @@ export const forgotPasswordMutationOptions = () =>
       toast.success(
         "If an account exists with that email, you will receive an email to reset your password.",
       );
-      void localizedNavigate({ to: "/auth/login" });
+      await localizedNavigate({ to: "/auth/login" });
     },
   });
 
 export const resetPasswordMutationOptions = (token: string) =>
   tuyau.auth.password.reset({ token }).$post.mutationOptions({
-    onSuccess: async () => {
+    onSuccess: () => {
       toast.success("Password updated");
     },
   });
 
 export const verifyEmailMutationOptions = (token: string) =>
   tuyau.auth.email.verify({ token }).$post.mutationOptions({
-    onSuccess: async () => {
+    onSuccess: () => {
       toast.success("Email verified successfully", {
         description: "You can now log in to your account.",
       });
     },
-    onError: async (error) => {
+    onError: (error) => {
       if (error instanceof Error) {
         toast.error("Verification failed", {
           description: "The verification link is invalid or has expired.",
@@ -69,7 +69,7 @@ export const verifyEmailMutationOptions = (token: string) =>
 
 export const resendVerificationMutationOptions = () =>
   tuyau.auth.email.resend.$post.mutationOptions({
-    onSuccess: async () => {
+    onSuccess: () => {
       toast.success(
         "If an account exists with that email, we have sent a verification email.",
       );
@@ -82,9 +82,9 @@ export const registerMutationOptions = () =>
       toast.success("Registration successful", {
         description: "Please check your email to verify your account.",
       });
-      void localizedNavigate({ to: "/auth/login" });
+      await localizedNavigate({ to: "/auth/login" });
     },
-    onError: async (error) => {
+    onError: (error) => {
       if (error instanceof Error) {
         toast.error("Registration failed", {
           description: "Please check your information and try again.",

@@ -10,26 +10,26 @@ export const impersonateUserMutationOptions = tuyau.admin.impersonate({
   user_id: '',
 }).start.$post.mutationOptions({
   onSuccess: async () => {
-    void queryClient.invalidateQueries({
+    await queryClient.invalidateQueries({
       queryKey: getCurrentUserQueryOptions().queryKey,
     })
-    void queryClient.invalidateQueries({
+    await queryClient.invalidateQueries({
       queryKey: getImpersonationStatusQueryOptions().queryKey,
     })
-    void getRouter().invalidate()
+    await getRouter().invalidate()
   },
 })
 
 export const stopImpersonationMutationOptions =
   tuyau.admin.impersonate.stop.$post.mutationOptions({
     onSuccess: async () => {
-      void queryClient.invalidateQueries({
+      await queryClient.invalidateQueries({
         queryKey: getCurrentUserQueryOptions().queryKey,
       })
-      void queryClient.invalidateQueries({
+      await queryClient.invalidateQueries({
         queryKey: getImpersonationStatusQueryOptions().queryKey,
       })
-      void getRouter().invalidate()
+      await getRouter().invalidate()
     },
   })
 

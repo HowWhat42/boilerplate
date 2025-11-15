@@ -13,7 +13,6 @@ import {
   CardTitle,
 } from '@boilerplate/design-system/components/ui/card'
 import {
-  ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
@@ -29,6 +28,8 @@ import {
   ToggleGroup,
   ToggleGroupItem,
 } from '@boilerplate/design-system/components/ui/toggle-group'
+import type {
+  ChartConfig} from '@boilerplate/design-system/components/ui/chart';
 
 export const description = 'An interactive area chart'
 

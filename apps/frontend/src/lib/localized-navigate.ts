@@ -1,6 +1,6 @@
+import type { FileRouteTypes } from '@/routeTree.gen'
 import { getRouter } from '@/router'
 import { LOCALE_ROUTE } from '@/components/common/localized-link'
-import type { FileRouteTypes } from '@/routeTree.gen'
 
 /**
  * Strip locale prefix from route paths for type safety

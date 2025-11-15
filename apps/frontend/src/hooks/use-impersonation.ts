@@ -1,12 +1,13 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
-import { InferResponseType } from '@tuyau/react-query'
-import { tuyau } from '@/lib/tuyau'
+import type { InferResponseType } from '@tuyau/react-query'
+import type { tuyau } from '@/lib/tuyau'
+import type { LocalizedTo} from '@/lib/localized-navigate';
 import {
   getImpersonationStatusQueryOptions,
   impersonateUserMutationOptions,
   stopImpersonationMutationOptions,
 } from '@/lib/queries/admin'
-import { LocalizedTo, localizedNavigate } from '@/lib/localized-navigate'
+import { localizedNavigate } from '@/lib/localized-navigate'
 
 export type ImpersonationStatus = InferResponseType<
   typeof tuyau.admin.impersonate.status.$get

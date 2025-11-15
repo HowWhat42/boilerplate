@@ -1,15 +1,17 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { InferResponseType } from "@tuyau/react-query";
-import { queryClient, tuyau } from "@/lib/tuyau";
-import { z } from "zod";
-import { loginFormSchema } from "@/lib/schemas/auth";
+import { toast } from "sonner";
+import type { InferResponseType } from "@tuyau/react-query";
+import type { tuyau } from "@/lib/tuyau";
+import type { z } from "zod";
+import type { loginFormSchema } from "@/lib/schemas/auth";
+import type { LocalizedTo } from "@/lib/localized-navigate";
+import { queryClient } from "@/lib/tuyau";
 import { getCurrentUserQueryOptions } from "@/lib/queries/users";
 import {
   loginMutationOptions,
   logoutMutationOptions,
 } from "@/lib/queries/auth";
-import { toast } from "sonner";
-import { localizedNavigate, LocalizedTo } from "@/lib/localized-navigate";
+import { localizedNavigate } from "@/lib/localized-navigate";
 
 export type User = InferResponseType<typeof tuyau.me.$get>;
 
@@ -20,7 +22,7 @@ type AuthUtils = {
 };
 
 type AuthData = {
-  user: User;
+  user?: User;
 } & AuthUtils;
 
 function useAuth(): AuthData {
@@ -56,7 +58,7 @@ function useAuth(): AuthData {
 
   return {
     ...utils,
-    user: userQuery.data!,
+    user: userQuery.data,
   };
 }
 

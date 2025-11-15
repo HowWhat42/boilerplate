@@ -1,4 +1,4 @@
-import { createTuyau, TuyauHTTPError } from "@tuyau/client";
+import { TuyauHTTPError, createTuyau } from "@tuyau/client";
 import { api } from "@boilerplate/backend/api";
 import { QueryClient } from "@tanstack/react-query";
 import { createTuyauReactQueryClient } from "@tuyau/react-query";

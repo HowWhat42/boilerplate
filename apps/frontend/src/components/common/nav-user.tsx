@@ -1,8 +1,8 @@
 import {
+  BellDotIcon,
   CreditCardIcon,
   EllipsisVerticalIcon,
   LogOutIcon,
-  BellDotIcon,
   UserCircleIcon,
 } from 'lucide-react'
 

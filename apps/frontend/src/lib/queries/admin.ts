@@ -1,6 +1,6 @@
+import { getCurrentUserQueryOptions } from './users'
 import { getRouter } from '@/router'
 import { queryClient, tuyau } from '@/lib/tuyau'
-import { getCurrentUserQueryOptions } from './users'
 
 export const getImpersonationStatusQueryOptions = () => {
   return tuyau.admin.impersonate.status.$get.queryOptions()

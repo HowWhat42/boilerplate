@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { getUsersListQueryOptions } from '@/lib/queries/admin'
-import { useImpersonation } from '@/hooks/use-impersonation'
 import { Button } from '@boilerplate/design-system/components/ui/button'
 import { Input } from '@boilerplate/design-system/components/ui/input'
 import { UserIcon } from 'lucide-react'
-import Loader from '@/components/common/loader'
 import { useIntlayer } from 'react-intlayer'
+import Loader from '@/components/common/loader'
+import { useImpersonation } from '@/hooks/use-impersonation'
+import { getUsersListQueryOptions } from '@/lib/queries/admin'
 
 export function UsersList() {
   const content = useIntlayer('admin')

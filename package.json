@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "docker compose up -d && turbo dev",
     "lint": "turbo lint",
+    "typecheck": "cd apps/backend && pnpm typecheck",
     "test": "turbo test",
     "taze": "pnpx taze -r"
   },

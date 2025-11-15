@@ -1,9 +1,8 @@
 import {
+  EllipsisVerticalIcon,
   FolderIcon,
   ShareIcon,
-  TrashIcon,
-  EllipsisVerticalIcon,
-  LucideIcon,
+  TrashIcon
 } from 'lucide-react'
 
 import {
@@ -22,15 +21,17 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@boilerplate/design-system/components/ui/sidebar'
+import type {
+  LucideIcon} from 'lucide-react';
 
 export function NavDocuments({
   items,
 }: {
-  items: {
+  items: Array<{
     name: string
     url: string
     icon: LucideIcon
-  }[]
+  }>
 }) {
   const { isMobile } = useSidebar()
 

@@ -1,4 +1,4 @@
-import { CirclePlusIcon, MailIcon, LucideIcon } from 'lucide-react'
+import { CirclePlusIcon, MailIcon } from 'lucide-react'
 import { Button } from '@boilerplate/design-system/components/ui/button'
 import {
   SidebarGroup,
@@ -7,15 +7,16 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@boilerplate/design-system/components/ui/sidebar'
+import type { LucideIcon } from 'lucide-react';
 
 export function NavMain({
   items,
 }: {
-  items: {
+  items: Array<{
     title: string
     url: string
     icon?: LucideIcon
-  }[]
+  }>
 }) {
   return (
     <SidebarGroup>

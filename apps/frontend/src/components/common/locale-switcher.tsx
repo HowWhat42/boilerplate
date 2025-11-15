@@ -1,15 +1,16 @@
-import type { FC } from 'react'
 
 import { useLocation } from '@tanstack/react-router'
 import {
+  Locales,
   getHTMLTextDir,
   getLocaleName,
   getPathWithoutLocale,
-  Locales,
 } from 'intlayer'
 import { setLocaleCookie, useLocale } from 'react-intlayer'
 
-import { LocalizedLink, To } from './localized-link'
+import { LocalizedLink } from './localized-link'
+import type { To } from './localized-link';
+import type { FC } from 'react'
 
 export const LocaleSwitcher: FC = () => {
   const { pathname } = useLocation()

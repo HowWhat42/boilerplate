@@ -1,6 +1,5 @@
-import { createFileRoute, Outlet } from '@tanstack/react-router'
-import { IntlayerProvider } from 'react-intlayer'
-import { useLocale } from 'react-intlayer'
+import { Outlet, createFileRoute } from '@tanstack/react-router'
+import { IntlayerProvider, useLocale } from 'react-intlayer'
 
 export const Route = createFileRoute('/{-$locale}')({
   component: LayoutComponent,

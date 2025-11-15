@@ -1,7 +1,7 @@
-import { getRouter } from "@/router";
-import { queryClient, tuyau } from "@/lib/tuyau";
 import { toast } from "sonner";
 import { getCurrentUserQueryOptions } from "./users";
+import { getRouter } from "@/router";
+import { queryClient, tuyau } from "@/lib/tuyau";
 import { localizedNavigate } from "@/lib/localized-navigate";
 
 export const loginMutationOptions = tuyau.login.$post.mutationOptions({

@@ -2,24 +2,20 @@ import * as React from 'react'
 import {
   CameraIcon,
   ChartBarIcon,
-  LayoutDashboardIcon,
-  DatabaseIcon,
-  FileTextIcon,
-  FileTerminalIcon,
-  FolderIcon,
   CircleQuestionMarkIcon,
-  GemIcon,
-  ListIcon,
   ClipboardPenIcon,
+  DatabaseIcon,
+  FileTerminalIcon,
+  FileTextIcon,
+  FolderIcon,
+  GemIcon,
+  LayoutDashboardIcon,
+  ListIcon,
   SearchIcon,
   SettingsIcon,
   UsersIcon,
 } from 'lucide-react'
 
-import { NavDocuments } from '@/components/common/nav-documents'
-import { NavMain } from '@/components/common/nav-main'
-import { NavSecondary } from '@/components/common/nav-secondary'
-import { NavUser } from '@/components/common/nav-user'
 import {
   Sidebar,
   SidebarContent,
@@ -29,6 +25,10 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@boilerplate/design-system/components/ui/sidebar'
+import { NavDocuments } from '@/components/common/nav-documents'
+import { NavMain } from '@/components/common/nav-main'
+import { NavSecondary } from '@/components/common/nav-secondary'
+import { NavUser } from '@/components/common/nav-user'
 import { useAuth } from '@/hooks/use-auth'
 
 const data = {

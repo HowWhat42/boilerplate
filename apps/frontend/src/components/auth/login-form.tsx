@@ -8,12 +8,12 @@ import {
 } from '@boilerplate/design-system/components/ui/field'
 import { Input } from '@boilerplate/design-system/components/ui/input'
 import { PasswordField } from '@boilerplate/design-system/components/ui/password_field'
-import { useAppForm } from '@/hooks/form-hook'
 import { Form } from '@boilerplate/design-system/components/ui/form'
+import { useIntlayer } from 'react-intlayer'
+import { useAppForm } from '@/hooks/form-hook'
 import { loginFormSchema } from '@/lib/schemas/auth'
 import { useAuth } from '@/hooks/use-auth'
 import { LocalizedLink } from '@/components/common/localized-link'
-import { useIntlayer } from 'react-intlayer'
 
 export function LoginForm({
   className,

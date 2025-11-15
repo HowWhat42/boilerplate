@@ -6,14 +6,14 @@ import {
   FieldLabel,
 } from '@boilerplate/design-system/components/ui/field'
 import { Input } from '@boilerplate/design-system/components/ui/input'
-import { useAppForm } from '@/hooks/form-hook'
 import { Form } from '@boilerplate/design-system/components/ui/form'
-import { resetPasswordFormSchema } from '@/lib/schemas/auth'
 import { useMutation } from '@tanstack/react-query'
-import { resetPasswordMutationOptions } from '@/lib/queries/auth'
 import { PasswordStrength } from '@boilerplate/design-system/components/ui/password-strength'
-import { LocalizedLink } from '@/components/common/localized-link'
 import { useIntlayer } from 'react-intlayer'
+import { useAppForm } from '@/hooks/form-hook'
+import { resetPasswordFormSchema } from '@/lib/schemas/auth'
+import { resetPasswordMutationOptions } from '@/lib/queries/auth'
+import { LocalizedLink } from '@/components/common/localized-link'
 
 interface ResetPasswordFormProps extends React.ComponentProps<'form'> {
   token: string

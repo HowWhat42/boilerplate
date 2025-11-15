@@ -7,9 +7,9 @@ import { routeTree } from './routeTree.gen'
 import { queryClient } from './lib/tuyau'
 import { NotFound } from './components/common/not-found'
 import { DefaultCatchBoundary } from './components/common/default-catch-boundary'
-import { AuthData } from './hooks/use-auth'
-import { QueryClient } from '@tanstack/react-query'
 import { getCurrentUserQueryOptions } from './lib/queries/users'
+import type { AuthData } from './hooks/use-auth'
+import type { QueryClient } from '@tanstack/react-query'
 
 export type RouterContext = {
   auth: AuthData

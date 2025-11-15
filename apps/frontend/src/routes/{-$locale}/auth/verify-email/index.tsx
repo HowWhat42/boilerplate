@@ -1,10 +1,10 @@
-import { verifyEmailMutationOptions } from '@/lib/queries/auth'
 import { Button } from '@boilerplate/design-system/components/ui/button'
 import { useMutation } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect } from 'react'
 import { z } from 'zod'
 import { useIntlayer } from 'react-intlayer'
+import { verifyEmailMutationOptions } from '@/lib/queries/auth'
 import { useLocalizedNavigate } from '@/hooks/useLocalizedNavigate'
 
 const searchSchema = z.object({

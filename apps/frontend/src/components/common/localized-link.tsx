@@ -1,7 +1,7 @@
-import type { FC } from 'react'
-
-import { Link, type LinkComponentProps } from '@tanstack/react-router'
+import { Link } from '@tanstack/react-router'
 import { useLocale } from 'react-intlayer'
+import type { LinkComponentProps } from '@tanstack/react-router'
+import type { FC } from 'react'
 
 export const LOCALE_ROUTE = '{-$locale}' as const
 
@@ -12,8 +12,10 @@ export type RemoveLocaleParam<T> = T extends string
 
 export type To = RemoveLocaleParam<LinkComponentProps['to']>
 
-type CollapseDoubleSlashes<S extends string> =
-  S extends `${infer H}//${infer T}` ? CollapseDoubleSlashes<`${H}/${T}`> : S
+type CollapseDoubleSlashes<TString extends string> =
+  TString extends `${infer H}//${infer T}`
+    ? CollapseDoubleSlashes<`${H}/${T}`>
+    : TString
 
 type LocalizedLinkProps = {
   to?: To
@@ -21,12 +23,14 @@ type LocalizedLinkProps = {
 
 // Helpers
 type RemoveAll<
-  S extends string,
-  Sub extends string,
-> = S extends `${infer H}${Sub}${infer T}` ? RemoveAll<`${H}${T}`, Sub> : S
+  TString extends string,
+  TSub extends string,
+> = TString extends `${infer H}${TSub}${infer T}`
+  ? RemoveAll<`${H}${T}`, TSub>
+  : TString
 
-type RemoveLocaleFromString<S extends string> = CollapseDoubleSlashes<
-  RemoveAll<S, typeof LOCALE_ROUTE>
+type RemoveLocaleFromString<TString extends string> = CollapseDoubleSlashes<
+  RemoveAll<TString, typeof LOCALE_ROUTE>
 >
 
 export const LocalizedLink: FC<LocalizedLinkProps> = (props) => {
@@ -37,7 +41,7 @@ export const LocalizedLink: FC<LocalizedLinkProps> = (props) => {
       {...props}
       params={{
         locale,
-        ...(typeof props?.params === 'object' ? props?.params : {}),
+        ...(typeof props.params === 'object' ? props.params : {}),
       }}
       to={`/${LOCALE_ROUTE}${props.to}` as LinkComponentProps['to']}
     />

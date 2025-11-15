@@ -1,4 +1,4 @@
-import { createFileRoute, Outlet } from '@tanstack/react-router'
+import { Outlet, createFileRoute } from '@tanstack/react-router'
 import { GalleryVerticalEndIcon } from 'lucide-react'
 
 export const Route = createFileRoute('/{-$locale}/auth')({

@@ -6,13 +6,13 @@ import {
   FieldLabel,
 } from '@boilerplate/design-system/components/ui/field'
 import { Input } from '@boilerplate/design-system/components/ui/input'
-import { useAppForm } from '@/hooks/form-hook'
 import { Form } from '@boilerplate/design-system/components/ui/form'
-import { forgotPasswordFormSchema } from '@/lib/schemas/auth'
 import { useMutation } from '@tanstack/react-query'
+import { useIntlayer } from 'react-intlayer'
+import { useAppForm } from '@/hooks/form-hook'
+import { forgotPasswordFormSchema } from '@/lib/schemas/auth'
 import { forgotPasswordMutationOptions } from '@/lib/queries/auth'
 import { LocalizedLink } from '@/components/common/localized-link'
-import { useIntlayer } from 'react-intlayer'
 
 export function ForgotPasswordForm({
   className,

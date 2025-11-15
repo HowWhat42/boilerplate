@@ -2,20 +2,18 @@
 
 import * as React from 'react'
 import {
-  closestCenter,
   DndContext,
   KeyboardSensor,
   MouseSensor,
   TouchSensor,
+  closestCenter,
   useSensor,
   useSensors,
-  type DragEndEvent,
-  type UniqueIdentifier,
 } from '@dnd-kit/core'
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers'
 import {
-  arrayMove,
   SortableContext,
+  arrayMove,
   useSortable,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
@@ -27,16 +25,14 @@ import {
   ChevronsLeftIcon,
   ChevronsRightIcon,
   CircleCheckIcon,
-  MoreVerticalIcon,
-  GripVerticalIcon,
   ColumnsIcon,
+  GripVerticalIcon,
   LoaderIcon,
+  MoreVerticalIcon,
   PlusIcon,
   TrendingUpIcon,
 } from 'lucide-react'
 import {
-  ColumnDef,
-  ColumnFiltersState,
   flexRender,
   getCoreRowModel,
   getFacetedRowModel,
@@ -44,10 +40,7 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  Row,
-  SortingState,
   useReactTable,
-  VisibilityState,
 } from '@tanstack/react-table'
 import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
 import { toast } from 'sonner'
@@ -57,7 +50,6 @@ import { useIsMobile } from '@boilerplate/design-system/hooks/use-mobile'
 import { Badge } from '@boilerplate/design-system/components/ui/badge'
 import { Button } from '@boilerplate/design-system/components/ui/button'
 import {
-  ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
@@ -105,6 +97,15 @@ import {
   TabsList,
   TabsTrigger,
 } from '@boilerplate/design-system/components/ui/tabs'
+import type { ChartConfig } from '@boilerplate/design-system/components/ui/chart'
+import type { DragEndEvent, UniqueIdentifier } from '@dnd-kit/core'
+import type {
+  ColumnDef,
+  ColumnFiltersState,
+  Row,
+  SortingState,
+  VisibilityState,
+} from '@tanstack/react-table'
 
 export const schema = z.object({
   id: z.number(),
@@ -136,7 +137,7 @@ function DragHandle({ id }: { id: number }) {
   )
 }
 
-const columns: ColumnDef<z.infer<typeof schema>>[] = [
+const columns: Array<ColumnDef<z.infer<typeof schema>>> = [
   {
     id: 'drag',
     header: () => null,
@@ -339,7 +340,7 @@ function DraggableRow({ row }: { row: Row<z.infer<typeof schema>> }) {
 export function DataTable({
   data: initialData,
 }: {
-  data: z.infer<typeof schema>[]
+  data: Array<z.infer<typeof schema>>
 }) {
   const [data, setData] = React.useState(() => initialData)
   const [rowSelection, setRowSelection] = React.useState({})
@@ -360,8 +361,8 @@ export function DataTable({
     useSensor(KeyboardSensor, {}),
   )
 
-  const dataIds = React.useMemo<UniqueIdentifier[]>(
-    () => data?.map(({ id }) => id) || [],
+  const dataIds = React.useMemo<Array<UniqueIdentifier>>(
+    () => data.map(({ id }) => id),
     [data],
   )
 
@@ -392,7 +393,7 @@ export function DataTable({
 
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event
-    if (active && over && active.id !== over.id) {
+    if (over && active.id !== over.id) {
       setData((data) => {
         const oldIndex = dataIds.indexOf(active.id)
         const newIndex = dataIds.indexOf(over.id)
@@ -507,7 +508,7 @@ export function DataTable({
                 ))}
               </TableHeader>
               <TableBody className="**:data-[slot=table-cell]:first:w-8">
-                {table.getRowModel().rows?.length ? (
+                {table.getRowModel().rows.length ? (
                   <SortableContext
                     items={dataIds}
                     strategy={verticalListSortingStrategy}

@@ -1,7 +1,7 @@
 import { useLocale } from 'react-intlayer'
 import { useNavigate } from '@tanstack/react-router'
-import { LOCALE_ROUTE } from '@/components/common/localized-link'
 import type { FileRouteTypes } from '@/routeTree.gen'
+import { LOCALE_ROUTE } from '@/components/common/localized-link'
 
 export const useLocalizedNavigate = () => {
   const navigate = useNavigate()
@@ -34,7 +34,7 @@ export const useLocalizedNavigate = () => {
 
     const localedTo = `/${LOCALE_ROUTE}${to}` as any
 
-    return navigate({ to: localedTo, params: { locale, ...rest } as any })
+    return navigate({ to: localedTo, params: { locale, ...rest } })
   }
 
   return localizedNavigate

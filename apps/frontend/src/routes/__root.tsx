@@ -5,14 +5,14 @@ import {
 } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
+import { Toaster } from '@boilerplate/design-system/components/ui/sonner'
 
 import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
 
 import appCss from '../styles.css?url'
 import '@boilerplate/design-system/styles/globals.css'
-import { Toaster } from '@boilerplate/design-system/components/ui/sonner'
 
-import { RouterContext } from '../router'
+import type { RouterContext } from '../router'
 
 export const Route = createRootRouteWithContext<RouterContext>()({
   head: () => ({

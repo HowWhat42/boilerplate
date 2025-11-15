@@ -1,4 +1,5 @@
-import { insert, t, type Dictionary } from 'intlayer';
+import {  insert, t } from 'intlayer';
+import type {Dictionary} from 'intlayer';
 
 const adminContent = {
   key: 'admin',

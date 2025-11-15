@@ -6,7 +6,6 @@
     "dev": "vite dev",
     "build": "vite build",
     "serve": "vite preview",
-    "test": "vitest run",
     "lint": "eslint",
     "format": "prettier",
     "check": "prettier --write . && eslint --fix",

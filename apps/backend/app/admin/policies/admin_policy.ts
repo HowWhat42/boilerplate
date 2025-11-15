@@ -1,32 +1,15 @@
-import User from '#users/models/user'
 import { BasePolicy } from '@adonisjs/bouncer'
-import { AuthorizerResponse } from '@adonisjs/bouncer/types'
+import User from '#users/models/user'
 
 export default class AdminPolicy extends BasePolicy {
-  /**
-   * Check if the user can impersonate other users
-   */
-  async impersonate(user: User, targetUser: User): Promise<AuthorizerResponse> {
-    // Check if user has impersonate-users permission
-    const hasPermission = await user.can('impersonate-users')
-
-    if (!hasPermission) {
-      return false
-    }
-
-    // Prevent impersonating yourself
-    if (user.id === targetUser.id) {
-      return false
-    }
-
-    return true
+  async impersonate(user: User, targetUser: User) {
+    return (
+      (await user.hasPermission('validate_entities')) &&
+      !(await targetUser.hasPermission('validate_entities'))
+    )
   }
 
-  /**
-   * Check if the user can access admin features
-   */
-  async accessAdmin(user: User): Promise<AuthorizerResponse> {
-    // Check if user has admin-access permission
-    return await user.can('admin-access')
+  async accessAdmin(user: User) {
+    return await user.hasPermission('admin_access')
   }
 }

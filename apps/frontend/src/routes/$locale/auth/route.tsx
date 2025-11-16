@@ -1,7 +1,7 @@
 import { Outlet, createFileRoute } from '@tanstack/react-router'
 import { GalleryVerticalEndIcon } from 'lucide-react'
 
-export const Route = createFileRoute('/{-$locale}/auth')({
+export const Route = createFileRoute('/$locale/auth')({
   component: RouteComponent,
 })
 

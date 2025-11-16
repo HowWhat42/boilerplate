@@ -5,13 +5,13 @@ import { useEffect } from 'react'
 import { z } from 'zod'
 import { useIntlayer } from 'react-intlayer'
 import { verifyEmailMutationOptions } from '@/lib/queries/auth'
-import { useLocalizedNavigate } from '@/hooks/useLocalizedNavigate'
+import { localizedNavigate } from '@/lib/localized-navigate'
 
 const searchSchema = z.object({
   token: z.string(),
 })
 
-export const Route = createFileRoute('/{-$locale}/auth/verify-email/')({
+export const Route = createFileRoute('/$locale/auth/verify-email/')({
   component: RouteComponent,
   validateSearch: searchSchema,
 })
@@ -20,7 +20,6 @@ function RouteComponent() {
   const { token } = Route.useSearch()
   const content = useIntlayer('auth')
   const verifyEmailMutation = useMutation(verifyEmailMutationOptions(token))
-  const navigate = useLocalizedNavigate()
 
   useEffect(() => {
     // Automatically verify on mount
@@ -57,7 +56,10 @@ function RouteComponent() {
       </div>
 
       {verifyEmailMutation.isSuccess && (
-        <Button type="button" onClick={() => navigate('/auth/login')}>
+        <Button
+          type="button"
+          onClick={() => localizedNavigate({ to: '/auth/login' })}
+        >
           {content.goToLogin}
         </Button>
       )}
@@ -65,7 +67,7 @@ function RouteComponent() {
       {verifyEmailMutation.isError && (
         <Button
           type="button"
-          onClick={() => navigate('/auth/resend-verification')}
+          onClick={() => localizedNavigate({ to: '/auth/resend-verification' })}
         >
           {content.requestNewVerificationEmail}
         </Button>

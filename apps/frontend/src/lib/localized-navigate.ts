@@ -1,6 +1,7 @@
+import { getLocalizedUrl } from 'intlayer'
 import type { FileRouteTypes } from '@/routeTree.gen'
+import type { LOCALE_ROUTE } from '@/components/common/localized-link'
 import { getRouter } from '@/router'
-import { LOCALE_ROUTE } from '@/components/common/localized-link'
 
 /**
  * Strip locale prefix from route paths for type safety
@@ -51,10 +52,9 @@ export function localizedNavigate(options: LocalizedNavigateOptions) {
   
   const { to, params = {}, ...rest } = options
   
-  const localizedTo = `/${LOCALE_ROUTE}${to}` as FileRouteTypes['to']
   
   return router.navigate({
-    to: localizedTo,
+    to: getLocalizedUrl(to, locale),
     params: { locale, ...params } as any,
     ...rest,
   })

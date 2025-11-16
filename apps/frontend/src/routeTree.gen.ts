@@ -9,314 +9,292 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as Char123LocaleChar125RouteRouteImport } from './routes/{-$locale}/route'
-import { Route as Char123LocaleChar125AuthRouteRouteImport } from './routes/{-$locale}/auth/route'
-import { Route as Char123LocaleChar125dashboardRouteRouteImport } from './routes/{-$locale}/(dashboard)/route'
-import { Route as Char123LocaleChar125dashboardIndexRouteImport } from './routes/{-$locale}/(dashboard)/index'
-import { Route as Char123LocaleChar125AuthVerifyEmailIndexRouteImport } from './routes/{-$locale}/auth/verify-email/index'
-import { Route as Char123LocaleChar125AuthSignupIndexRouteImport } from './routes/{-$locale}/auth/signup/index'
-import { Route as Char123LocaleChar125AuthResetPasswordIndexRouteImport } from './routes/{-$locale}/auth/reset-password/index'
-import { Route as Char123LocaleChar125AuthResendVerificationIndexRouteImport } from './routes/{-$locale}/auth/resend-verification/index'
-import { Route as Char123LocaleChar125AuthLoginIndexRouteImport } from './routes/{-$locale}/auth/login/index'
-import { Route as Char123LocaleChar125AuthForgotPasswordIndexRouteImport } from './routes/{-$locale}/auth/forgot-password/index'
-import { Route as Char123LocaleChar125dashboardAdminIndexRouteImport } from './routes/{-$locale}/(dashboard)/admin/index'
+import { Route as LocaleRouteRouteImport } from './routes/$locale/route'
+import { Route as LocaleAuthRouteRouteImport } from './routes/$locale/auth/route'
+import { Route as LocaledashboardRouteRouteImport } from './routes/$locale/(dashboard)/route'
+import { Route as LocaledashboardIndexRouteImport } from './routes/$locale/(dashboard)/index'
+import { Route as LocaleAuthVerifyEmailIndexRouteImport } from './routes/$locale/auth/verify-email/index'
+import { Route as LocaleAuthSignupIndexRouteImport } from './routes/$locale/auth/signup/index'
+import { Route as LocaleAuthResetPasswordIndexRouteImport } from './routes/$locale/auth/reset-password/index'
+import { Route as LocaleAuthResendVerificationIndexRouteImport } from './routes/$locale/auth/resend-verification/index'
+import { Route as LocaleAuthLoginIndexRouteImport } from './routes/$locale/auth/login/index'
+import { Route as LocaleAuthForgotPasswordIndexRouteImport } from './routes/$locale/auth/forgot-password/index'
+import { Route as LocaledashboardAdminIndexRouteImport } from './routes/$locale/(dashboard)/admin/index'
 
-const Char123LocaleChar125RouteRoute =
-  Char123LocaleChar125RouteRouteImport.update({
-    id: '/{-$locale}',
-    path: '/{-$locale}',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const Char123LocaleChar125AuthRouteRoute =
-  Char123LocaleChar125AuthRouteRouteImport.update({
-    id: '/auth',
-    path: '/auth',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
-const Char123LocaleChar125dashboardRouteRoute =
-  Char123LocaleChar125dashboardRouteRouteImport.update({
-    id: '/(dashboard)',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
-const Char123LocaleChar125dashboardIndexRoute =
-  Char123LocaleChar125dashboardIndexRouteImport.update({
-    id: '/',
-    path: '/',
-    getParentRoute: () => Char123LocaleChar125dashboardRouteRoute,
-  } as any)
-const Char123LocaleChar125AuthVerifyEmailIndexRoute =
-  Char123LocaleChar125AuthVerifyEmailIndexRouteImport.update({
+const LocaleRouteRoute = LocaleRouteRouteImport.update({
+  id: '/$locale',
+  path: '/$locale',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocaleAuthRouteRoute = LocaleAuthRouteRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocaledashboardRouteRoute = LocaledashboardRouteRouteImport.update({
+  id: '/(dashboard)',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocaledashboardIndexRoute = LocaledashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LocaledashboardRouteRoute,
+} as any)
+const LocaleAuthVerifyEmailIndexRoute =
+  LocaleAuthVerifyEmailIndexRouteImport.update({
     id: '/verify-email/',
     path: '/verify-email/',
-    getParentRoute: () => Char123LocaleChar125AuthRouteRoute,
+    getParentRoute: () => LocaleAuthRouteRoute,
   } as any)
-const Char123LocaleChar125AuthSignupIndexRoute =
-  Char123LocaleChar125AuthSignupIndexRouteImport.update({
-    id: '/signup/',
-    path: '/signup/',
-    getParentRoute: () => Char123LocaleChar125AuthRouteRoute,
-  } as any)
-const Char123LocaleChar125AuthResetPasswordIndexRoute =
-  Char123LocaleChar125AuthResetPasswordIndexRouteImport.update({
+const LocaleAuthSignupIndexRoute = LocaleAuthSignupIndexRouteImport.update({
+  id: '/signup/',
+  path: '/signup/',
+  getParentRoute: () => LocaleAuthRouteRoute,
+} as any)
+const LocaleAuthResetPasswordIndexRoute =
+  LocaleAuthResetPasswordIndexRouteImport.update({
     id: '/reset-password/',
     path: '/reset-password/',
-    getParentRoute: () => Char123LocaleChar125AuthRouteRoute,
+    getParentRoute: () => LocaleAuthRouteRoute,
   } as any)
-const Char123LocaleChar125AuthResendVerificationIndexRoute =
-  Char123LocaleChar125AuthResendVerificationIndexRouteImport.update({
+const LocaleAuthResendVerificationIndexRoute =
+  LocaleAuthResendVerificationIndexRouteImport.update({
     id: '/resend-verification/',
     path: '/resend-verification/',
-    getParentRoute: () => Char123LocaleChar125AuthRouteRoute,
+    getParentRoute: () => LocaleAuthRouteRoute,
   } as any)
-const Char123LocaleChar125AuthLoginIndexRoute =
-  Char123LocaleChar125AuthLoginIndexRouteImport.update({
-    id: '/login/',
-    path: '/login/',
-    getParentRoute: () => Char123LocaleChar125AuthRouteRoute,
-  } as any)
-const Char123LocaleChar125AuthForgotPasswordIndexRoute =
-  Char123LocaleChar125AuthForgotPasswordIndexRouteImport.update({
+const LocaleAuthLoginIndexRoute = LocaleAuthLoginIndexRouteImport.update({
+  id: '/login/',
+  path: '/login/',
+  getParentRoute: () => LocaleAuthRouteRoute,
+} as any)
+const LocaleAuthForgotPasswordIndexRoute =
+  LocaleAuthForgotPasswordIndexRouteImport.update({
     id: '/forgot-password/',
     path: '/forgot-password/',
-    getParentRoute: () => Char123LocaleChar125AuthRouteRoute,
+    getParentRoute: () => LocaleAuthRouteRoute,
   } as any)
-const Char123LocaleChar125dashboardAdminIndexRoute =
-  Char123LocaleChar125dashboardAdminIndexRouteImport.update({
+const LocaledashboardAdminIndexRoute =
+  LocaledashboardAdminIndexRouteImport.update({
     id: '/admin/',
     path: '/admin/',
-    getParentRoute: () => Char123LocaleChar125dashboardRouteRoute,
+    getParentRoute: () => LocaledashboardRouteRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
-  '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
-  '/{-$locale}/': typeof Char123LocaleChar125dashboardIndexRoute
-  '/{-$locale}/auth': typeof Char123LocaleChar125AuthRouteRouteWithChildren
-  '/{-$locale}/admin': typeof Char123LocaleChar125dashboardAdminIndexRoute
-  '/{-$locale}/auth/forgot-password': typeof Char123LocaleChar125AuthForgotPasswordIndexRoute
-  '/{-$locale}/auth/login': typeof Char123LocaleChar125AuthLoginIndexRoute
-  '/{-$locale}/auth/resend-verification': typeof Char123LocaleChar125AuthResendVerificationIndexRoute
-  '/{-$locale}/auth/reset-password': typeof Char123LocaleChar125AuthResetPasswordIndexRoute
-  '/{-$locale}/auth/signup': typeof Char123LocaleChar125AuthSignupIndexRoute
-  '/{-$locale}/auth/verify-email': typeof Char123LocaleChar125AuthVerifyEmailIndexRoute
+  '/$locale': typeof LocaleRouteRouteWithChildren
+  '/$locale/': typeof LocaledashboardIndexRoute
+  '/$locale/auth': typeof LocaleAuthRouteRouteWithChildren
+  '/$locale/admin': typeof LocaledashboardAdminIndexRoute
+  '/$locale/auth/forgot-password': typeof LocaleAuthForgotPasswordIndexRoute
+  '/$locale/auth/login': typeof LocaleAuthLoginIndexRoute
+  '/$locale/auth/resend-verification': typeof LocaleAuthResendVerificationIndexRoute
+  '/$locale/auth/reset-password': typeof LocaleAuthResetPasswordIndexRoute
+  '/$locale/auth/signup': typeof LocaleAuthSignupIndexRoute
+  '/$locale/auth/verify-email': typeof LocaleAuthVerifyEmailIndexRoute
 }
 export interface FileRoutesByTo {
-  '/{-$locale}/auth': typeof Char123LocaleChar125AuthRouteRouteWithChildren
-  '/{-$locale}': typeof Char123LocaleChar125dashboardIndexRoute
-  '/{-$locale}/admin': typeof Char123LocaleChar125dashboardAdminIndexRoute
-  '/{-$locale}/auth/forgot-password': typeof Char123LocaleChar125AuthForgotPasswordIndexRoute
-  '/{-$locale}/auth/login': typeof Char123LocaleChar125AuthLoginIndexRoute
-  '/{-$locale}/auth/resend-verification': typeof Char123LocaleChar125AuthResendVerificationIndexRoute
-  '/{-$locale}/auth/reset-password': typeof Char123LocaleChar125AuthResetPasswordIndexRoute
-  '/{-$locale}/auth/signup': typeof Char123LocaleChar125AuthSignupIndexRoute
-  '/{-$locale}/auth/verify-email': typeof Char123LocaleChar125AuthVerifyEmailIndexRoute
+  '/$locale/auth': typeof LocaleAuthRouteRouteWithChildren
+  '/$locale': typeof LocaledashboardIndexRoute
+  '/$locale/admin': typeof LocaledashboardAdminIndexRoute
+  '/$locale/auth/forgot-password': typeof LocaleAuthForgotPasswordIndexRoute
+  '/$locale/auth/login': typeof LocaleAuthLoginIndexRoute
+  '/$locale/auth/resend-verification': typeof LocaleAuthResendVerificationIndexRoute
+  '/$locale/auth/reset-password': typeof LocaleAuthResetPasswordIndexRoute
+  '/$locale/auth/signup': typeof LocaleAuthSignupIndexRoute
+  '/$locale/auth/verify-email': typeof LocaleAuthVerifyEmailIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
-  '/{-$locale}/(dashboard)': typeof Char123LocaleChar125dashboardRouteRouteWithChildren
-  '/{-$locale}/auth': typeof Char123LocaleChar125AuthRouteRouteWithChildren
-  '/{-$locale}/(dashboard)/': typeof Char123LocaleChar125dashboardIndexRoute
-  '/{-$locale}/(dashboard)/admin/': typeof Char123LocaleChar125dashboardAdminIndexRoute
-  '/{-$locale}/auth/forgot-password/': typeof Char123LocaleChar125AuthForgotPasswordIndexRoute
-  '/{-$locale}/auth/login/': typeof Char123LocaleChar125AuthLoginIndexRoute
-  '/{-$locale}/auth/resend-verification/': typeof Char123LocaleChar125AuthResendVerificationIndexRoute
-  '/{-$locale}/auth/reset-password/': typeof Char123LocaleChar125AuthResetPasswordIndexRoute
-  '/{-$locale}/auth/signup/': typeof Char123LocaleChar125AuthSignupIndexRoute
-  '/{-$locale}/auth/verify-email/': typeof Char123LocaleChar125AuthVerifyEmailIndexRoute
+  '/$locale': typeof LocaleRouteRouteWithChildren
+  '/$locale/(dashboard)': typeof LocaledashboardRouteRouteWithChildren
+  '/$locale/auth': typeof LocaleAuthRouteRouteWithChildren
+  '/$locale/(dashboard)/': typeof LocaledashboardIndexRoute
+  '/$locale/(dashboard)/admin/': typeof LocaledashboardAdminIndexRoute
+  '/$locale/auth/forgot-password/': typeof LocaleAuthForgotPasswordIndexRoute
+  '/$locale/auth/login/': typeof LocaleAuthLoginIndexRoute
+  '/$locale/auth/resend-verification/': typeof LocaleAuthResendVerificationIndexRoute
+  '/$locale/auth/reset-password/': typeof LocaleAuthResetPasswordIndexRoute
+  '/$locale/auth/signup/': typeof LocaleAuthSignupIndexRoute
+  '/$locale/auth/verify-email/': typeof LocaleAuthVerifyEmailIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/{-$locale}'
-    | '/{-$locale}/'
-    | '/{-$locale}/auth'
-    | '/{-$locale}/admin'
-    | '/{-$locale}/auth/forgot-password'
-    | '/{-$locale}/auth/login'
-    | '/{-$locale}/auth/resend-verification'
-    | '/{-$locale}/auth/reset-password'
-    | '/{-$locale}/auth/signup'
-    | '/{-$locale}/auth/verify-email'
+    | '/$locale'
+    | '/$locale/'
+    | '/$locale/auth'
+    | '/$locale/admin'
+    | '/$locale/auth/forgot-password'
+    | '/$locale/auth/login'
+    | '/$locale/auth/resend-verification'
+    | '/$locale/auth/reset-password'
+    | '/$locale/auth/signup'
+    | '/$locale/auth/verify-email'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/{-$locale}/auth'
-    | '/{-$locale}'
-    | '/{-$locale}/admin'
-    | '/{-$locale}/auth/forgot-password'
-    | '/{-$locale}/auth/login'
-    | '/{-$locale}/auth/resend-verification'
-    | '/{-$locale}/auth/reset-password'
-    | '/{-$locale}/auth/signup'
-    | '/{-$locale}/auth/verify-email'
+    | '/$locale/auth'
+    | '/$locale'
+    | '/$locale/admin'
+    | '/$locale/auth/forgot-password'
+    | '/$locale/auth/login'
+    | '/$locale/auth/resend-verification'
+    | '/$locale/auth/reset-password'
+    | '/$locale/auth/signup'
+    | '/$locale/auth/verify-email'
   id:
     | '__root__'
-    | '/{-$locale}'
-    | '/{-$locale}/(dashboard)'
-    | '/{-$locale}/auth'
-    | '/{-$locale}/(dashboard)/'
-    | '/{-$locale}/(dashboard)/admin/'
-    | '/{-$locale}/auth/forgot-password/'
-    | '/{-$locale}/auth/login/'
-    | '/{-$locale}/auth/resend-verification/'
-    | '/{-$locale}/auth/reset-password/'
-    | '/{-$locale}/auth/signup/'
-    | '/{-$locale}/auth/verify-email/'
+    | '/$locale'
+    | '/$locale/(dashboard)'
+    | '/$locale/auth'
+    | '/$locale/(dashboard)/'
+    | '/$locale/(dashboard)/admin/'
+    | '/$locale/auth/forgot-password/'
+    | '/$locale/auth/login/'
+    | '/$locale/auth/resend-verification/'
+    | '/$locale/auth/reset-password/'
+    | '/$locale/auth/signup/'
+    | '/$locale/auth/verify-email/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  Char123LocaleChar125RouteRoute: typeof Char123LocaleChar125RouteRouteWithChildren
+  LocaleRouteRoute: typeof LocaleRouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/{-$locale}': {
-      id: '/{-$locale}'
-      path: '/{-$locale}'
-      fullPath: '/{-$locale}'
-      preLoaderRoute: typeof Char123LocaleChar125RouteRouteImport
+    '/$locale': {
+      id: '/$locale'
+      path: '/$locale'
+      fullPath: '/$locale'
+      preLoaderRoute: typeof LocaleRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/{-$locale}/auth': {
-      id: '/{-$locale}/auth'
+    '/$locale/auth': {
+      id: '/$locale/auth'
       path: '/auth'
-      fullPath: '/{-$locale}/auth'
-      preLoaderRoute: typeof Char123LocaleChar125AuthRouteRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/auth'
+      preLoaderRoute: typeof LocaleAuthRouteRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/(dashboard)': {
-      id: '/{-$locale}/(dashboard)'
+    '/$locale/(dashboard)': {
+      id: '/$locale/(dashboard)'
       path: '/'
-      fullPath: '/{-$locale}/'
-      preLoaderRoute: typeof Char123LocaleChar125dashboardRouteRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/'
+      preLoaderRoute: typeof LocaledashboardRouteRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/(dashboard)/': {
-      id: '/{-$locale}/(dashboard)/'
+    '/$locale/(dashboard)/': {
+      id: '/$locale/(dashboard)/'
       path: '/'
-      fullPath: '/{-$locale}/'
-      preLoaderRoute: typeof Char123LocaleChar125dashboardIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125dashboardRouteRoute
+      fullPath: '/$locale/'
+      preLoaderRoute: typeof LocaledashboardIndexRouteImport
+      parentRoute: typeof LocaledashboardRouteRoute
     }
-    '/{-$locale}/auth/verify-email/': {
-      id: '/{-$locale}/auth/verify-email/'
+    '/$locale/auth/verify-email/': {
+      id: '/$locale/auth/verify-email/'
       path: '/verify-email'
-      fullPath: '/{-$locale}/auth/verify-email'
-      preLoaderRoute: typeof Char123LocaleChar125AuthVerifyEmailIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125AuthRouteRoute
+      fullPath: '/$locale/auth/verify-email'
+      preLoaderRoute: typeof LocaleAuthVerifyEmailIndexRouteImport
+      parentRoute: typeof LocaleAuthRouteRoute
     }
-    '/{-$locale}/auth/signup/': {
-      id: '/{-$locale}/auth/signup/'
+    '/$locale/auth/signup/': {
+      id: '/$locale/auth/signup/'
       path: '/signup'
-      fullPath: '/{-$locale}/auth/signup'
-      preLoaderRoute: typeof Char123LocaleChar125AuthSignupIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125AuthRouteRoute
+      fullPath: '/$locale/auth/signup'
+      preLoaderRoute: typeof LocaleAuthSignupIndexRouteImport
+      parentRoute: typeof LocaleAuthRouteRoute
     }
-    '/{-$locale}/auth/reset-password/': {
-      id: '/{-$locale}/auth/reset-password/'
+    '/$locale/auth/reset-password/': {
+      id: '/$locale/auth/reset-password/'
       path: '/reset-password'
-      fullPath: '/{-$locale}/auth/reset-password'
-      preLoaderRoute: typeof Char123LocaleChar125AuthResetPasswordIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125AuthRouteRoute
+      fullPath: '/$locale/auth/reset-password'
+      preLoaderRoute: typeof LocaleAuthResetPasswordIndexRouteImport
+      parentRoute: typeof LocaleAuthRouteRoute
     }
-    '/{-$locale}/auth/resend-verification/': {
-      id: '/{-$locale}/auth/resend-verification/'
+    '/$locale/auth/resend-verification/': {
+      id: '/$locale/auth/resend-verification/'
       path: '/resend-verification'
-      fullPath: '/{-$locale}/auth/resend-verification'
-      preLoaderRoute: typeof Char123LocaleChar125AuthResendVerificationIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125AuthRouteRoute
+      fullPath: '/$locale/auth/resend-verification'
+      preLoaderRoute: typeof LocaleAuthResendVerificationIndexRouteImport
+      parentRoute: typeof LocaleAuthRouteRoute
     }
-    '/{-$locale}/auth/login/': {
-      id: '/{-$locale}/auth/login/'
+    '/$locale/auth/login/': {
+      id: '/$locale/auth/login/'
       path: '/login'
-      fullPath: '/{-$locale}/auth/login'
-      preLoaderRoute: typeof Char123LocaleChar125AuthLoginIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125AuthRouteRoute
+      fullPath: '/$locale/auth/login'
+      preLoaderRoute: typeof LocaleAuthLoginIndexRouteImport
+      parentRoute: typeof LocaleAuthRouteRoute
     }
-    '/{-$locale}/auth/forgot-password/': {
-      id: '/{-$locale}/auth/forgot-password/'
+    '/$locale/auth/forgot-password/': {
+      id: '/$locale/auth/forgot-password/'
       path: '/forgot-password'
-      fullPath: '/{-$locale}/auth/forgot-password'
-      preLoaderRoute: typeof Char123LocaleChar125AuthForgotPasswordIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125AuthRouteRoute
+      fullPath: '/$locale/auth/forgot-password'
+      preLoaderRoute: typeof LocaleAuthForgotPasswordIndexRouteImport
+      parentRoute: typeof LocaleAuthRouteRoute
     }
-    '/{-$locale}/(dashboard)/admin/': {
-      id: '/{-$locale}/(dashboard)/admin/'
+    '/$locale/(dashboard)/admin/': {
+      id: '/$locale/(dashboard)/admin/'
       path: '/admin'
-      fullPath: '/{-$locale}/admin'
-      preLoaderRoute: typeof Char123LocaleChar125dashboardAdminIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125dashboardRouteRoute
+      fullPath: '/$locale/admin'
+      preLoaderRoute: typeof LocaledashboardAdminIndexRouteImport
+      parentRoute: typeof LocaledashboardRouteRoute
     }
   }
 }
 
-interface Char123LocaleChar125dashboardRouteRouteChildren {
-  Char123LocaleChar125dashboardIndexRoute: typeof Char123LocaleChar125dashboardIndexRoute
-  Char123LocaleChar125dashboardAdminIndexRoute: typeof Char123LocaleChar125dashboardAdminIndexRoute
+interface LocaledashboardRouteRouteChildren {
+  LocaledashboardIndexRoute: typeof LocaledashboardIndexRoute
+  LocaledashboardAdminIndexRoute: typeof LocaledashboardAdminIndexRoute
 }
 
-const Char123LocaleChar125dashboardRouteRouteChildren: Char123LocaleChar125dashboardRouteRouteChildren =
-  {
-    Char123LocaleChar125dashboardIndexRoute:
-      Char123LocaleChar125dashboardIndexRoute,
-    Char123LocaleChar125dashboardAdminIndexRoute:
-      Char123LocaleChar125dashboardAdminIndexRoute,
-  }
-
-const Char123LocaleChar125dashboardRouteRouteWithChildren =
-  Char123LocaleChar125dashboardRouteRoute._addFileChildren(
-    Char123LocaleChar125dashboardRouteRouteChildren,
-  )
-
-interface Char123LocaleChar125AuthRouteRouteChildren {
-  Char123LocaleChar125AuthForgotPasswordIndexRoute: typeof Char123LocaleChar125AuthForgotPasswordIndexRoute
-  Char123LocaleChar125AuthLoginIndexRoute: typeof Char123LocaleChar125AuthLoginIndexRoute
-  Char123LocaleChar125AuthResendVerificationIndexRoute: typeof Char123LocaleChar125AuthResendVerificationIndexRoute
-  Char123LocaleChar125AuthResetPasswordIndexRoute: typeof Char123LocaleChar125AuthResetPasswordIndexRoute
-  Char123LocaleChar125AuthSignupIndexRoute: typeof Char123LocaleChar125AuthSignupIndexRoute
-  Char123LocaleChar125AuthVerifyEmailIndexRoute: typeof Char123LocaleChar125AuthVerifyEmailIndexRoute
+const LocaledashboardRouteRouteChildren: LocaledashboardRouteRouteChildren = {
+  LocaledashboardIndexRoute: LocaledashboardIndexRoute,
+  LocaledashboardAdminIndexRoute: LocaledashboardAdminIndexRoute,
 }
 
-const Char123LocaleChar125AuthRouteRouteChildren: Char123LocaleChar125AuthRouteRouteChildren =
-  {
-    Char123LocaleChar125AuthForgotPasswordIndexRoute:
-      Char123LocaleChar125AuthForgotPasswordIndexRoute,
-    Char123LocaleChar125AuthLoginIndexRoute:
-      Char123LocaleChar125AuthLoginIndexRoute,
-    Char123LocaleChar125AuthResendVerificationIndexRoute:
-      Char123LocaleChar125AuthResendVerificationIndexRoute,
-    Char123LocaleChar125AuthResetPasswordIndexRoute:
-      Char123LocaleChar125AuthResetPasswordIndexRoute,
-    Char123LocaleChar125AuthSignupIndexRoute:
-      Char123LocaleChar125AuthSignupIndexRoute,
-    Char123LocaleChar125AuthVerifyEmailIndexRoute:
-      Char123LocaleChar125AuthVerifyEmailIndexRoute,
-  }
+const LocaledashboardRouteRouteWithChildren =
+  LocaledashboardRouteRoute._addFileChildren(LocaledashboardRouteRouteChildren)
 
-const Char123LocaleChar125AuthRouteRouteWithChildren =
-  Char123LocaleChar125AuthRouteRoute._addFileChildren(
-    Char123LocaleChar125AuthRouteRouteChildren,
-  )
-
-interface Char123LocaleChar125RouteRouteChildren {
-  Char123LocaleChar125dashboardRouteRoute: typeof Char123LocaleChar125dashboardRouteRouteWithChildren
-  Char123LocaleChar125AuthRouteRoute: typeof Char123LocaleChar125AuthRouteRouteWithChildren
+interface LocaleAuthRouteRouteChildren {
+  LocaleAuthForgotPasswordIndexRoute: typeof LocaleAuthForgotPasswordIndexRoute
+  LocaleAuthLoginIndexRoute: typeof LocaleAuthLoginIndexRoute
+  LocaleAuthResendVerificationIndexRoute: typeof LocaleAuthResendVerificationIndexRoute
+  LocaleAuthResetPasswordIndexRoute: typeof LocaleAuthResetPasswordIndexRoute
+  LocaleAuthSignupIndexRoute: typeof LocaleAuthSignupIndexRoute
+  LocaleAuthVerifyEmailIndexRoute: typeof LocaleAuthVerifyEmailIndexRoute
 }
 
-const Char123LocaleChar125RouteRouteChildren: Char123LocaleChar125RouteRouteChildren =
-  {
-    Char123LocaleChar125dashboardRouteRoute:
-      Char123LocaleChar125dashboardRouteRouteWithChildren,
-    Char123LocaleChar125AuthRouteRoute:
-      Char123LocaleChar125AuthRouteRouteWithChildren,
-  }
+const LocaleAuthRouteRouteChildren: LocaleAuthRouteRouteChildren = {
+  LocaleAuthForgotPasswordIndexRoute: LocaleAuthForgotPasswordIndexRoute,
+  LocaleAuthLoginIndexRoute: LocaleAuthLoginIndexRoute,
+  LocaleAuthResendVerificationIndexRoute:
+    LocaleAuthResendVerificationIndexRoute,
+  LocaleAuthResetPasswordIndexRoute: LocaleAuthResetPasswordIndexRoute,
+  LocaleAuthSignupIndexRoute: LocaleAuthSignupIndexRoute,
+  LocaleAuthVerifyEmailIndexRoute: LocaleAuthVerifyEmailIndexRoute,
+}
 
-const Char123LocaleChar125RouteRouteWithChildren =
-  Char123LocaleChar125RouteRoute._addFileChildren(
-    Char123LocaleChar125RouteRouteChildren,
-  )
+const LocaleAuthRouteRouteWithChildren = LocaleAuthRouteRoute._addFileChildren(
+  LocaleAuthRouteRouteChildren,
+)
+
+interface LocaleRouteRouteChildren {
+  LocaledashboardRouteRoute: typeof LocaledashboardRouteRouteWithChildren
+  LocaleAuthRouteRoute: typeof LocaleAuthRouteRouteWithChildren
+}
+
+const LocaleRouteRouteChildren: LocaleRouteRouteChildren = {
+  LocaledashboardRouteRoute: LocaledashboardRouteRouteWithChildren,
+  LocaleAuthRouteRoute: LocaleAuthRouteRouteWithChildren,
+}
+
+const LocaleRouteRouteWithChildren = LocaleRouteRoute._addFileChildren(
+  LocaleRouteRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
-  Char123LocaleChar125RouteRoute: Char123LocaleChar125RouteRouteWithChildren,
+  LocaleRouteRoute: LocaleRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

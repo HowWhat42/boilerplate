@@ -3,7 +3,7 @@ import { useLocale } from 'react-intlayer'
 import type { LinkComponentProps } from '@tanstack/react-router'
 import type { FC } from 'react'
 
-export const LOCALE_ROUTE = '{-$locale}' as const
+export const LOCALE_ROUTE = '$locale' as const
 
 // Utilitaire principal
 export type RemoveLocaleParam<T> = T extends string

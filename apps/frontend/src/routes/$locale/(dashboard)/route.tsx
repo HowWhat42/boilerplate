@@ -8,7 +8,7 @@ import { localizedNavigate } from '@/lib/localized-navigate'
 import { AppSidebar } from '@/components/common/app-sidebar'
 import { SiteHeader } from '@/components/common/site-header'
 
-export const Route = createFileRoute('/{-$locale}/(dashboard)')({
+export const Route = createFileRoute('/$locale/(dashboard)')({
   beforeLoad: async ({ context }) => {
     const data = await context.auth.ensureData()
 

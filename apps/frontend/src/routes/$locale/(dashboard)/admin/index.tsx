@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useIntlayer } from 'react-intlayer'
 import { UsersList } from '@/components/admin/users-list'
 
-export const Route = createFileRoute('/{-$locale}/(dashboard)/admin/')({
+export const Route = createFileRoute('/$locale/(dashboard)/admin/')({
   component: AdminPage,
 })
 

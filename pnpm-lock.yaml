@@ -47,12 +47,18 @@ importers:
       '@adonisjs/session':
         specifier: ^7.5.1
         version: 7.5.1(@adonisjs/core@6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(edge.js@6.3.0))(@japa/api-client@3.1.0(@japa/assert@4.1.1(@japa/runner@4.4.0))(@japa/runner@4.4.0))(edge.js@6.3.0)
+      '@adonisjs/transmit':
+        specifier: ^2.0.2
+        version: 2.0.2(@adonisjs/core@6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(edge.js@6.3.0))
       '@aws-sdk/client-s3':
         specifier: ^3.901.0
         version: 3.901.0
       '@aws-sdk/s3-request-presigner':
         specifier: ^3.901.0
         version: 3.901.0
+      '@facteurjs/adonisjs':
+        specifier: 1.0.0-beta.4
+        version: 1.0.0-beta.4(@adonisjs/core@6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(edge.js@6.3.0))(@adonisjs/lucid@21.8.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@adonisjs/core@6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(edge.js@6.3.0))(@vinejs/vine@3.0.1)(luxon@3.7.2)(pg@8.16.3))(@adonisjs/mail@9.2.2(@adonisjs/core@6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(edge.js@6.3.0))(@aws-sdk/client-ses@3.901.0)(@types/luxon@3.7.1)(@types/node@22.18.8)(dayjs@1.11.18)(edge.js@6.3.0)(luxon@3.7.2))(@adonisjs/transmit@2.0.2(@adonisjs/core@6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(edge.js@6.3.0)))(knex@3.1.0(pg@8.16.3))(socket.io@4.8.1)
       '@foadonis/shopkeeper':
         specifier: ^0.1.7
         version: 0.1.7(@adonisjs/core@6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(edge.js@6.3.0))(@adonisjs/lucid@21.8.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@adonisjs/core@6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(edge.js@6.3.0))(@vinejs/vine@3.0.1)(luxon@3.7.2)(pg@8.16.3))(luxon@3.7.2)(reflect-metadata@0.2.2)
@@ -195,6 +201,9 @@ importers:
       '@dnd-kit/utilities':
         specifier: ^3.2.2
         version: 3.2.2(react@19.2.0)
+      '@facteurjs/react':
+        specifier: 1.0.0-beta.4
+        version: 1.0.0-beta.4
       '@faker-js/faker':
         specifier: ^10.0.0
         version: 10.0.0
@@ -738,6 +747,12 @@ packages:
       edge.js:
         optional: true
 
+  '@adonisjs/transmit@2.0.2':
+    resolution: {integrity: sha512-Oyh4S1773N1Ams9mmFM2pplLx8R0IdYwqSTBLRgeDWaR+cyWrL9ZQvF2q7GqIjNzZsXuDgMdPuLlNo+69zIZIg==}
+    engines: {node: '>=20.11.1'}
+    peerDependencies:
+      '@adonisjs/core': ^6.2.0
+
   '@adonisjs/tsconfig@1.4.1':
     resolution: {integrity: sha512-b7bHdnTaDRGfec4XVtpwsSEukZ549MgqOShScCd1b4xkMK8z1q/jb0Xs4iUL86oIDhty2y7k5vvA6aoQKPAvXQ==}
 
@@ -1116,6 +1131,19 @@ packages:
 
   '@borewit/text-codec@0.1.1':
     resolution: {integrity: sha512-5L/uBxmjaCIX5h8Z+uu+kA9BQLkc/Wl06UGR5ajNRxu+/XjonB5i8JpgFMrPj3LXTCPA0pv8yxUvbUi+QthGGA==}
+
+  '@boringnode/bus@0.7.1':
+    resolution: {integrity: sha512-F74H1XxpX0MSP2xfDv5cTuP9OgC4HHG+K2w8kNRj/k104D/aBMC7mcEcntgIZMX8QgcRQsREToP5kPH5kZOO/Q==}
+    engines: {node: '>=20.6'}
+    peerDependencies:
+      ioredis: ^5.0.0
+    peerDependenciesMeta:
+      ioredis:
+        optional: true
+
+  '@boringnode/transmit@0.2.2':
+    resolution: {integrity: sha512-xIBg5PKqqgawNsXffq1P+BpRDjplfwOspwcFH5wfSN6uVcd5hYGC9lJpcXa1oL3wkQZimtiJhrTHhZZtgh2lqA==}
+    engines: {node: '>=20.11.1'}
 
   '@chevrotain/cst-dts-gen@11.0.3':
     resolution: {integrity: sha512-BvIKpRLeS/8UbfxXxgC33xOumsacaeCKAjAeLyOn7Pcp95HiRbrpl14S+9vaZLolnbssPIUuiUd8IvgkRyt6NQ==}
@@ -1762,6 +1790,62 @@ packages:
     resolution: {integrity: sha512-sB5uyeq+dwCWyPi31B2gQlVlo+j5brPlWx4yZBrEaRo/nhdDE8Xke1gsGgtiBdaBTxuTkceLVuVt/pclrasb0A==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
+  '@facteurjs/adonisjs@1.0.0-beta.4':
+    resolution: {integrity: sha512-FW9NyyqAJShl3czlBZiOW+mRt4yo8ayjKtuvy9EhfSgptkW5Bx6nr9tA9wO9zDhsV/XxhYly62Iic0dzPcuhLQ==}
+    peerDependencies:
+      '@adonisjs/core': ^6.19.0
+      '@adonisjs/lucid': ^21.8.0
+      '@adonisjs/mail': ^9.2.2
+      '@adonisjs/redis': ^9.2.0
+      '@adonisjs/transmit': ^2.0.2
+    peerDependenciesMeta:
+      '@adonisjs/lucid':
+        optional: true
+      '@adonisjs/mail':
+        optional: true
+      '@adonisjs/redis':
+        optional: true
+      '@adonisjs/transmit':
+        optional: true
+
+  '@facteurjs/client@1.0.0-beta.4':
+    resolution: {integrity: sha512-zEFQtku4GbznycyPJQSnQlXjIZqOl2gyXlb5zKbtiQK+WxfmvUeoamWDY1ZQuCNOT2iPS0/7WW0joSC6ZprhZA==}
+
+  '@facteurjs/core@1.0.0-beta.4':
+    resolution: {integrity: sha512-2XzIRbVRsQsNCw2l/30/JLX2GGWKBldoZiKWEVPF3iVf+c8WEGj1zbImx22wFlRp7pS/AKx5hmdMZMkmCAfUSg==}
+    peerDependencies:
+      '@aws-sdk/client-sns': ^3.856.0
+      '@boringnode/transmit': ^0.3.0
+      expo-server-sdk: ^3.15.0
+      firebase-admin: ^13.4.0
+      knex: ^3.1.0
+      kysely: ^0.28.3
+      socket.io: ^4.8.1
+      twilio: ^5.8.0
+      web-push: ^3.6.7
+    peerDependenciesMeta:
+      '@aws-sdk/client-sns':
+        optional: true
+      '@boringnode/transmit':
+        optional: true
+      expo-server-sdk:
+        optional: true
+      firebase-admin:
+        optional: true
+      knex:
+        optional: true
+      kysely:
+        optional: true
+      socket.io:
+        optional: true
+      twilio:
+        optional: true
+      web-push:
+        optional: true
+
+  '@facteurjs/react@1.0.0-beta.4':
+    resolution: {integrity: sha512-62QnJUSvPOTSVVcWJ7/aJwT28U7GQckq/Zg2YaUrBFYWGRygi3C14jCtbC1LrN3NzsqTpN5zuEbT/Q9o493IeQ==}
+
   '@faker-js/faker@10.0.0':
     resolution: {integrity: sha512-UollFEUkVXutsaP+Vndjxar40Gs5JL2HeLcl8xO1QAjJgOdhc3OmBFWyEylS+RddWaaBiAzH+5/17PLQJwDiLw==}
     engines: {node: ^20.19.0 || ^22.13.0 || ^23.5.0 || >=24.0.0, npm: '>=10'}
@@ -2249,6 +2333,9 @@ packages:
         optional: true
       sharp:
         optional: true
+
+  '@julr/utils@1.9.0':
+    resolution: {integrity: sha512-hKKa29qRusABvUDt5QnJydG9aigplMJMaOrGwu11DAbZyxjqiytfOku6KbrdA1z0yUSvnFU8fSeJMXroYt+bwA==}
 
   '@kwsites/file-exists@1.1.1':
     resolution: {integrity: sha512-m9/5YGR18lIwxSFDwfE3oA7bWuq9kdau6ugN4H2rJeyhFQZcG9AgSHkQtSD15a8WvTgfz9aikZMrKPHvbpqFiw==}
@@ -6692,6 +6779,10 @@ packages:
     engines: {node: '>= 18'}
     hasBin: true
 
+  matchit@1.1.0:
+    resolution: {integrity: sha512-+nGYoOlfHmxe5BW5tE0EMJppXEwdSf8uBA1GTZC7Q77kbT35+VKLYJMzVNWCHSsga1ps1tPYFtFyvxvKzWVmMA==}
+    engines: {node: '>=6'}
+
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
     engines: {node: '>= 0.4'}
@@ -8953,6 +9044,13 @@ snapshots:
       '@japa/api-client': 3.1.0(@japa/assert@4.1.1(@japa/runner@4.4.0))(@japa/runner@4.4.0)
       edge.js: 6.3.0
 
+  '@adonisjs/transmit@2.0.2(@adonisjs/core@6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(edge.js@6.3.0))':
+    dependencies:
+      '@adonisjs/core': 6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(edge.js@6.3.0)
+      '@boringnode/transmit': 0.2.2
+    transitivePeerDependencies:
+      - ioredis
+
   '@adonisjs/tsconfig@1.4.1': {}
 
   '@alloc/quick-lru@5.2.0': {}
@@ -9827,6 +9925,21 @@ snapshots:
 
   '@borewit/text-codec@0.1.1': {}
 
+  '@boringnode/bus@0.7.1':
+    dependencies:
+      '@paralleldrive/cuid2': 2.2.2
+      '@poppinss/utils': 6.10.1
+      object-hash: 3.0.0
+
+  '@boringnode/transmit@0.2.2':
+    dependencies:
+      '@boringnode/bus': 0.7.1
+      '@poppinss/utils': 6.10.1
+      emittery: 1.2.0
+      matchit: 1.1.0
+    transitivePeerDependencies:
+      - ioredis
+
   '@chevrotain/cst-dts-gen@11.0.3':
     dependencies:
       '@chevrotain/gast': 11.0.3
@@ -10247,6 +10360,44 @@ snapshots:
     dependencies:
       '@eslint/core': 0.16.0
       levn: 0.4.1
+
+  '@facteurjs/adonisjs@1.0.0-beta.4(@adonisjs/core@6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(edge.js@6.3.0))(@adonisjs/lucid@21.8.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@adonisjs/core@6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(edge.js@6.3.0))(@vinejs/vine@3.0.1)(luxon@3.7.2)(pg@8.16.3))(@adonisjs/mail@9.2.2(@adonisjs/core@6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(edge.js@6.3.0))(@aws-sdk/client-ses@3.901.0)(@types/luxon@3.7.1)(@types/node@22.18.8)(dayjs@1.11.18)(edge.js@6.3.0)(luxon@3.7.2))(@adonisjs/transmit@2.0.2(@adonisjs/core@6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(edge.js@6.3.0)))(knex@3.1.0(pg@8.16.3))(socket.io@4.8.1)':
+    dependencies:
+      '@adonisjs/core': 6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(edge.js@6.3.0)
+      '@facteurjs/core': 1.0.0-beta.4(knex@3.1.0(pg@8.16.3))(socket.io@4.8.1)
+      '@julr/utils': 1.9.0
+      '@poppinss/exception': 1.2.2
+    optionalDependencies:
+      '@adonisjs/lucid': 21.8.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@adonisjs/core@6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(edge.js@6.3.0))(@vinejs/vine@3.0.1)(luxon@3.7.2)(pg@8.16.3)
+      '@adonisjs/mail': 9.2.2(@adonisjs/core@6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(edge.js@6.3.0))(@aws-sdk/client-ses@3.901.0)(@types/luxon@3.7.1)(@types/node@22.18.8)(dayjs@1.11.18)(edge.js@6.3.0)(luxon@3.7.2)
+      '@adonisjs/transmit': 2.0.2(@adonisjs/core@6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(edge.js@6.3.0))
+    transitivePeerDependencies:
+      - '@aws-sdk/client-sns'
+      - '@boringnode/transmit'
+      - expo-server-sdk
+      - firebase-admin
+      - knex
+      - kysely
+      - socket.io
+      - twilio
+      - web-push
+
+  '@facteurjs/client@1.0.0-beta.4':
+    dependencies:
+      ky: 1.11.0
+
+  '@facteurjs/core@1.0.0-beta.4(knex@3.1.0(pg@8.16.3))(socket.io@4.8.1)':
+    dependencies:
+      '@julr/utils': 1.9.0
+      '@poppinss/exception': 1.2.2
+      ky: 1.11.0
+    optionalDependencies:
+      knex: 3.1.0(pg@8.16.3)
+      socket.io: 4.8.1
+
+  '@facteurjs/react@1.0.0-beta.4':
+    dependencies:
+      '@facteurjs/client': 1.0.0-beta.4
 
   '@faker-js/faker@10.0.0': {}
 
@@ -10752,6 +10903,11 @@ snapshots:
       - ioredis
       - supports-color
       - tslib
+
+  '@julr/utils@1.9.0':
+    dependencies:
+      '@lukeed/ms': 2.0.2
+      bytes: 3.1.2
 
   '@kwsites/file-exists@1.1.1':
     dependencies:
@@ -16182,6 +16338,10 @@ snapshots:
   make-error@1.3.6: {}
 
   marked@15.0.12: {}
+
+  matchit@1.1.0:
+    dependencies:
+      '@arr/every': 1.0.1
 
   math-intrinsics@1.1.0: {}
 

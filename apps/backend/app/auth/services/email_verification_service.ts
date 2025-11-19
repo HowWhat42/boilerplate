@@ -44,7 +44,7 @@ export class EmailVerificationService {
       message
         .to(user.email)
         .subject('Verify your email address')
-        .htmlView('#resources/views/emails/verify_email', {
+        .htmlView('#emails/verify_email', {
           fullName: user.fullName,
           verificationUrl,
           baseUrl: env.get('APP_URL'),

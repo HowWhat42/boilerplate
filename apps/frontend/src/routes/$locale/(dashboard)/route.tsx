@@ -1,12 +1,13 @@
 import { Outlet, createFileRoute } from '@tanstack/react-router'
-import { TooltipProvider } from '@boilerplate/design-system/components/ui/tooltip'
 import {
   SidebarInset,
   SidebarProvider,
 } from '@boilerplate/design-system/components/ui/sidebar'
+import { FacteurProvider } from '@facteurjs/react'
 import { localizedNavigate } from '@/lib/localized-navigate'
 import { AppSidebar } from '@/components/common/app-sidebar'
 import { SiteHeader } from '@/components/common/site-header'
+import { useAuth } from '@/hooks/use-auth'
 
 export const Route = createFileRoute('/$locale/(dashboard)')({
   beforeLoad: async ({ context }) => {
@@ -22,8 +23,12 @@ export const Route = createFileRoute('/$locale/(dashboard)')({
 })
 
 function LayoutComponent() {
+  const { user } = useAuth()
   return (
-    <TooltipProvider>
+    <FacteurProvider
+      apiUrl={import.meta.env.VITE_API_URL || 'http://localhost:3333'}
+      notifiableId={user?.id}
+    >
       <SidebarProvider
         style={
           {
@@ -42,6 +47,6 @@ function LayoutComponent() {
           </div>
         </SidebarInset>
       </SidebarProvider>
-    </TooltipProvider>
+    </FacteurProvider>
   )
 }

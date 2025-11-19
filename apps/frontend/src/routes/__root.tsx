@@ -1,15 +1,18 @@
 import {
   HeadContent,
+  Outlet,
   Scripts,
   createRootRouteWithContext,
 } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { Toaster } from '@boilerplate/design-system/components/ui/sonner'
+import { TooltipProvider } from '@boilerplate/design-system/components/ui/tooltip'
 
 import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
 
 import appCss from '../styles.css?url'
+
 import '@boilerplate/design-system/styles/globals.css'
 
 import type { RouterContext } from '../router'
@@ -39,14 +42,16 @@ export const Route = createRootRouteWithContext<RouterContext>()({
   shellComponent: RootDocument,
 })
 
-function RootDocument({ children }: { children: React.ReactNode }) {
+function RootDocument() {
   return (
     <html lang="en">
       <head>
         <HeadContent />
       </head>
       <body>
-        {children}
+        <TooltipProvider>
+          <Outlet />
+        </TooltipProvider>
         <Toaster expand position="top-center" />
         <TanStackDevtools
           config={{

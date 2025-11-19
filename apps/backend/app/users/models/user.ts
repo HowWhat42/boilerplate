@@ -10,6 +10,7 @@ import { MorphMap } from '@holoyan/morph-map-js'
 import { hasPermissions } from '@holoyan/adonisjs-permissions'
 import type { AclModelInterface } from '@holoyan/adonisjs-permissions/types'
 import { Billable } from '@foadonis/shopkeeper/mixins'
+import { NotifiableTargets } from '@facteurjs/adonisjs/types'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -48,5 +49,11 @@ export default class User
 
   getModelId(): string {
     return this.id
+  }
+
+  notificationTargets(): NotifiableTargets {
+    return {
+      transmit: { channel: `users/${this.id}` },
+    }
   }
 }

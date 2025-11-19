@@ -65,6 +65,8 @@ export default defineConfig({
     () => import('@adonisjs/bouncer/bouncer_provider'),
     () => import('@holoyan/adonisjs-permissions/role_permission_provider'),
     () => import('@foadonis/shopkeeper/shopkeeper_provider'),
+    () => import('@facteurjs/adonisjs/facteur_provider'),
+    () => import('@adonisjs/transmit/transmit_provider'),
   ],
 
   /*

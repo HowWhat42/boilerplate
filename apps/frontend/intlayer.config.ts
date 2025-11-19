@@ -7,6 +7,9 @@ const config: IntlayerConfig = {
     defaultLocale: Locales.ENGLISH,
     locales: [Locales.ENGLISH, Locales.FRENCH],
   },
+  routing: {
+    mode: 'prefix-all'
+  }
 };
 
 export default config;

@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 import { wrapVinxiConfigWithSentry } from '@sentry/tanstackstart-react'
 import { cloudflare } from '@cloudflare/vite-plugin'
-import { intlayer } from 'vite-intlayer'
+import { intlayer, intlayerProxy } from 'vite-intlayer'
 
 const config = defineConfig({
   server: {
@@ -21,7 +21,8 @@ const config = defineConfig({
     tailwindcss(),
     tanstackStart(),
     viteReact(),
-    intlayer()
+    intlayer(),
+    intlayerProxy()
   ],
 })
 

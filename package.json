@@ -12,5 +12,12 @@
   "devDependencies": {
     "turbo": "^2.5.8"
   },
-  "packageManager": "pnpm@10.18.0"
+  "packageManager": "pnpm@10.18.0",
+  "pnpm": {
+    "overrides": {
+      "uuid": "^10.0.0",
+      "date-fns": "^3.0.0",
+      "@vavite/multibuild>vite": "^6.0.0"
+    }
+  }
 }

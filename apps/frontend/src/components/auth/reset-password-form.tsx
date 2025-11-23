@@ -10,6 +10,12 @@ import { Form } from '@boilerplate/design-system/components/ui/form'
 import { useMutation } from '@tanstack/react-query'
 import { PasswordStrength } from '@boilerplate/design-system/components/ui/password-strength'
 import { useIntlayer } from 'react-intlayer'
+import { PasswordField } from '@boilerplate/design-system/components/ui/password_field'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@boilerplate/design-system/components/ui/tooltip'
 import { useAppForm } from '@/hooks/form-hook'
 import { resetPasswordFormSchema } from '@/lib/schemas/auth'
 import { resetPasswordMutationOptions } from '@/lib/queries/auth'
@@ -52,13 +58,35 @@ export function ResetPasswordForm({
         <form.AppField name="password">
           {(field) => (
             <Field>
-              <FieldLabel htmlFor="password">
-                {content.fields.newPassword}
-              </FieldLabel>
-              <Input
+              <div className="flex items-center gap-2">
+                <FieldLabel htmlFor="password">
+                  {content.fields.password}
+                </FieldLabel>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <div
+                      className="flex h-4 w-4 items-center justify-center rounded-full border border-input bg-background text-xs text-muted-foreground hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-1 focus:ring-ring"
+                      aria-label="Help information"
+                    >
+                      ?
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <div className="font-semibold mb-1">
+                      {content.passwordRules.title}
+                    </div>
+                    <ul className="list-disc list-inside">
+                      <li>{content.passwordRules.minLength}</li>
+                      <li>{content.passwordRules.lowercase}</li>
+                      <li>{content.passwordRules.uppercase}</li>
+                      <li>{content.passwordRules.digit}</li>
+                      <li>{content.passwordRules.special}</li>
+                    </ul>
+                  </TooltipContent>
+                </Tooltip>
+              </div>
+              <PasswordField
                 id="password"
-                type="password"
-                placeholder="••••••••••••"
                 required
                 value={field.state.value}
                 onChange={(e) => field.handleChange(e.target.value)}

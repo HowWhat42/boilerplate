@@ -192,6 +192,33 @@ const aboutContent = {
         en: 'Last Name',
         fr: 'Nom',
       }),
+    },
+
+    passwordRules: {
+      title: t({
+        en: 'Password rules:',
+        fr: 'Règles du mot de passe:',
+      }),
+      minLength: t({
+        en: 'Minimum 8 characters',
+        fr: 'Minimum 8 caractères',
+      }),
+      lowercase: t({
+        en: 'One lowercase letter (a-z)',
+        fr: 'Une lettre minuscule (a-z)',
+      }),
+      uppercase: t({
+        en: 'One uppercase letter (A-Z)',
+        fr: 'Une lettre majuscule (A-Z)',
+      }),
+      digit: t({
+        en: 'One digit (0-9)',
+        fr: 'Un chiffre (0-9)',
+      }),
+      special: t({
+        en: 'One special character',
+        fr: 'Un caractère spécial',
+      }),
     }
   },
 } satisfies Dictionary;

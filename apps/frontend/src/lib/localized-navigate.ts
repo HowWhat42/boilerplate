@@ -1,6 +1,8 @@
 import { getLocalizedUrl } from 'intlayer'
+
 import type { FileRouteTypes } from '@/routeTree.gen'
 import type { LOCALE_ROUTE } from '@/components/common/localized-link'
+
 import { getRouter } from '@/router'
 
 /**
@@ -30,18 +32,18 @@ interface LocalizedNavigateOptions {
 function getCurrentLocale(): string {
   const router = getRouter()
   const currentRoute = router.state.location
-  
+
   // Extract locale from pathname (format: /{locale}/...)
   const pathParts = currentRoute.pathname.split('/')
   const locale = pathParts[1] || 'en'
-  
+
   return locale
 }
 
 /**
  * Navigate to a localized route outside of React components
  * This function automatically prepends the current locale to the route
- * 
+ *
  * @example
  * localizedNavigate({ to: '/auth/login' })
  * Navigates to: /en/auth/login (if current locale is 'en')
@@ -49,14 +51,12 @@ function getCurrentLocale(): string {
 export function localizedNavigate(options: LocalizedNavigateOptions) {
   const router = getRouter()
   const locale = getCurrentLocale()
-  
+
   const { to, params = {}, ...rest } = options
-  
-  
+
   return router.navigate({
     to: getLocalizedUrl(to, locale),
     params: { locale, ...params } as any,
     ...rest,
   })
 }
-

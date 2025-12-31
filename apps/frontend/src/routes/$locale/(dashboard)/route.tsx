@@ -1,13 +1,11 @@
 import { Outlet, createFileRoute } from '@tanstack/react-router'
-import {
-  SidebarInset,
-  SidebarProvider,
-} from '@boilerplate/design-system/components/ui/sidebar'
 import { FacteurProvider } from '@facteurjs/react'
+import { SidebarInset, SidebarProvider } from '@boilerplate/design-system/components/ui/sidebar'
+
 import { localizedNavigate } from '@/lib/localized-navigate'
-import { AppSidebar } from '@/components/common/app-sidebar'
-import { SiteHeader } from '@/components/common/site-header'
 import { useAuth } from '@/hooks/use-auth'
+import { SiteHeader } from '@/components/common/site-header'
+import { AppSidebar } from '@/components/common/app-sidebar'
 
 export const Route = createFileRoute('/$locale/(dashboard)')({
   beforeLoad: async ({ context }) => {

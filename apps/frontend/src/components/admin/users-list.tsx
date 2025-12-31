@@ -1,12 +1,13 @@
-import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
-import { Button } from '@boilerplate/design-system/components/ui/button'
-import { Input } from '@boilerplate/design-system/components/ui/input'
-import { UserIcon } from 'lucide-react'
 import { useIntlayer } from 'react-intlayer'
-import Loader from '@/components/common/loader'
-import { useImpersonation } from '@/hooks/use-impersonation'
+import { useState } from 'react'
+import { UserIcon } from 'lucide-react'
+import { useQuery } from '@tanstack/react-query'
+import { Input } from '@boilerplate/design-system/components/ui/input'
+import { Button } from '@boilerplate/design-system/components/ui/button'
+
 import { getUsersListQueryOptions } from '@/lib/queries/admin'
+import { useImpersonation } from '@/hooks/use-impersonation'
+import Loader from '@/components/common/loader'
 
 export function UsersList() {
   const content = useIntlayer('admin')
@@ -14,9 +15,7 @@ export function UsersList() {
   const [search, setSearch] = useState('')
   const { impersonate } = useImpersonation()
 
-  const { data, isLoading } = useQuery(
-    getUsersListQueryOptions({ page, limit: 20, search }),
-  )
+  const { data, isLoading } = useQuery(getUsersListQueryOptions({ page, limit: 20, search }))
 
   const handleImpersonate = (userId: string) => {
     void impersonate(userId, '/')
@@ -45,18 +44,10 @@ export function UsersList() {
             <table className="w-full">
               <thead>
                 <tr className="border-b bg-muted/50">
-                  <th className="p-3 text-left font-medium">
-                    {content.tableHeaders.name}
-                  </th>
-                  <th className="p-3 text-left font-medium">
-                    {content.tableHeaders.email}
-                  </th>
-                  <th className="p-3 text-left font-medium">
-                    {content.tableHeaders.created}
-                  </th>
-                  <th className="p-3 text-right font-medium">
-                    {content.tableHeaders.actions}
-                  </th>
+                  <th className="p-3 text-left font-medium">{content.tableHeaders.name}</th>
+                  <th className="p-3 text-left font-medium">{content.tableHeaders.email}</th>
+                  <th className="p-3 text-left font-medium">{content.tableHeaders.created}</th>
+                  <th className="p-3 text-right font-medium">{content.tableHeaders.actions}</th>
                 </tr>
               </thead>
               <tbody>
@@ -66,9 +57,7 @@ export function UsersList() {
                       {user.firstName} {user.lastName}
                     </td>
                     <td className="p-3">{user.email}</td>
-                    <td className="p-3">
-                      {new Date(user.createdAt).toLocaleDateString()}
-                    </td>
+                    <td className="p-3">{new Date(user.createdAt).toLocaleDateString()}</td>
                     <td className="p-3 text-right">
                       <Button
                         size="sm"

@@ -1,3 +1,14 @@
+import { ClassNameValue } from 'tailwind-merge'
+import { useState } from 'react'
+import { cn } from '@tatoo/design-system/lib/utils'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@tatoo/design-system/components/ui/table'
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -7,35 +18,24 @@ import {
   getPaginationRowModel,
   Row,
   useReactTable,
-} from "@tanstack/react-table";
-import { useState } from "react";
-import { ClassNameValue } from "tailwind-merge";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@tatoo/design-system/components/ui/table";
-import { cn } from "@tatoo/design-system/lib/utils";
+} from '@tanstack/react-table'
 
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+  columns: ColumnDef<TData, TValue>[]
+  data: TData[]
   Toolbar?: React.ComponentType<{
-    table: ReturnType<typeof useReactTable<TData>>;
-  }>;
-  className?: ClassNameValue;
-  stateAndOnChanges?: {};
+    table: ReturnType<typeof useReactTable<TData>>
+  }>
+  className?: ClassNameValue
+  stateAndOnChanges?: {}
 }
 
 export interface ColumnMeta {
-  columnClasses: string;
+  columnClasses: string
 }
 
 export interface DataTableRowActionsProps<TData> {
-  row: Row<TData>;
+  row: Row<TData>
 }
 
 export function DataTable<TData, TValue>({
@@ -45,7 +45,7 @@ export function DataTable<TData, TValue>({
   Toolbar,
   stateAndOnChanges,
 }: DataTableProps<TData, TValue>) {
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 
   const table = useReactTable({
     data,
@@ -59,12 +59,12 @@ export function DataTable<TData, TValue>({
       columnFilters,
     },
     ...stateAndOnChanges,
-  });
+  })
 
   return (
     <div className="space-y-4">
       {Toolbar && <Toolbar table={table} />}
-      <div className={cn("rounded-md border", className)}>
+      <div className={cn('rounded-md border', className)}>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -73,19 +73,13 @@ export function DataTable<TData, TValue>({
                   return (
                     <TableHead
                       key={header.id}
-                      className={
-                        (header.column.columnDef.meta as ColumnMeta)
-                          ?.columnClasses
-                      }
+                      className={(header.column.columnDef.meta as ColumnMeta)?.columnClasses}
                     >
                       {header.isPlaceholder
                         ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext(),
-                          )}
+                        : flexRender(header.column.columnDef.header, header.getContext())}
                     </TableHead>
-                  );
+                  )
                 })}
               </TableRow>
             ))}
@@ -93,32 +87,20 @@ export function DataTable<TData, TValue>({
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
+                <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className={
-                        (cell.column.columnDef.meta as ColumnMeta)
-                          ?.columnClasses
-                      }
+                      className={(cell.column.columnDef.meta as ColumnMeta)?.columnClasses}
                     >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
+                <TableCell colSpan={columns.length} className="h-24 text-center">
                   Aucun résultat.
                 </TableCell>
               </TableRow>
@@ -127,5 +109,5 @@ export function DataTable<TData, TValue>({
         </Table>
       </div>
     </div>
-  );
+  )
 }

@@ -1,5 +1,5 @@
-import { Outlet, createFileRoute } from '@tanstack/react-router'
 import { GalleryVerticalEndIcon } from 'lucide-react'
+import { Outlet, createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/$locale/auth')({
   component: RouteComponent,
@@ -27,9 +27,7 @@ function RouteComponent() {
         <img
           alt="Neon city"
           loading="lazy"
-          src={
-            'https://images.pexels.com/photos/1083807/pexels-photo-1083807.jpeg'
-          }
+          src={'https://images.pexels.com/photos/1083807/pexels-photo-1083807.jpeg'}
           className="absolute inset-0 h-full w-full object-cover bg-gradient-to-b from-transparent to-zinc-900 opacity-75"
         />
       </div>

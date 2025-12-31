@@ -1,5 +1,6 @@
-import {  insert, t } from 'intlayer';
-import type {Dictionary} from 'intlayer';
+import type { Dictionary } from 'intlayer'
+
+import { insert, t } from 'intlayer'
 
 const adminContent = {
   key: 'admin',
@@ -13,13 +14,13 @@ const adminContent = {
       en: 'Manage users and impersonate accounts',
       fr: 'Gérer les utilisateurs et se faire passer pour des comptes',
     }),
-    
+
     // Users section
     users: t({
       en: 'Users',
       fr: 'Utilisateurs',
     }),
-    
+
     // Users list
     searchPlaceholder: t({
       en: 'Search users by name or email...',
@@ -29,7 +30,7 @@ const adminContent = {
       en: 'Loading users...',
       fr: 'Chargement des utilisateurs...',
     }),
-    
+
     // Table headers
     tableHeaders: {
       name: t({
@@ -49,7 +50,7 @@ const adminContent = {
         fr: 'Actions',
       }),
     },
-    
+
     // Actions
     impersonate: t({
       en: 'Impersonate',
@@ -63,13 +64,13 @@ const adminContent = {
       en: 'Next',
       fr: 'Suivant',
     }),
-    
+
     // Pagination
     showingUsers: t({
       en: insert('Showing {{count}} users'),
       fr: insert('Affichage de {{count}} utilisateurs'),
     }),
-    
+
     // Impersonation indicator
     loggedInAs: t({
       en: 'You are logged in as ',
@@ -80,7 +81,6 @@ const adminContent = {
       fr: insert('Retourner à {{name}}'),
     }),
   },
-} satisfies Dictionary;
+} satisfies Dictionary
 
-export default adminContent;
-
+export default adminContent

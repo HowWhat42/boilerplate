@@ -1,17 +1,6 @@
-import {
-  EllipsisVerticalIcon,
-  FolderIcon,
-  ShareIcon,
-  TrashIcon
-} from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@boilerplate/design-system/components/ui/dropdown-menu'
+import { EllipsisVerticalIcon, FolderIcon, ShareIcon, TrashIcon } from 'lucide-react'
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -21,8 +10,13 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@boilerplate/design-system/components/ui/sidebar'
-import type {
-  LucideIcon} from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@boilerplate/design-system/components/ui/dropdown-menu'
 
 export function NavDocuments({
   items,
@@ -49,10 +43,7 @@ export function NavDocuments({
             </SidebarMenuButton>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <SidebarMenuAction
-                  showOnHover
-                  className="data-[state=open]:bg-accent rounded-sm"
-                >
+                <SidebarMenuAction showOnHover className="data-[state=open]:bg-accent rounded-sm">
                   <EllipsisVerticalIcon />
                   <span className="sr-only">More</span>
                 </SidebarMenuAction>

@@ -1,6 +1,6 @@
+import * as Sentry from '@sentry/node'
 import app from '@adonisjs/core/services/app'
 import { HttpContext, ExceptionHandler } from '@adonisjs/core/http'
-import * as Sentry from '@sentry/node'
 
 export default class HttpExceptionHandler extends ExceptionHandler {
   /**

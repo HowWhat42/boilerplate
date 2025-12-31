@@ -1,6 +1,7 @@
-import { type BaseModel, column } from '@adonisjs/lucid/orm'
 import type { DateTime } from 'luxon'
 import type { NormalizeConstructor } from '@adonisjs/core/types/helpers'
+
+import { type BaseModel, column } from '@adonisjs/lucid/orm'
 
 type ModelWithTimestampsRow = {
   createdAt: DateTime
@@ -15,7 +16,7 @@ type ModelWithTimestampsClass<
 
 export function withTimestamps() {
   return <T extends NormalizeConstructor<typeof BaseModel>>(
-    superclass: T
+    superclass: T,
   ): ModelWithTimestampsClass<T> => {
     class ModelWithTimestamps extends superclass {
       @column.dateTime({ autoCreate: true })

@@ -1,9 +1,10 @@
 import type { HttpContext } from '@adonisjs/core/http'
+
 import { inject } from '@adonisjs/core'
 import { Get, Group, Middleware } from '@adonisjs-community/girouette'
-import { middleware } from '#start/kernel'
 import User from '#users/models/user'
 import UserDto from '#users/dtos/user'
+import { middleware } from '#start/kernel'
 import AdminPolicy from '#admin/policies/admin_policy'
 
 @inject()

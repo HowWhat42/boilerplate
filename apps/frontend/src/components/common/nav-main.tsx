@@ -1,5 +1,6 @@
+import type { LucideIcon } from 'lucide-react'
+
 import { CirclePlusIcon, MailIcon } from 'lucide-react'
-import { Button } from '@boilerplate/design-system/components/ui/button'
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -7,7 +8,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@boilerplate/design-system/components/ui/sidebar'
-import type { LucideIcon } from 'lucide-react';
+import { Button } from '@boilerplate/design-system/components/ui/button'
 
 export function NavMain({
   items,

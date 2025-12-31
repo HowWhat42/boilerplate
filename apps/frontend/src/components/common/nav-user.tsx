@@ -5,12 +5,12 @@ import {
   LogOutIcon,
   UserCircleIcon,
 } from 'lucide-react'
-
 import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@boilerplate/design-system/components/ui/avatar'
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  useSidebar,
+} from '@boilerplate/design-system/components/ui/sidebar'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,11 +21,11 @@ import {
   DropdownMenuTrigger,
 } from '@boilerplate/design-system/components/ui/dropdown-menu'
 import {
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  useSidebar,
-} from '@boilerplate/design-system/components/ui/sidebar'
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '@boilerplate/design-system/components/ui/avatar'
+
 import { useAuth } from '@/hooks/use-auth'
 
 export function NavUser({
@@ -55,9 +55,7 @@ export function NavUser({
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">{user.name}</span>
-                <span className="text-muted-foreground truncate text-xs">
-                  {user.email}
-                </span>
+                <span className="text-muted-foreground truncate text-xs">{user.email}</span>
               </div>
               <EllipsisVerticalIcon className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -76,9 +74,7 @@ export function NavUser({
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-medium">{user.name}</span>
-                  <span className="text-muted-foreground truncate text-xs">
-                    {user.email}
-                  </span>
+                  <span className="text-muted-foreground truncate text-xs">{user.email}</span>
                 </div>
               </div>
             </DropdownMenuLabel>

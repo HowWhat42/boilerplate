@@ -1,6 +1,6 @@
-import { Locales } from "intlayer";
-import type { IntlayerConfig } from "intlayer";
+import type { IntlayerConfig } from 'intlayer'
 
+import { Locales } from 'intlayer'
 
 const config: IntlayerConfig = {
   internationalization: {
@@ -8,8 +8,8 @@ const config: IntlayerConfig = {
     locales: [Locales.ENGLISH, Locales.FRENCH],
   },
   routing: {
-    mode: 'prefix-all'
-  }
-};
+    mode: 'prefix-all',
+  },
+}
 
-export default config;
+export default config

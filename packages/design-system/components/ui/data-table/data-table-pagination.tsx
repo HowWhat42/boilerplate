@@ -1,6 +1,15 @@
 import React, { HTMLAttributes } from 'react'
 import { Table } from '@tanstack/react-table'
-import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '../pagination'
+
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from '../pagination'
 import { cn } from '../../../lib/utils'
 
 type DataTablePaginationProps<TData> = {
@@ -41,7 +50,9 @@ export function DataTablePagination<TData>({ table, className }: DataTablePagina
           <PaginationItem>
             <PaginationPrevious
               onClick={() => table.previousPage()}
-              className={!table.getCanPreviousPage() ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+              className={
+                !table.getCanPreviousPage() ? 'pointer-events-none opacity-50' : 'cursor-pointer'
+              }
             />
           </PaginationItem>
 
@@ -49,7 +60,7 @@ export function DataTablePagination<TData>({ table, className }: DataTablePagina
           {firstVisiblePage > 1 && (
             <>
               <PaginationItem>
-                <PaginationLink onClick={() => table.setPageIndex(0)} className='cursor-pointer'>
+                <PaginationLink onClick={() => table.setPageIndex(0)} className="cursor-pointer">
                   1
                 </PaginationLink>
               </PaginationItem>
@@ -63,7 +74,11 @@ export function DataTablePagination<TData>({ table, className }: DataTablePagina
 
           {visiblePages.map((page) => (
             <PaginationItem key={page}>
-              <PaginationLink onClick={() => table.setPageIndex(page - 1)} isActive={page === currentPage} className='cursor-pointer'>
+              <PaginationLink
+                onClick={() => table.setPageIndex(page - 1)}
+                isActive={page === currentPage}
+                className="cursor-pointer"
+              >
                 {page}
               </PaginationLink>
             </PaginationItem>
@@ -77,7 +92,10 @@ export function DataTablePagination<TData>({ table, className }: DataTablePagina
                 </PaginationItem>
               )}
               <PaginationItem>
-                <PaginationLink onClick={() => table.setPageIndex(totalPages - 1)} className='cursor-pointer'>
+                <PaginationLink
+                  onClick={() => table.setPageIndex(totalPages - 1)}
+                  className="cursor-pointer"
+                >
                   {totalPages}
                 </PaginationLink>
               </PaginationItem>
@@ -85,7 +103,12 @@ export function DataTablePagination<TData>({ table, className }: DataTablePagina
           )}
 
           <PaginationItem>
-            <PaginationNext onClick={() => table.nextPage()} className={!table.getCanNextPage() ? 'pointer-events-none opacity-50' : 'cursor-pointer'} />
+            <PaginationNext
+              onClick={() => table.nextPage()}
+              className={
+                !table.getCanNextPage() ? 'pointer-events-none opacity-50' : 'cursor-pointer'
+              }
+            />
           </PaginationItem>
         </PaginationContent>
       </Pagination>

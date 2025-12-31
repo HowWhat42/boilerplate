@@ -1,5 +1,6 @@
-import type { HttpContext } from '@adonisjs/core/http'
 import type { NextFn } from '@adonisjs/core/types/http'
+import type { HttpContext } from '@adonisjs/core/http'
+
 import * as Sentry from '@sentry/node'
 
 export default class SilentAuthMiddleware {

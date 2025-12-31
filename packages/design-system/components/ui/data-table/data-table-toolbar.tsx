@@ -1,17 +1,17 @@
-import { Table } from "@tanstack/react-table";
-import { X } from "lucide-react";
-import { Button } from "@tatoo/design-system/components/ui/button";
+import { X } from 'lucide-react'
+import { Button } from '@tatoo/design-system/components/ui/button'
+import { Table } from '@tanstack/react-table'
 
 interface DataTableToolbarProps<TData> {
-  table: Table<TData>;
-  additionalFilters?: React.ReactNode;
+  table: Table<TData>
+  additionalFilters?: React.ReactNode
 }
 
 export function DataTableToolbar<TData>({
   table,
   additionalFilters,
 }: DataTableToolbarProps<TData>) {
-  const isFiltered = table.getState().columnFilters.length > 0;
+  const isFiltered = table.getState().columnFilters.length > 0
 
   return (
     <div className="flex items-center justify-between">
@@ -29,5 +29,5 @@ export function DataTableToolbar<TData>({
         )}
       </div>
     </div>
-  );
+  )
 }

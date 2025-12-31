@@ -1,8 +1,9 @@
 'use client'
 
 import * as React from 'react'
-import { Slot } from '@radix-ui/react-slot'
 import { createFormHookContexts, useStore } from '@tanstack/react-form'
+import { Slot } from '@radix-ui/react-slot'
+
 import { cn } from '../../lib/utils'
 import * as scn from '../../components/ui/field'
 
@@ -78,7 +79,12 @@ function Field({ className, ...props }: React.ComponentProps<typeof scn.Field>) 
 
   return (
     <IdContext.Provider value={id}>
-      <scn.Field data-slot='form-item' data-invalid={hasError ? 'true' : undefined} className={cn('grid gap-2', className)} {...props} />
+      <scn.Field
+        data-slot="form-item"
+        data-invalid={hasError ? 'true' : undefined}
+        className={cn('grid gap-2', className)}
+        {...props}
+      />
     </IdContext.Provider>
   )
 }
@@ -86,7 +92,15 @@ function Field({ className, ...props }: React.ComponentProps<typeof scn.Field>) 
 function FieldLabel({ className, ...props }: React.ComponentProps<typeof scn.FieldLabel>) {
   const { formControlId, hasError } = useFieldComponentContext()
 
-  return <scn.FieldLabel data-slot='form-label' data-error={hasError ? 'true' : undefined} htmlFor={formControlId} className={className} {...props} />
+  return (
+    <scn.FieldLabel
+      data-slot="form-label"
+      data-error={hasError ? 'true' : undefined}
+      htmlFor={formControlId}
+      className={className}
+      {...props}
+    />
+  )
 }
 
 function FieldControl(props: React.ComponentProps<typeof Slot>) {
@@ -94,13 +108,31 @@ function FieldControl(props: React.ComponentProps<typeof Slot>) {
 
   const describedBy = [formDescriptionId, hasError ? formMessageId : null].filter(Boolean).join(' ')
 
-  return <Slot data-slot='form-control' id={formControlId} aria-describedby={describedBy || undefined} aria-invalid={hasError} {...props} />
+  return (
+    <Slot
+      data-slot="form-control"
+      id={formControlId}
+      aria-describedby={describedBy || undefined}
+      aria-invalid={hasError}
+      {...props}
+    />
+  )
 }
 
-function FieldDescription({ className, ...props }: React.ComponentProps<typeof scn.FieldDescription>) {
+function FieldDescription({
+  className,
+  ...props
+}: React.ComponentProps<typeof scn.FieldDescription>) {
   const { formDescriptionId } = useFieldComponentContext()
 
-  return <scn.FieldDescription data-slot='form-description' id={formDescriptionId} className={className} {...props} />
+  return (
+    <scn.FieldDescription
+      data-slot="form-description"
+      id={formDescriptionId}
+      className={className}
+      {...props}
+    />
+  )
 }
 
 function FieldError({ className, ...props }: React.ComponentProps<typeof scn.FieldError>) {
@@ -112,10 +144,21 @@ function FieldError({ className, ...props }: React.ComponentProps<typeof scn.Fie
   }
 
   return (
-    <scn.FieldError data-slot='form-message' id={formMessageId} className={className} {...props}>
+    <scn.FieldError data-slot="form-message" id={formMessageId} className={className} {...props}>
       {body}
     </scn.FieldError>
   )
 }
 
-export { Form, Field, FieldLabel, FieldControl, FieldDescription, FieldError, fieldContext, useFieldContext, formContext, useFormContext }
+export {
+  Form,
+  Field,
+  FieldLabel,
+  FieldControl,
+  FieldDescription,
+  FieldError,
+  fieldContext,
+  useFieldContext,
+  formContext,
+  useFormContext,
+}

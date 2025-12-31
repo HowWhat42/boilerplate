@@ -1,24 +1,22 @@
+import { useIntlayer } from 'react-intlayer'
 import { cn } from '@boilerplate/design-system/lib/utils'
-import { Button } from '@boilerplate/design-system/components/ui/button'
+import { PasswordField } from '@boilerplate/design-system/components/ui/password_field'
+import { Input } from '@boilerplate/design-system/components/ui/input'
+import { Form } from '@boilerplate/design-system/components/ui/form'
 import {
   Field,
   FieldDescription,
   FieldLabel,
   FieldSeparator,
 } from '@boilerplate/design-system/components/ui/field'
-import { Input } from '@boilerplate/design-system/components/ui/input'
-import { PasswordField } from '@boilerplate/design-system/components/ui/password_field'
-import { Form } from '@boilerplate/design-system/components/ui/form'
-import { useIntlayer } from 'react-intlayer'
-import { useAppForm } from '@/hooks/form-hook'
+import { Button } from '@boilerplate/design-system/components/ui/button'
+
 import { loginFormSchema } from '@/lib/schemas/auth'
 import { useAuth } from '@/hooks/use-auth'
+import { useAppForm } from '@/hooks/form-hook'
 import { LocalizedLink } from '@/components/common/localized-link'
 
-export function LoginForm({
-  className,
-  ...props
-}: React.ComponentProps<'form'>) {
+export function LoginForm({ className, ...props }: React.ComponentProps<'form'>) {
   const content = useIntlayer('auth')
   const { signIn } = useAuth()
   const form = useAppForm({
@@ -38,9 +36,7 @@ export function LoginForm({
       <Form className={cn('space-y-6', className)} {...props}>
         <div className="flex flex-col items-center gap-1 text-center">
           <h1 className="text-2xl font-bold">{content.loginTitle}</h1>
-          <p className="text-muted-foreground text-sm text-balance">
-            {content.loginDescription}
-          </p>
+          <p className="text-muted-foreground text-sm text-balance">{content.loginDescription}</p>
         </div>
         <form.AppField name="email">
           {(field) => (
@@ -61,9 +57,7 @@ export function LoginForm({
           {(field) => (
             <Field>
               <div className="flex items-center">
-                <FieldLabel htmlFor="password">
-                  {content.fields.password}
-                </FieldLabel>
+                <FieldLabel htmlFor="password">{content.fields.password}</FieldLabel>
                 <LocalizedLink
                   to="/auth/forgot-password"
                   className="ml-auto text-sm underline-offset-4 hover:underline"
@@ -81,9 +75,7 @@ export function LoginForm({
             </Field>
           )}
         </form.AppField>
-        <form.Subscribe
-          selector={(state) => [state.canSubmit, state.isSubmitting]}
-        >
+        <form.Subscribe selector={(state) => [state.canSubmit, state.isSubmitting]}>
           {([canSubmit, isSubmitting]) => (
             <Field>
               <Button type="submit" disabled={!canSubmit || isSubmitting}>
@@ -96,10 +88,7 @@ export function LoginForm({
         <Field>
           <FieldDescription className="text-center">
             {content.dontHaveAccount}
-            <LocalizedLink
-              to="/auth/signup"
-              className="underline underline-offset-4"
-            >
+            <LocalizedLink to="/auth/signup" className="underline underline-offset-4">
               {content.register}
             </LocalizedLink>
           </FieldDescription>

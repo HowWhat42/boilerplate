@@ -1,6 +1,6 @@
-import { getHTMLTextDir } from 'intlayer'
-import { useEffect } from 'react'
 import { useLocale } from 'react-intlayer'
+import { useEffect } from 'react'
+import { getHTMLTextDir } from 'intlayer'
 
 export const useI18nHTMLAttributes = () => {
   const { locale } = useLocale()

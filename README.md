@@ -5,6 +5,7 @@ A modern full-stack monorepo boilerplate featuring AdonisJS backend, TanStack St
 ## 🚀 Tech Stack
 
 ### Backend
+
 - **[AdonisJS v6](https://adonisjs.com/)** - Node.js web framework
 - **PostgreSQL** - Database
 - **Lucid ORM** - Database toolkit
@@ -16,6 +17,7 @@ A modern full-stack monorepo boilerplate featuring AdonisJS backend, TanStack St
 - **Sentry** - Error tracking and monitoring
 
 ### Frontend
+
 - **[TanStack Start](https://tanstack.com/start)** - Full-stack React framework
 - **[TanStack Router](https://tanstack.com/router)** - Type-safe routing
 - **[TanStack Query](https://tanstack.com/query)** - Server state management
@@ -26,6 +28,7 @@ A modern full-stack monorepo boilerplate featuring AdonisJS backend, TanStack St
 - **Cloudflare** - Optional deployment target
 
 ### Design System
+
 - **[Radix UI](https://www.radix-ui.com/)** - Unstyled, accessible components
 - **Tailwind CSS** - Styling framework
 - **[Lucide Icons](https://lucide.dev/)** - Icon library
@@ -33,6 +36,7 @@ A modern full-stack monorepo boilerplate featuring AdonisJS backend, TanStack St
 - **Recharts** - Chart components
 
 ### Monorepo Tools
+
 - **[pnpm](https://pnpm.io/)** - Fast, disk space efficient package manager
 - **[Turbo](https://turbo.build/)** - High-performance build system
 - **Docker** - Containerization for development and deployment
@@ -89,6 +93,7 @@ pnpm install
 Create `.env` files for both backend and frontend:
 
 **Backend** (`apps/backend/.env`):
+
 ```env
 PORT=3333
 HOST=0.0.0.0
@@ -125,6 +130,7 @@ STRIPE_SECRET=your_stripe_secret
 ```
 
 **Frontend** (`apps/frontend/.env`):
+
 ```env
 VITE_API_URL=http://localhost:3333
 ```
@@ -137,6 +143,7 @@ pnpm dev
 ```
 
 This command will:
+
 1. Start Docker containers (PostgreSQL)
 2. Start the backend server (http://localhost:3333)
 3. Start the frontend server (http://localhost:3000)
@@ -242,6 +249,7 @@ pnpm intlayer build
 ## 🔑 Key Features
 
 ### Authentication & Authorization
+
 - Email/password authentication
 - Email verification system
 - Password reset functionality
@@ -250,11 +258,13 @@ pnpm intlayer build
 - Session management
 
 ### Payment Processing
+
 - Stripe integration via Shopkeeper
 - Subscription management
 - Customer billing portal
 
 ### Developer Experience
+
 - Type-safe API client (Tuyau)
 - Hot module replacement
 - Auto-generated route types
@@ -263,11 +273,13 @@ pnpm intlayer build
 - Docker-based development environment
 
 ### Internationalization
+
 - Multi-language support via Intlayer
 - Localized routing
 - Content management system
 
 ### UI/UX
+
 - Modern, accessible component library
 - Responsive design
 - Dark mode support (via next-themes)
@@ -297,4 +309,3 @@ This is a boilerplate project. Feel free to fork and customize for your needs.
 ---
 
 **Happy Coding!** 🎉
-

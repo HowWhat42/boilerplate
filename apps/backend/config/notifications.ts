@@ -1,5 +1,6 @@
-import { defineConfig, channels } from '@facteurjs/adonisjs'
 import type { InferChannels } from '@facteurjs/adonisjs/types'
+
+import { defineConfig, channels } from '@facteurjs/adonisjs'
 
 const config = defineConfig({
   channels: {

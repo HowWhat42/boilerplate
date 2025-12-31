@@ -1,6 +1,6 @@
-import env from '#start/env'
-import { defineConfig, transports, Message as MailMessage } from '@adonisjs/mail'
 import { render } from '@react-email/render'
+import { defineConfig, transports, Message as MailMessage } from '@adonisjs/mail'
+import env from '#start/env'
 
 const mailConfig = defineConfig({
   default: 'smtp',

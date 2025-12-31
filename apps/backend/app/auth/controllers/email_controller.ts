@@ -1,6 +1,7 @@
+import type { HttpContext } from '@adonisjs/core/http'
+
 import { inject } from '@adonisjs/core'
 import { Group, Post } from '@adonisjs-community/girouette'
-import type { HttpContext } from '@adonisjs/core/http'
 import { resendVerificationEmailValidator } from '#auth/validators/email_verification'
 import { EmailVerificationService } from '#auth/services/email_verification_service'
 

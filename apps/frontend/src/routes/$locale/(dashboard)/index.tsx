@@ -1,8 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
-import data from '../../data.json'
+
 import { SectionCards } from '@/components/home/section-cards'
-import { ChartAreaInteractive } from '@/components/home/chart-area-interactive'
 import { DataTable } from '@/components/home/data-table'
+import { ChartAreaInteractive } from '@/components/home/chart-area-interactive'
+
+import data from '../../data.json'
 
 export const Route = createFileRoute('/$locale/(dashboard)/')({
   component: App,

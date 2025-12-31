@@ -1,7 +1,7 @@
-import { Bouncer } from '@adonisjs/bouncer'
-import type { HttpContext } from '@adonisjs/core/http'
 import type { NextFn } from '@adonisjs/core/types/http'
+import type { HttpContext } from '@adonisjs/core/http'
 
+import { Bouncer } from '@adonisjs/bouncer'
 import { policies } from '#core/policies/main'
 
 /**
@@ -17,7 +17,7 @@ export default class InitializeBouncerMiddleware {
     ctx.bouncer = new Bouncer(
       () => ctx.auth.user || null,
       undefined,
-      policies
+      policies,
     ).setContainerResolver(ctx.containerResolver)
 
     return next()

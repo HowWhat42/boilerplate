@@ -2,20 +2,8 @@
   "name": "@boilerplate/backend",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
   "license": "UNLICENSED",
-  "exports": {
-    "./api": "./.adonisjs/index.ts"
-  },
-  "scripts": {
-    "start": "node bin/server.js",
-    "build": "node ace build",
-    "dev": "node ace serve --hmr",
-    "test": "node ace test",
-    "lint": "eslint .",
-    "format": "prettier --write .",
-    "typecheck": "tsc --noEmit"
-  },
+  "type": "module",
   "imports": {
     "#exceptions/*": "./app/core/exceptions/*.js",
     "#middleware/*": "./app/core/middleware/*.js",
@@ -30,28 +18,17 @@
     "#common/*": "./app/common/*.js",
     "#emails/*": "./emails/*.js"
   },
-  "devDependencies": {
-    "@adonisjs/assembler": "^7.8.2",
-    "@adonisjs/prettier-config": "^1.4.5",
-    "@adonisjs/tsconfig": "^1.4.1",
-    "@japa/api-client": "^3.1.0",
-    "@japa/assert": "^4.1.1",
-    "@japa/plugin-adonisjs": "^4.0.0",
-    "@japa/runner": "^4.4.0",
-    "@react-email/preview-server": "4.3.1",
-    "@swc/core": "1.11.24",
-    "@tuyau/utils": "^0.0.9",
-    "@types/luxon": "^3.7.1",
-    "@types/node": "^22.18.8",
-    "@types/react": "^19.2.0",
-    "@types/react-dom": "^19.2.0",
-    "@vavite/multibuild": "^5.1.0",
-    "hot-hook": "^0.4.0",
-    "pino-pretty": "^13.1.1",
-    "prettier": "^3.6.2",
-    "react-email": "^4.3.1",
-    "ts-node-maintained": "^10.9.6",
-    "typescript": "~5.8.3"
+  "exports": {
+    "./api": "./.adonisjs/index.ts"
+  },
+  "scripts": {
+    "start": "node bin/server.js",
+    "build": "node ace build",
+    "dev": "node ace serve --hmr",
+    "test": "node ace test",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@adocasts.com/dto": "^0.0.10",
@@ -87,11 +64,34 @@
     "reflect-metadata": "^0.2.2",
     "uuid": "^10.0.0"
   },
+  "devDependencies": {
+    "@adonisjs/assembler": "^7.8.2",
+    "@adonisjs/prettier-config": "^1.4.5",
+    "@adonisjs/tsconfig": "^1.4.1",
+    "@japa/api-client": "^3.1.0",
+    "@japa/assert": "^4.1.1",
+    "@japa/plugin-adonisjs": "^4.0.0",
+    "@japa/runner": "^4.4.0",
+    "@react-email/preview-server": "4.3.1",
+    "@swc/core": "1.11.24",
+    "@tuyau/utils": "^0.0.9",
+    "@types/luxon": "^3.7.1",
+    "@types/node": "^22.18.8",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vavite/multibuild": "^5.1.0",
+    "hot-hook": "^0.4.0",
+    "pino-pretty": "^13.1.1",
+    "prettier": "^3.6.2",
+    "react-email": "^4.3.1",
+    "ts-node-maintained": "^10.9.6",
+    "typescript": "~5.8.3"
+  },
+  "prettier": "@adonisjs/prettier-config",
   "hotHook": {
     "boundaries": [
       "./app/controllers/**/*.ts",
       "./app/middleware/*.ts"
     ]
-  },
-  "prettier": "@adonisjs/prettier-config"
+  }
 }

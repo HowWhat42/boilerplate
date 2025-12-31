@@ -11,5 +11,5 @@ export const registerValidator = vine.compile(
       .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-@$!%*?&])[A-Za-z\d-@$!%*?&]/)
       .confirmed({ confirmationField: 'confirmPassword' }),
     confirmPassword: vine.string().minLength(1),
-  })
+  }),
 )

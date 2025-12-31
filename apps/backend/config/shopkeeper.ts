@@ -1,5 +1,5 @@
-import env from '#start/env'
 import { defineConfig } from '@foadonis/shopkeeper'
+import env from '#start/env'
 
 export default defineConfig({
   key: env.get('STRIPE_KEY'),

@@ -1,10 +1,10 @@
-import User from '#users/models/user'
 import { randomBytes } from 'node:crypto'
 import { DateTime } from 'luxon'
-import EmailVerificationToken from '#users/models/email_verification_token'
-import env from '#start/env'
 import mail from '@adonisjs/mail/services/main'
 import { TransactionClientContract } from '@adonisjs/lucid/types/database'
+import User from '#users/models/user'
+import EmailVerificationToken from '#users/models/email_verification_token'
+import env from '#start/env'
 
 export class EmailVerificationService {
   async generateToken(user: User, transaction?: TransactionClientContract) {
@@ -19,7 +19,7 @@ export class EmailVerificationService {
         token,
         expiresAt,
       },
-      { client: transaction }
+      { client: transaction },
     )
     return { token: verificationToken.token, expiresAt: verificationToken.expiresAt }
   }

@@ -1,5 +1,5 @@
-import { EyeIcon, EyeOffIcon } from 'lucide-react'
 import React, { useState } from 'react'
+import { EyeIcon, EyeOffIcon } from 'lucide-react'
 
 import { Input } from './input'
 
@@ -8,7 +8,11 @@ interface PasswordFieldProps extends React.InputHTMLAttributes<HTMLInputElement>
   autogenerate?: boolean
 }
 
-const PasswordField: React.FunctionComponent<PasswordFieldProps> = ({ divClassName, onChange, ...props }) => {
+const PasswordField: React.FunctionComponent<PasswordFieldProps> = ({
+  divClassName,
+  onChange,
+  ...props
+}) => {
   const [showPassword, setShowPassword] = useState(false)
 
   const togglePasswordVisibility = () => {
@@ -18,11 +22,16 @@ const PasswordField: React.FunctionComponent<PasswordFieldProps> = ({ divClassNa
   return (
     <div className={divClassName}>
       <div style={{ position: 'relative' }}>
-        <Input type={showPassword ? 'text' : 'password'} placeholder='••••••••••••' onChange={onChange} {...props} />
+        <Input
+          type={showPassword ? 'text' : 'password'}
+          placeholder="••••••••••••"
+          onChange={onChange}
+          {...props}
+        />
         {props.value && (
           <button
             onClick={togglePasswordVisibility}
-            type='button'
+            type="button"
             style={{
               position: 'absolute',
               right: '10px',
@@ -34,7 +43,7 @@ const PasswordField: React.FunctionComponent<PasswordFieldProps> = ({ divClassNa
               outline: 'none',
             }}
           >
-            {showPassword ? <EyeOffIcon className='size-4' /> : <EyeIcon className='size-4' />}
+            {showPassword ? <EyeOffIcon className="size-4" /> : <EyeIcon className="size-4" />}
           </button>
         )}
       </div>

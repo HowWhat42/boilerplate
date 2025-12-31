@@ -1,5 +1,6 @@
-import type { HttpContext } from '@adonisjs/core/http'
 import type { NextFn } from '@adonisjs/core/types/http'
+import type { HttpContext } from '@adonisjs/core/http'
+
 import { AclManager, Scope } from '@holoyan/adonisjs-permissions'
 
 declare module '@adonisjs/core/http' {

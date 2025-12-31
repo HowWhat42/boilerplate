@@ -23,7 +23,7 @@ export default class extends BaseSchema {
 
         table.index(['scope', 'slug'])
         table.index(['entity_type', 'entity_id'])
-      }
+      },
     )
 
     this.schema.createTable(config.get('permissions.permissionsConfig.tables.roles'), (table) => {
@@ -67,7 +67,7 @@ export default class extends BaseSchema {
           .foreign('role_id')
           .references(config.get('permissions.permissionsConfig.tables.roles') + '.id')
           .onDelete('CASCADE')
-      }
+      },
     )
 
     this.schema.createTable(
@@ -91,7 +91,7 @@ export default class extends BaseSchema {
           .foreign('permission_id')
           .references(config.get('permissions.permissionsConfig.tables.permissions') + '.id')
           .onDelete('CASCADE')
-      }
+      },
     )
   }
 

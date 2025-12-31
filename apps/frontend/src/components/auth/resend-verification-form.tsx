@@ -1,27 +1,19 @@
+import { useIntlayer } from 'react-intlayer'
+import { useMutation } from '@tanstack/react-query'
 import { cn } from '@boilerplate/design-system/lib/utils'
-import { Button } from '@boilerplate/design-system/components/ui/button'
-import {
-  Field,
-  FieldDescription,
-  FieldLabel,
-} from '@boilerplate/design-system/components/ui/field'
 import { Input } from '@boilerplate/design-system/components/ui/input'
 import { Form } from '@boilerplate/design-system/components/ui/form'
-import { useMutation } from '@tanstack/react-query'
-import { useIntlayer } from 'react-intlayer'
-import { useAppForm } from '@/hooks/form-hook'
+import { Field, FieldDescription, FieldLabel } from '@boilerplate/design-system/components/ui/field'
+import { Button } from '@boilerplate/design-system/components/ui/button'
+
 import { resendVerificationFormSchema } from '@/lib/schemas/auth'
 import { resendVerificationMutationOptions } from '@/lib/queries/auth'
+import { useAppForm } from '@/hooks/form-hook'
 import { LocalizedLink } from '@/components/common/localized-link'
 
-export function ResendVerificationForm({
-  className,
-  ...props
-}: React.ComponentProps<'form'>) {
+export function ResendVerificationForm({ className, ...props }: React.ComponentProps<'form'>) {
   const content = useIntlayer('auth')
-  const resendVerificationMutation = useMutation(
-    resendVerificationMutationOptions(),
-  )
+  const resendVerificationMutation = useMutation(resendVerificationMutationOptions())
   const form = useAppForm({
     defaultValues: {
       email: '',
@@ -59,9 +51,7 @@ export function ResendVerificationForm({
             </Field>
           )}
         </form.AppField>
-        <form.Subscribe
-          selector={(state) => [state.canSubmit, state.isSubmitting]}
-        >
+        <form.Subscribe selector={(state) => [state.canSubmit, state.isSubmitting]}>
           {([canSubmit, isSubmitting]) => (
             <Field>
               <Button type="submit" disabled={!canSubmit || isSubmitting}>
@@ -73,10 +63,7 @@ export function ResendVerificationForm({
         <Field>
           <FieldDescription className="text-center">
             {content.alreadyVerified}
-            <LocalizedLink
-              to="/auth/login"
-              className="underline underline-offset-4"
-            >
+            <LocalizedLink to="/auth/login" className="underline underline-offset-4">
               {content.backToLogin}
             </LocalizedLink>
           </FieldDescription>

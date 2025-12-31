@@ -1,6 +1,6 @@
+import { InferConverters } from '@jrmc/adonis-attachment/types/config'
 // import sharp from 'sharp'
 import { defineConfig } from '@jrmc/adonis-attachment'
-import { InferConverters } from '@jrmc/adonis-attachment/types/config'
 
 /**
  * Documentation: https://adonis-attachment.jrmc.dev/guide/essentials/configuration

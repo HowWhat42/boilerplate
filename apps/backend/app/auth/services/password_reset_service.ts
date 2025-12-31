@@ -1,12 +1,12 @@
-import User from '#users/models/user'
 import { randomBytes } from 'node:crypto'
 import { DateTime } from 'luxon'
-import ResetPasswordToken from '#users/models/reset_password_token'
-import env from '#start/env'
 import { Infer } from '@vinejs/vine/types'
-import { resetPasswordValidator } from '#auth/validators/password_reset'
 import mail from '@adonisjs/mail/services/main'
 import { TransactionClientContract } from '@adonisjs/lucid/types/database'
+import User from '#users/models/user'
+import ResetPasswordToken from '#users/models/reset_password_token'
+import env from '#start/env'
+import { resetPasswordValidator } from '#auth/validators/password_reset'
 
 export class PasswordResetService {
   async generateToken(user: User, transaction?: TransactionClientContract) {
@@ -21,7 +21,7 @@ export class PasswordResetService {
         token,
         expiresAt,
       },
-      { client: transaction }
+      { client: transaction },
     )
     return { token: resetToken.token, expiresAt: resetToken.expiresAt }
   }

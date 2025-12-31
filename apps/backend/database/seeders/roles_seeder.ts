@@ -1,5 +1,5 @@
-import { BaseSeeder } from '@adonisjs/lucid/seeders'
 import { Acl } from '@holoyan/adonisjs-permissions'
+import { BaseSeeder } from '@adonisjs/lucid/seeders'
 
 export default class extends BaseSeeder {
   static environment = ['development', 'production']

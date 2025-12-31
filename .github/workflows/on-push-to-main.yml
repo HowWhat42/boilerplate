@@ -63,17 +63,17 @@ jobs:
     needs: build-and-push-image
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Dokploy Deployment
-      run: |
-        curl -X 'POST' \
-          "${{ secrets.DOKPLOY_URL }}/api/trpc/application.deploy" \
-          -H 'accept: application/json' \
-          -H 'Content-Type: application/json' \
-          -H "x-api-key: ${{ secrets.DOKPLOY_AUTH_TOKEN }}" \
-          -d "{\"json\": {\"applicationId\": \"${{ secrets.DOKPLOY_APPLICATION_ID }}\"}}" \
-          -w "%{http_code}" \
-          -o /dev/null \
-          -s
+      - name: Dokploy Deployment
+        run: |
+          curl -X 'POST' \
+            "${{ secrets.DOKPLOY_URL }}/api/trpc/application.deploy" \
+            -H 'accept: application/json' \
+            -H 'Content-Type: application/json' \
+            -H "x-api-key: ${{ secrets.DOKPLOY_AUTH_TOKEN }}" \
+            -d "{\"json\": {\"applicationId\": \"${{ secrets.DOKPLOY_APPLICATION_ID }}\"}}" \
+            -w "%{http_code}" \
+            -o /dev/null \
+            -s

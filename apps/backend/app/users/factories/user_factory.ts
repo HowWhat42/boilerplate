@@ -1,6 +1,6 @@
+import { DateTime } from 'luxon'
 import Factory from '@adonisjs/lucid/factories'
 import User from '#users/models/user'
-import { DateTime } from 'luxon'
 
 export const UserFactory = Factory.define(User, ({ faker }) => {
   return {

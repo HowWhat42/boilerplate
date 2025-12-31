@@ -3,7 +3,7 @@ import vine from '@vinejs/vine'
 export const forgotPasswordValidator = vine.compile(
   vine.object({
     email: vine.string().email(),
-  })
+  }),
 )
 
 export const resetPasswordValidator = vine.compile(
@@ -13,7 +13,7 @@ export const resetPasswordValidator = vine.compile(
       .minLength(8)
       .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-@$!%*?&])[A-Za-z\d-@$!%*?&]/)
       .confirmed({ confirmationField: 'confirmPassword' }),
-  })
+  }),
 )
 
 export const resetPasswordWithoutTokenValidator = vine.compile(
@@ -24,5 +24,5 @@ export const resetPasswordWithoutTokenValidator = vine.compile(
       .minLength(8)
       .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-@$!%*?&])[A-Za-z\d-@$!%*?&]/)
       .confirmed({ confirmationField: 'confirmPassword' }),
-  })
+  }),
 )

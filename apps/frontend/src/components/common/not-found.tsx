@@ -1,6 +1,6 @@
+import { useIntlayer } from 'react-intlayer'
 import { ArrowLeft, TriangleAlertIcon } from 'lucide-react'
 import { Button } from '@boilerplate/design-system/components/ui/button'
-import { useIntlayer } from 'react-intlayer'
 
 export function NotFound({ children }: { children?: any }) {
   const content = useIntlayer('common')
@@ -11,15 +11,9 @@ export function NotFound({ children }: { children?: any }) {
         <div className="p-4 rounded-full bg-red-100">
           <TriangleAlertIcon className="h-8 w-8 text-red-600" />
         </div>
-        <h3 className="text-lg font-semibold">
-          {content.notFound.errorLoading}
-        </h3>
+        <h3 className="text-lg font-semibold">{content.notFound.errorLoading}</h3>
         <p className="text-muted-foreground">{children}</p>
-        <Button
-          onClick={() => window.location.reload()}
-          variant="outline"
-          className="mt-2"
-        >
+        <Button onClick={() => window.location.reload()} variant="outline" className="mt-2">
           {content.notFound.retry}
         </Button>
         <Button

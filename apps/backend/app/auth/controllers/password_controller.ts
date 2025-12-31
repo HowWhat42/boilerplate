@@ -1,6 +1,7 @@
+import type { HttpContext } from '@adonisjs/core/http'
+
 import { inject } from '@adonisjs/core'
 import { Group, Post } from '@adonisjs-community/girouette'
-import type { HttpContext } from '@adonisjs/core/http'
 import { forgotPasswordValidator, resetPasswordValidator } from '#auth/validators/password_reset'
 import { PasswordResetService } from '#auth/services/password_reset_service'
 

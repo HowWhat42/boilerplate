@@ -15,7 +15,6 @@ import {
   SettingsIcon,
   UsersIcon,
 } from 'lucide-react'
-
 import {
   Sidebar,
   SidebarContent,
@@ -25,11 +24,12 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@boilerplate/design-system/components/ui/sidebar'
-import { NavDocuments } from '@/components/common/nav-documents'
-import { NavMain } from '@/components/common/nav-main'
-import { NavSecondary } from '@/components/common/nav-secondary'
-import { NavUser } from '@/components/common/nav-user'
+
 import { useAuth } from '@/hooks/use-auth'
+import { NavUser } from '@/components/common/nav-user'
+import { NavSecondary } from '@/components/common/nav-secondary'
+import { NavMain } from '@/components/common/nav-main'
+import { NavDocuments } from '@/components/common/nav-documents'
 
 const data = {
   navMain: [
@@ -164,10 +164,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
-            >
+            <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-1.5">
               <a href="#">
                 <GemIcon className="!size-5" />
                 <span className="text-base font-semibold">Acme Inc.</span>

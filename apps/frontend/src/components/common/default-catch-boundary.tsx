@@ -1,12 +1,9 @@
-import {
-  ErrorComponent,
-  rootRouteId,
-  useMatch,
-  useRouter,
-} from '@tanstack/react-router'
-import { useIntlayer } from 'react-intlayer'
-import { LocalizedLink } from './localized-link'
 import type { ErrorComponentProps } from '@tanstack/react-router'
+
+import { useIntlayer } from 'react-intlayer'
+import { ErrorComponent, rootRouteId, useMatch, useRouter } from '@tanstack/react-router'
+
+import { LocalizedLink } from './localized-link'
 
 export function DefaultCatchBoundary({ error }: ErrorComponentProps) {
   const router = useRouter()

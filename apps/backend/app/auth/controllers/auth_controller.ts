@@ -1,12 +1,12 @@
 import type { HttpContext } from '@adonisjs/core/http'
 
-import { Get, Group, Middleware, Post } from '@adonisjs-community/girouette'
-import { loginValidator } from '#auth/validators/login'
-import { registerValidator } from '#auth/validators/register'
-import User from '#users/models/user'
-import { middleware } from '#start/kernel'
 import { inject } from '@adonisjs/core'
+import { Get, Group, Middleware, Post } from '@adonisjs-community/girouette'
+import User from '#users/models/user'
 import UserDto from '#users/dtos/user'
+import { middleware } from '#start/kernel'
+import { registerValidator } from '#auth/validators/register'
+import { loginValidator } from '#auth/validators/login'
 import { EmailVerificationService } from '#auth/services/email_verification_service'
 
 @inject()

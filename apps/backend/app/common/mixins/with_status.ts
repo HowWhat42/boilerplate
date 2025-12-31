@@ -1,5 +1,6 @@
-import { type BaseModel, column } from '@adonisjs/lucid/orm'
 import type { NormalizeConstructor } from '@adonisjs/core/types/helpers'
+
+import { type BaseModel, column } from '@adonisjs/lucid/orm'
 
 type ModelWithStatusRow<TStatus extends readonly string[]> = {
   status: TStatus[number]
@@ -14,7 +15,7 @@ type ModelWithStatusClass<
 
 export function withStatuses<const TStatus extends readonly string[]>(_statusValues: TStatus) {
   return <T extends NormalizeConstructor<typeof BaseModel>>(
-    superclass: T
+    superclass: T,
   ): ModelWithStatusClass<TStatus, T> => {
     class ModelWithStatus extends superclass {
       @column()

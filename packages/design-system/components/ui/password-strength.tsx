@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react'
+
 import { FieldDescription } from './field'
 
 type PasswordStrengthProps = {
@@ -52,21 +53,24 @@ export function PasswordStrength({ password, inputId }: PasswordStrengthProps) {
 
   return (
     <FieldDescription>
-      <span className='flex flex-col mt-2 gap-1'>
+      <span className="flex flex-col mt-2 gap-1">
         <span
-          className='bg-border h-1 w-full overflow-hidden rounded-full'
-          role='progressbar'
+          className="bg-border h-1 w-full overflow-hidden rounded-full"
+          role="progressbar"
           aria-valuenow={strengthScore}
           aria-valuemin={0}
           aria-valuemax={4}
-          aria-label='Password strength'
+          aria-label="Password strength"
         >
           <span
             className={`h-full ${getStrengthColor(strengthScore)} transition-all duration-500 ease-out block`}
             style={{ width: `${(strengthScore / 5) * 100}%` }}
           ></span>
         </span>
-        <span id={`${inputId}-description`} className='text-muted-foreground text-xs font-normal text-end h-2'>
+        <span
+          id={`${inputId}-description`}
+          className="text-muted-foreground text-xs font-normal text-end h-2"
+        >
           {getStrengthText(strengthScore)}
         </span>
       </span>

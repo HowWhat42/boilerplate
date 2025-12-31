@@ -1,7 +1,10 @@
-import { useMutation, useQuery } from '@tanstack/react-query'
 import type { InferResponseType } from '@tuyau/react-query'
+
+import { useMutation, useQuery } from '@tanstack/react-query'
+
 import type { tuyau } from '@/lib/tuyau'
-import type { LocalizedTo} from '@/lib/localized-navigate';
+import type { LocalizedTo } from '@/lib/localized-navigate'
+
 import {
   getImpersonationStatusQueryOptions,
   impersonateUserMutationOptions,
@@ -9,9 +12,7 @@ import {
 } from '@/lib/queries/admin'
 import { localizedNavigate } from '@/lib/localized-navigate'
 
-export type ImpersonationStatus = InferResponseType<
-  typeof tuyau.admin.impersonate.status.$get
->
+export type ImpersonationStatus = InferResponseType<typeof tuyau.admin.impersonate.status.$get>
 
 type ImpersonationData = {
   isImpersonating: boolean
@@ -49,7 +50,7 @@ export function useImpersonation(): ImpersonationData {
               void localizedNavigate({ to: redirectTo })
             }
           },
-        }
+        },
       )
     },
     stopImpersonation: async () => {

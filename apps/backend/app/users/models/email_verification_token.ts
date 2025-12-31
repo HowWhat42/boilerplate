@@ -1,8 +1,9 @@
-import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+
 import { DateTime } from 'luxon'
-import User from '#users/models/user'
+import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
 import { compose } from '@adonisjs/core/helpers'
+import User from '#users/models/user'
 import { withUUID } from '#common/mixins/with_uuid'
 
 export default class EmailVerificationToken extends compose(BaseModel, withUUID()) {

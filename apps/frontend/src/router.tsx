@@ -1,16 +1,18 @@
-import { createRouter } from '@tanstack/react-router'
+import type { QueryClient } from '@tanstack/react-query'
+
 import { setupRouterSsrQueryIntegration } from '@tanstack/react-router-ssr-query'
+import { createRouter } from '@tanstack/react-router'
 import * as Sentry from '@sentry/tanstackstart-react'
-import * as TanstackQuery from './integrations/tanstack-query/root-provider'
+
+import type { AuthData } from './hooks/use-auth'
 
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
 import { queryClient } from './lib/tuyau'
+import { getCurrentUserQueryOptions } from './lib/queries/users'
+import * as TanstackQuery from './integrations/tanstack-query/root-provider'
 import { NotFound } from './components/common/not-found'
 import { DefaultCatchBoundary } from './components/common/default-catch-boundary'
-import { getCurrentUserQueryOptions } from './lib/queries/users'
-import type { AuthData } from './hooks/use-auth'
-import type { QueryClient } from '@tanstack/react-query'
 
 export type RouterContext = {
   auth: AuthData
@@ -30,14 +32,10 @@ const createAuthContext = (): AuthData => {
       }
     },
     signIn: () => {
-      throw new Error(
-        'signIn should be called from useAuth hook in a component',
-      )
+      throw new Error('signIn should be called from useAuth hook in a component')
     },
     signOut: () => {
-      throw new Error(
-        'signOut should be called from useAuth hook in a component',
-      )
+      throw new Error('signOut should be called from useAuth hook in a component')
     },
   }
 }
@@ -56,9 +54,7 @@ export const getRouter = () => {
     defaultNotFoundComponent: () => <NotFound />,
     Wrap: (props: { children: React.ReactNode }) => {
       return (
-        <TanstackQuery.Provider queryClient={queryClient}>
-          {props.children}
-        </TanstackQuery.Provider>
+        <TanstackQuery.Provider queryClient={queryClient}>{props.children}</TanstackQuery.Provider>
       )
     },
   })

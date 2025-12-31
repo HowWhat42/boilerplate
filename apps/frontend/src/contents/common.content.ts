@@ -1,5 +1,6 @@
-import {  t } from 'intlayer';
-import type {Dictionary} from 'intlayer';
+import type { Dictionary } from 'intlayer'
+
+import { t } from 'intlayer'
 
 const commonContent = {
   key: 'common',
@@ -19,7 +20,7 @@ const commonContent = {
         fr: 'Retourner en arrière',
       }),
     },
-    
+
     // DefaultCatchBoundary component
     defaultCatchBoundary: {
       tryAgain: t({
@@ -36,7 +37,6 @@ const commonContent = {
       }),
     },
   },
-} satisfies Dictionary;
+} satisfies Dictionary
 
-export default commonContent;
-
+export default commonContent

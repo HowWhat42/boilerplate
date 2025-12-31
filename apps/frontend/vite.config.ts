@@ -1,12 +1,11 @@
-import { defineConfig } from 'vite'
-import { tanstackStart } from '@tanstack/react-start/plugin/vite'
-import viteReact from '@vitejs/plugin-react'
 import viteTsConfigPaths from 'vite-tsconfig-paths'
+import { intlayer, intlayerProxy } from 'vite-intlayer'
+import { defineConfig } from 'vite'
+import viteReact from '@vitejs/plugin-react'
+import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import tailwindcss from '@tailwindcss/vite'
-
 import { wrapVinxiConfigWithSentry } from '@sentry/tanstackstart-react'
 import { cloudflare } from '@cloudflare/vite-plugin'
-import { intlayer, intlayerProxy } from 'vite-intlayer'
 
 const config = defineConfig({
   server: {
@@ -22,7 +21,7 @@ const config = defineConfig({
     tanstackStart(),
     viteReact(),
     intlayer(),
-    intlayerProxy()
+    intlayerProxy(),
   ],
 })
 

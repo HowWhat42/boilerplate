@@ -1,9 +1,10 @@
-import { Button } from '@boilerplate/design-system/components/ui/button'
-import { useMutation } from '@tanstack/react-query'
-import { createFileRoute } from '@tanstack/react-router'
-import { useEffect } from 'react'
 import { z } from 'zod'
 import { useIntlayer } from 'react-intlayer'
+import { useEffect } from 'react'
+import { createFileRoute } from '@tanstack/react-router'
+import { useMutation } from '@tanstack/react-query'
+import { Button } from '@boilerplate/design-system/components/ui/button'
+
 import { verifyEmailMutationOptions } from '@/lib/queries/auth'
 import { localizedNavigate } from '@/lib/localized-navigate'
 
@@ -56,10 +57,7 @@ function RouteComponent() {
       </div>
 
       {verifyEmailMutation.isSuccess && (
-        <Button
-          type="button"
-          onClick={() => localizedNavigate({ to: '/auth/login' })}
-        >
+        <Button type="button" onClick={() => localizedNavigate({ to: '/auth/login' })}>
           {content.goToLogin}
         </Button>
       )}

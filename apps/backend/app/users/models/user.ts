@@ -1,16 +1,17 @@
-import hash from '@adonisjs/core/services/hash'
-import { compose } from '@adonisjs/core/helpers'
-import { BaseModel, column, computed } from '@adonisjs/lucid/orm'
-import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
-import { withTimestamps } from '#common/mixins/with_timestamps'
-import { withUUID } from '#common/mixins/with_uuid'
+import type { AclModelInterface } from '@holoyan/adonisjs-permissions/types'
 import type { Address } from '#common/types/address'
+
 import { DateTime } from 'luxon'
 import { MorphMap } from '@holoyan/morph-map-js'
 import { hasPermissions } from '@holoyan/adonisjs-permissions'
-import type { AclModelInterface } from '@holoyan/adonisjs-permissions/types'
 import { Billable } from '@foadonis/shopkeeper/mixins'
 import { NotifiableTargets } from '@facteurjs/adonisjs/types'
+import { BaseModel, column, computed } from '@adonisjs/lucid/orm'
+import hash from '@adonisjs/core/services/hash'
+import { compose } from '@adonisjs/core/helpers'
+import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
+import { withUUID } from '#common/mixins/with_uuid'
+import { withTimestamps } from '#common/mixins/with_timestamps'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],

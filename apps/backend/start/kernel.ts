@@ -49,4 +49,5 @@ router.use([
 export const middleware = router.named({
   auth: () => import('#auth/middleware/auth_middleware'),
   silentAuth: () => import('#auth/middleware/silent_auth_middleware'),
+  requireSecretToken: () => import('#middleware/require_secret_token_middleware'),
 })

@@ -15,7 +15,6 @@
 import '../otel.js'
 
 
-import '../instrument.js'
 import 'reflect-metadata'
 import { Ignitor, prettyPrintError } from '@adonisjs/core'
 

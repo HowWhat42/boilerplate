@@ -10,15 +10,15 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LocaleRouteRouteImport } from './routes/$locale/route'
+import { Route as LocaleAuthRouteRouteImport } from './routes/$locale/auth/route'
+import { Route as LocaledashboardRouteRouteImport } from './routes/$locale/(dashboard)/route'
+import { Route as LocaledashboardIndexRouteImport } from './routes/$locale/(dashboard)/index'
 import { Route as LocaleAuthVerifyEmailIndexRouteImport } from './routes/$locale/auth/verify-email/index'
 import { Route as LocaleAuthSignupIndexRouteImport } from './routes/$locale/auth/signup/index'
-import { Route as LocaleAuthRouteRouteImport } from './routes/$locale/auth/route'
 import { Route as LocaleAuthResetPasswordIndexRouteImport } from './routes/$locale/auth/reset-password/index'
 import { Route as LocaleAuthResendVerificationIndexRouteImport } from './routes/$locale/auth/resend-verification/index'
 import { Route as LocaleAuthLoginIndexRouteImport } from './routes/$locale/auth/login/index'
 import { Route as LocaleAuthForgotPasswordIndexRouteImport } from './routes/$locale/auth/forgot-password/index'
-import { Route as LocaledashboardRouteRouteImport } from './routes/$locale/(dashboard)/route'
-import { Route as LocaledashboardIndexRouteImport } from './routes/$locale/(dashboard)/index'
 import { Route as LocaledashboardAdminIndexRouteImport } from './routes/$locale/(dashboard)/admin/index'
 
 const LocaleRouteRoute = LocaleRouteRouteImport.update({
@@ -40,41 +40,46 @@ const LocaledashboardIndexRoute = LocaledashboardIndexRouteImport.update({
   path: '/',
   getParentRoute: () => LocaledashboardRouteRoute,
 } as any)
-const LocaleAuthVerifyEmailIndexRoute = LocaleAuthVerifyEmailIndexRouteImport.update({
-  id: '/verify-email/',
-  path: '/verify-email/',
-  getParentRoute: () => LocaleAuthRouteRoute,
-} as any)
+const LocaleAuthVerifyEmailIndexRoute =
+  LocaleAuthVerifyEmailIndexRouteImport.update({
+    id: '/verify-email/',
+    path: '/verify-email/',
+    getParentRoute: () => LocaleAuthRouteRoute,
+  } as any)
 const LocaleAuthSignupIndexRoute = LocaleAuthSignupIndexRouteImport.update({
   id: '/signup/',
   path: '/signup/',
   getParentRoute: () => LocaleAuthRouteRoute,
 } as any)
-const LocaleAuthResetPasswordIndexRoute = LocaleAuthResetPasswordIndexRouteImport.update({
-  id: '/reset-password/',
-  path: '/reset-password/',
-  getParentRoute: () => LocaleAuthRouteRoute,
-} as any)
-const LocaleAuthResendVerificationIndexRoute = LocaleAuthResendVerificationIndexRouteImport.update({
-  id: '/resend-verification/',
-  path: '/resend-verification/',
-  getParentRoute: () => LocaleAuthRouteRoute,
-} as any)
+const LocaleAuthResetPasswordIndexRoute =
+  LocaleAuthResetPasswordIndexRouteImport.update({
+    id: '/reset-password/',
+    path: '/reset-password/',
+    getParentRoute: () => LocaleAuthRouteRoute,
+  } as any)
+const LocaleAuthResendVerificationIndexRoute =
+  LocaleAuthResendVerificationIndexRouteImport.update({
+    id: '/resend-verification/',
+    path: '/resend-verification/',
+    getParentRoute: () => LocaleAuthRouteRoute,
+  } as any)
 const LocaleAuthLoginIndexRoute = LocaleAuthLoginIndexRouteImport.update({
   id: '/login/',
   path: '/login/',
   getParentRoute: () => LocaleAuthRouteRoute,
 } as any)
-const LocaleAuthForgotPasswordIndexRoute = LocaleAuthForgotPasswordIndexRouteImport.update({
-  id: '/forgot-password/',
-  path: '/forgot-password/',
-  getParentRoute: () => LocaleAuthRouteRoute,
-} as any)
-const LocaledashboardAdminIndexRoute = LocaledashboardAdminIndexRouteImport.update({
-  id: '/admin/',
-  path: '/admin/',
-  getParentRoute: () => LocaledashboardRouteRoute,
-} as any)
+const LocaleAuthForgotPasswordIndexRoute =
+  LocaleAuthForgotPasswordIndexRouteImport.update({
+    id: '/forgot-password/',
+    path: '/forgot-password/',
+    getParentRoute: () => LocaleAuthRouteRoute,
+  } as any)
+const LocaledashboardAdminIndexRoute =
+  LocaledashboardAdminIndexRouteImport.update({
+    id: '/admin/',
+    path: '/admin/',
+    getParentRoute: () => LocaledashboardRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/$locale': typeof LocaleRouteRouteWithChildren
@@ -248,9 +253,8 @@ const LocaledashboardRouteRouteChildren: LocaledashboardRouteRouteChildren = {
   LocaledashboardAdminIndexRoute: LocaledashboardAdminIndexRoute,
 }
 
-const LocaledashboardRouteRouteWithChildren = LocaledashboardRouteRoute._addFileChildren(
-  LocaledashboardRouteRouteChildren,
-)
+const LocaledashboardRouteRouteWithChildren =
+  LocaledashboardRouteRoute._addFileChildren(LocaledashboardRouteRouteChildren)
 
 interface LocaleAuthRouteRouteChildren {
   LocaleAuthForgotPasswordIndexRoute: typeof LocaleAuthForgotPasswordIndexRoute
@@ -264,7 +268,8 @@ interface LocaleAuthRouteRouteChildren {
 const LocaleAuthRouteRouteChildren: LocaleAuthRouteRouteChildren = {
   LocaleAuthForgotPasswordIndexRoute: LocaleAuthForgotPasswordIndexRoute,
   LocaleAuthLoginIndexRoute: LocaleAuthLoginIndexRoute,
-  LocaleAuthResendVerificationIndexRoute: LocaleAuthResendVerificationIndexRoute,
+  LocaleAuthResendVerificationIndexRoute:
+    LocaleAuthResendVerificationIndexRoute,
   LocaleAuthResetPasswordIndexRoute: LocaleAuthResetPasswordIndexRoute,
   LocaleAuthSignupIndexRoute: LocaleAuthSignupIndexRoute,
   LocaleAuthVerifyEmailIndexRoute: LocaleAuthVerifyEmailIndexRoute,
@@ -284,7 +289,9 @@ const LocaleRouteRouteChildren: LocaleRouteRouteChildren = {
   LocaleAuthRouteRoute: LocaleAuthRouteRouteWithChildren,
 }
 
-const LocaleRouteRouteWithChildren = LocaleRouteRoute._addFileChildren(LocaleRouteRouteChildren)
+const LocaleRouteRouteWithChildren = LocaleRouteRoute._addFileChildren(
+  LocaleRouteRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   LocaleRouteRoute: LocaleRouteRouteWithChildren,
@@ -293,8 +300,8 @@ export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
 
-import type { startInstance } from './start.ts'
 import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
 declare module '@tanstack/react-start' {
   interface Register {
     ssr: true

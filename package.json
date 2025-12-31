@@ -4,12 +4,16 @@
   "description": "",
   "scripts": {
     "dev": "docker compose up -d && turbo dev",
-    "lint": "turbo lint",
-    "typecheck": "cd apps/backend && pnpm typecheck",
+    "format": "oxfmt",
+    "lint": "oxlint",
+    "typecheck": "turbo typecheck",
     "test": "turbo test",
     "taze": "pnpx taze -r"
   },
   "devDependencies": {
+    "oxfmt": "^0.21.0",
+    "oxlint": "^1.36.0",
+    "oxlint-tsgolint": "^0.10.0",
     "turbo": "^2.5.8"
   },
   "packageManager": "pnpm@10.18.0",

@@ -50,9 +50,9 @@
     "@holoyan/adonisjs-permissions": "^1.3.1",
     "@holoyan/morph-map-js": "^0.1.1",
     "@jrmc/adonis-attachment": "^5.0.1",
+    "@monocle-app/agent": "1.0.0-beta.3",
     "@react-email/components": "^0.5.7",
     "@react-email/render": "^1.4.0",
-    "@sentry/node": "^10.17.0",
     "@tuyau/core": "^0.4.2",
     "@vinejs/vine": "^3.0.1",
     "edge.js": "^6.3.0",
@@ -82,7 +82,6 @@
     "@vavite/multibuild": "^5.1.0",
     "hot-hook": "^0.4.0",
     "pino-pretty": "^13.1.1",
-    "prettier": "^3.6.2",
     "react-email": "^4.3.1",
     "ts-node-maintained": "^10.9.6",
     "typescript": "~5.8.3"

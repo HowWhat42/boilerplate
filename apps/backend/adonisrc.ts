@@ -67,6 +67,7 @@ export default defineConfig({
     () => import('@foadonis/shopkeeper/shopkeeper_provider'),
     () => import('@facteurjs/adonisjs/facteur_provider'),
     () => import('@adonisjs/transmit/transmit_provider'),
+    () => import('@monocle-app/agent/monocle_provider')
   ],
 
   /*

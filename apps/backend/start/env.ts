@@ -58,13 +58,6 @@ export default await Env.create(new URL('../', import.meta.url), {
 
   /*
   |----------------------------------------------------------
-  | Variables for configuring the Sentry package
-  |----------------------------------------------------------
-  */
-  SENTRY_DSN: Env.schema.string.optional(),
-
-  /*
-  |----------------------------------------------------------
   | Variables for configuring the Shopkeeper Stripe SDK
   |----------------------------------------------------------
   */
@@ -79,4 +72,9 @@ export default await Env.create(new URL('../', import.meta.url), {
   */
   SHOPKEEPER_CURRENCY: Env.schema.string.optional(),
   SHOPKEEPER_CURRENCY_LOCALE: Env.schema.string.optional(),
+
+  APP_NAME: Env.schema.string(),
+  APP_VERSION: Env.schema.string(),
+  APP_ENV: Env.schema.enum(['development', 'staging', 'production'] as const),
+  MONOCLE_API_KEY: Env.schema.string()
 })

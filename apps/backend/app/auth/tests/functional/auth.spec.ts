@@ -16,6 +16,7 @@ test.group('Auth', (group) => {
     }
 
     const response = await client.post('/register').json(payload)
+    console.log(response.body())
 
     response.assertStatus(201)
     assert.exists(response.body().user)

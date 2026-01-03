@@ -1,24 +1,10 @@
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 
-import { DateTime } from 'luxon'
-import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
-import { compose } from '@adonisjs/core/helpers'
+import { belongsTo } from '@adonisjs/lucid/orm'
 import User from '#users/models/user'
-import { withUUID } from '#common/mixins/with_uuid'
+import { EmailVerificationTokenSchema } from '#database/schema'
 
-export default class EmailVerificationToken extends compose(BaseModel, withUUID()) {
-  @column()
-  declare userId: string
-
-  @column()
-  declare token: string
-
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  declare createdAt: DateTime
-
-  @column.dateTime()
-  declare expiresAt: DateTime
-
+export default class EmailVerificationToken extends EmailVerificationTokenSchema {
   @belongsTo(() => User)
   declare user: BelongsTo<typeof User>
 }

@@ -3,7 +3,6 @@ import app from '@adonisjs/core/services/app'
 
 export default class IndexSeeder extends BaseSeeder {
   async run() {
-    await this.seed(await import('#database/seeders/roles_seeder'))
     await this.seed(await import('#database/seeders/super_admin_seeder'))
   }
 

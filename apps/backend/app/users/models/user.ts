@@ -1,11 +1,7 @@
-import type { AclModelInterface } from '@holoyan/adonisjs-permissions/types'
 import type { Address } from '#common/types/address'
 
 import { DateTime } from 'luxon'
-import { MorphMap } from '@holoyan/morph-map-js'
-import { hasPermissions } from '@holoyan/adonisjs-permissions'
 import { Billable } from '@foadonis/shopkeeper/mixins'
-import { NotifiableTargets } from '@facteurjs/adonisjs/types'
 import { BaseModel, column, computed } from '@adonisjs/lucid/orm'
 import hash from '@adonisjs/core/services/hash'
 import { compose } from '@adonisjs/core/helpers'
@@ -18,10 +14,13 @@ const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   passwordColumnName: 'password',
 })
 
-@MorphMap('users')
+export enum Role {
+  ADMIN = 'ADMIN',
+  USER = 'USER',
+}
+
 export default class User
-  extends compose(BaseModel, AuthFinder, Billable, withUUID(), withTimestamps(), hasPermissions())
-  implements AclModelInterface
+  extends compose(BaseModel, AuthFinder, Billable, withUUID(), withTimestamps())
 {
   @column()
   declare firstName: string
@@ -34,6 +33,9 @@ export default class User
 
   @column({ serializeAs: null })
   declare password: string
+
+  @column()
+  declare role: Role
 
   @column({
     prepare: (value: Address) => JSON.stringify(value),
@@ -50,11 +52,5 @@ export default class User
 
   getModelId(): string {
     return this.id
-  }
-
-  notificationTargets(): NotifiableTargets {
-    return {
-      transmit: { channel: `users/${this.id}` },
-    }
   }
 }

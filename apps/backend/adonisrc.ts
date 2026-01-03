@@ -1,4 +1,6 @@
+import { generateRegistry } from '@tuyau/core/hooks'
 import { defineConfig } from '@adonisjs/core/app'
+import { indexEntities } from '@adonisjs/core'
 
 export default defineConfig({
   /*
@@ -30,7 +32,6 @@ export default defineConfig({
     () => import('@adonisjs/lucid/commands'),
     () => import('@tuyau/core/commands'),
     () => import('@adonisjs-community/modules/commands'),
-    () => import('@jrmc/adonis-attachment/commands'),
     () => import('@adonisjs/mail/commands'),
     () => import('@adonisjs/bouncer/commands'),
     () => import('@foadonis/shopkeeper/commands'),
@@ -57,15 +58,11 @@ export default defineConfig({
     () => import('@adonisjs/lucid/database_provider'),
     () => import('@adonisjs/session/session_provider'),
     () => import('@adonisjs/auth/auth_provider'),
-    () => import('@tuyau/core/tuyau_provider'),
     () => import('@adonisjs-community/girouette/girouette_provider'),
-    () => import('@jrmc/adonis-attachment/attachment_provider'),
     () => import('@adonisjs/drive/drive_provider'),
     () => import('@adonisjs/mail/mail_provider'),
     () => import('@adonisjs/bouncer/bouncer_provider'),
-    () => import('@holoyan/adonisjs-permissions/role_permission_provider'),
     () => import('@foadonis/shopkeeper/shopkeeper_provider'),
-    () => import('@facteurjs/adonisjs/facteur_provider'),
     () => import('@adonisjs/transmit/transmit_provider'),
     () => import('@monocle-app/agent/monocle_provider')
   ],
@@ -103,5 +100,25 @@ export default defineConfig({
       },
     ],
     forceExit: false,
+  },
+
+  hooks: {
+    init: [
+      generateRegistry(),
+      indexEntities({
+        transformers: {
+          enabled: true,
+          source: './app',
+          glob: ['**/*_transformer.ts'],
+          importAlias: '#app',
+        },
+        controllers: {
+          enabled: true,
+          source: './app',
+          glob: ['**/*_controller.ts'],
+          importAlias: '#app',
+        },
+      }),
+    ],
   },
 })

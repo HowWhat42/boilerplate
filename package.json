@@ -20,8 +20,10 @@
   "pnpm": {
     "overrides": {
       "uuid": "^10.0.0",
-      "date-fns": "^3.0.0",
-      "@vavite/multibuild>vite": "^6.0.0"
+      "date-fns": "^3.0.0"
+    },
+    "patchedDependencies": {
+      "@adonisjs/transmit@2.0.2": "patches/@adonisjs__transmit@2.0.2.patch"
     }
   }
 }

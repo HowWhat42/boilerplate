@@ -1,5 +1,5 @@
 import { BaseSeeder } from '@adonisjs/lucid/seeders'
-import User from '#users/models/user'
+import User, { Role } from '#users/models/user'
 
 export default class extends BaseSeeder {
   static environment = ['development', 'production']
@@ -9,12 +9,12 @@ export default class extends BaseSeeder {
     if (existingUser) {
       return
     }
-    const user = await User.create({
+    await User.create({
       firstName: 'Super',
       lastName: 'Admin',
       email: 'admin@repo.com',
       password: '123',
+      role: Role.ADMIN,
     })
-    await user.assignRole('super_admin')
   }
 }

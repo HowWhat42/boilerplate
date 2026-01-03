@@ -1,0 +1,11 @@
+diff --git a/build/stubs/main.js b/build/stubs/main.js
+index b4a795ac45f7f4d0db20ea7c2944ae9788e112de..6258ade8f3185ee0c5b9f070613d29a807c11957 100644
+--- a/build/stubs/main.js
++++ b/build/stubs/main.js
+@@ -6,5 +6,4 @@
+  * For the full copyright and license information, please view the LICENSE
+  * file that was distributed with this source code.
+  */
+-import { getDirname } from '@poppinss/utils';
+-export const stubsRoot = getDirname(import.meta.url);
++export const stubsRoot = import.meta.dirname;

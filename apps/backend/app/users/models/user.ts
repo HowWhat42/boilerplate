@@ -2,12 +2,11 @@ import type { Address } from '#common/types/address'
 
 import { DateTime } from 'luxon'
 import { Billable } from '@foadonis/shopkeeper/mixins'
-import { BaseModel, column, computed } from '@adonisjs/lucid/orm'
+import { column, computed } from '@adonisjs/lucid/orm'
 import hash from '@adonisjs/core/services/hash'
 import { compose } from '@adonisjs/core/helpers'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
-import { withUUID } from '#common/mixins/with_uuid'
-import { withTimestamps } from '#common/mixins/with_timestamps'
+import { UserSchema } from '#database/schema'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -20,7 +19,7 @@ export enum Role {
 }
 
 export default class User
-  extends compose(BaseModel, AuthFinder, Billable, withUUID(), withTimestamps())
+  extends compose(UserSchema, AuthFinder, Billable)
 {
   @column()
   declare firstName: string

@@ -3,18 +3,18 @@ import type { HttpContext } from '@adonisjs/core/http'
 import { inject } from '@adonisjs/core'
 import { Get, Group, Middleware, Post } from '@adonisjs-community/girouette'
 import User from '#users/models/user'
-import UserDto from '#users/dtos/user'
 import { middleware } from '#start/kernel'
 import { registerValidator } from '#auth/validators/register'
 import { loginValidator } from '#auth/validators/login'
 import { EmailVerificationService } from '#auth/services/email_verification_service'
+import UserTransformer from '#users/transformers/user_transformer'
 
 @inject()
 @Group({ name: 'auth' })
 export default class AuthController {
   constructor(private emailVerificationService: EmailVerificationService) {}
   @Post('/register', 'register')
-  async register({ request, response }: HttpContext) {
+  async register({ request, response, serialize }: HttpContext) {
     const payload = await request.validateUsing(registerValidator)
 
     const user = await User.create({
@@ -28,27 +28,27 @@ export default class AuthController {
 
     return response.status(201).json({
       message: 'Registration successful. Please check your email to verify your account.',
-      user: new UserDto(user),
+      user: await serialize(UserTransformer.transform(user)),
     })
   }
 
   @Post('/login', 'login')
-  async login({ auth, request }: HttpContext) {
+  async login({ auth, request, serialize }: HttpContext) {
     const { email, password } = await request.validateUsing(loginValidator)
 
     const user = await User.verifyCredentials(email, password)
 
     await auth.use('web').login(user)
 
-    return new UserDto(user)
+    return await serialize(UserTransformer.transform(user))
   }
 
   @Get('/me', 'me')
   @Middleware([middleware.auth()])
-  async me({ auth }: HttpContext) {
+  async me({ auth, serialize }: HttpContext) {
     const user = auth.getUserOrFail()
 
-    return new UserDto(user)
+    return await serialize(UserTransformer.transform(user))
   }
 
   @Post('/logout', 'logout')

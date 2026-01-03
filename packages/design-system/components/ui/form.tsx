@@ -2,7 +2,6 @@
 
 import * as React from 'react'
 import { createFormHookContexts, useStore } from '@tanstack/react-form'
-import { Slot } from '@radix-ui/react-slot'
 
 import { cn } from '../../lib/utils'
 import * as scn from '../../components/ui/field'
@@ -103,13 +102,19 @@ function FieldLabel({ className, ...props }: React.ComponentProps<typeof scn.Fie
   )
 }
 
-function FieldControl(props: React.ComponentProps<typeof Slot>) {
+function FieldControl<T extends React.ElementType = 'div'>({
+  as,
+  ...props
+}: {
+  as?: T
+} & React.ComponentPropsWithoutRef<T>) {
   const { formControlId, formDescriptionId, formMessageId, hasError } = useFieldComponentContext()
+  const Component = as || 'div'
 
   const describedBy = [formDescriptionId, hasError ? formMessageId : null].filter(Boolean).join(' ')
 
   return (
-    <Slot
+    <Component
       data-slot="form-control"
       id={formControlId}
       aria-describedby={describedBy || undefined}

@@ -3,7 +3,7 @@
 import { forwardRef, useEffect } from 'react'
 import * as React from 'react'
 import { Command as CommandPrimitive, useCommandState } from 'cmdk'
-import { Cross2Icon } from '@radix-ui/react-icons'
+import { X } from 'lucide-react'
 
 import { cn } from '../../lib/utils'
 import { Command, CommandGroup, CommandItem, CommandList } from '../../components/ui/command'
@@ -479,7 +479,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
                     onClick={() => handleUnselect(option)}
                     aria-label="Remove"
                   >
-                    <Cross2Icon width={14} height={14} strokeWidth={2} aria-hidden="true" />
+                    <X className="size-3.5" aria-hidden="true" />
                   </button>
                 </div>
               )
@@ -534,7 +534,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
               )}
               aria-label="Clear all"
             >
-              <Cross2Icon width={16} height={16} strokeWidth={2} aria-hidden="true" />
+              <X className="size-4" aria-hidden="true" />
             </button>
           </div>
         </div>

@@ -5,6 +5,10 @@ type ParamValue = string | number | bigint | boolean
 export type ScannedRoutes = {
   ALL: {
     'shopkeeper.webhook': { paramsTuple?: []; params?: {} }
+    'event_stream': { paramsTuple?: []; params?: {} }
+    'subscribe': { paramsTuple?: []; params?: {} }
+    'unsubscribe': { paramsTuple?: []; params?: {} }
+    'core': { paramsTuple?: []; params?: {} }
     'admin.impersonate.start': { paramsTuple: [ParamValue]; params: {'user_id': ParamValue} }
     'admin.impersonate.stop': { paramsTuple?: []; params?: {} }
     'admin.impersonate.status': { paramsTuple?: []; params?: {} }
@@ -17,13 +21,11 @@ export type ScannedRoutes = {
     'auth.email.resend': { paramsTuple?: []; params?: {} }
     'auth.password.forgot': { paramsTuple?: []; params?: {} }
     'auth.password.reset': { paramsTuple: [ParamValue]; params: {'token': ParamValue} }
-    'event_stream': { paramsTuple?: []; params?: {} }
-    'subscribe': { paramsTuple?: []; params?: {} }
-    'unsubscribe': { paramsTuple?: []; params?: {} }
-    'core': { paramsTuple?: []; params?: {} }
   }
   POST: {
     'shopkeeper.webhook': { paramsTuple?: []; params?: {} }
+    'subscribe': { paramsTuple?: []; params?: {} }
+    'unsubscribe': { paramsTuple?: []; params?: {} }
     'admin.impersonate.start': { paramsTuple: [ParamValue]; params: {'user_id': ParamValue} }
     'admin.impersonate.stop': { paramsTuple?: []; params?: {} }
     'auth.register': { paramsTuple?: []; params?: {} }
@@ -33,15 +35,13 @@ export type ScannedRoutes = {
     'auth.email.resend': { paramsTuple?: []; params?: {} }
     'auth.password.forgot': { paramsTuple?: []; params?: {} }
     'auth.password.reset': { paramsTuple: [ParamValue]; params: {'token': ParamValue} }
-    'subscribe': { paramsTuple?: []; params?: {} }
-    'unsubscribe': { paramsTuple?: []; params?: {} }
   }
   GET: {
+    'event_stream': { paramsTuple?: []; params?: {} }
+    'core': { paramsTuple?: []; params?: {} }
     'admin.impersonate.status': { paramsTuple?: []; params?: {} }
     'admin.users.index': { paramsTuple?: []; params?: {} }
     'auth.me': { paramsTuple?: []; params?: {} }
-    'event_stream': { paramsTuple?: []; params?: {} }
-    'core': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
     'event_stream': { paramsTuple?: []; params?: {} }

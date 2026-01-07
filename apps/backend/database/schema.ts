@@ -5,7 +5,7 @@ export class EmailVerificationTokenSchema extends BaseModel {
   static $columns = ['id', 'userId', 'token', 'expiresAt', 'createdAt', 'updatedAt'] as const
   $columns = EmailVerificationTokenSchema.$columns
   @column({ isPrimary: true })
-  declare id: uuid
+  declare id: string
   @column()
   declare userId: string | null
   @column()
@@ -22,7 +22,7 @@ export class ResetPasswordTokenSchema extends BaseModel {
   static $columns = ['id', 'userId', 'token', 'expiresAt', 'createdAt', 'updatedAt'] as const
   $columns = ResetPasswordTokenSchema.$columns
   @column({ isPrimary: true })
-  declare id: uuid
+  declare id: string
   @column()
   declare userId: string | null
   @column()
@@ -39,7 +39,7 @@ export class SubscriptionItemSchema extends BaseModel {
   static $columns = ['id', 'subscriptionId', 'stripeId', 'stripeProduct', 'stripePrice', 'quantity', 'createdAt', 'updatedAt'] as const
   $columns = SubscriptionItemSchema.$columns
   @column({ isPrimary: true })
-  declare id: uuid
+  declare id: string
   @column()
   declare subscriptionId: string | null
   @column()
@@ -60,7 +60,7 @@ export class SubscriptionSchema extends BaseModel {
   static $columns = ['id', 'userId', 'type', 'stripeId', 'stripeStatus', 'stripePrice', 'quantity', 'trialEndsAt', 'endsAt', 'createdAt', 'updatedAt'] as const
   $columns = SubscriptionSchema.$columns
   @column({ isPrimary: true })
-  declare id: uuid
+  declare id: string
   @column()
   declare userId: string | null
   @column()
@@ -87,7 +87,7 @@ export class UserSchema extends BaseModel {
   static $columns = ['id', 'firstName', 'lastName', 'email', 'password', 'role', 'emailVerifiedAt', 'createdAt', 'updatedAt', 'stripeId', 'pmType', 'pmLastFour', 'trialEndsAt'] as const
   $columns = UserSchema.$columns
   @column({ isPrimary: true })
-  declare id: uuid
+  declare id: string
   @column()
   declare firstName: string | null
   @column()

@@ -5,6 +5,10 @@ export interface ApiDefinition {
   shopkeeper: {
     webhook: typeof routes['shopkeeper.webhook']
   }
+  eventStream: typeof routes['event_stream']
+  subscribe: typeof routes['subscribe']
+  unsubscribe: typeof routes['unsubscribe']
+  core: typeof routes['core']
   admin: {
     impersonate: {
       start: typeof routes['admin.impersonate.start']
@@ -29,8 +33,4 @@ export interface ApiDefinition {
       reset: typeof routes['auth.password.reset']
     }
   }
-  eventStream: typeof routes['event_stream']
-  subscribe: typeof routes['subscribe']
-  unsubscribe: typeof routes['unsubscribe']
-  core: typeof routes['core']
 }

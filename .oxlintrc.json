@@ -14,7 +14,7 @@
      * Web specific overrides
      */
     {
-      "files": ["./apps/app/**/*"],
+      "files": ["./apps/frontend/**/*"],
       "plugins": ["react", "react-perf"]
     },
 
@@ -22,7 +22,7 @@
      * API specific overrides
      */
     {
-      "files": ["./apps/api/**/*"],
+      "files": ["./apps/backend/**/*"],
       "plugins": ["node"]
     }
   ],

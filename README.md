@@ -6,7 +6,7 @@ A modern full-stack monorepo boilerplate featuring AdonisJS backend, TanStack St
 
 ### Backend
 
-- **[AdonisJS v6](https://adonisjs.com/)** - Node.js web framework
+- **[AdonisJS v7](https://adonisjs.com/)** - Node.js web framework
 - **PostgreSQL** - Database
 - **Lucid ORM** - Database toolkit
 - **Authentication** - Built-in auth system with session management
@@ -14,7 +14,7 @@ A modern full-stack monorepo boilerplate featuring AdonisJS backend, TanStack St
 - **Email** - React Email for beautiful email templates
 - **Stripe Integration** - Payment processing with Shopkeeper
 - **Tuyau** - Type-safe API client generation
-- **Sentry** - Error tracking and monitoring
+- **Monocle** - Error tracking and monitoring
 
 ### Frontend
 
@@ -39,6 +39,7 @@ A modern full-stack monorepo boilerplate featuring AdonisJS backend, TanStack St
 
 - **[pnpm](https://pnpm.io/)** - Fast, disk space efficient package manager
 - **[Turbo](https://turbo.build/)** - High-performance build system
+- **[Oxc](https://oxc.rs/)** - High-performance linter & formatter
 - **Docker** - Containerization for development and deployment
 
 ## 📁 Project Structure
@@ -127,6 +128,12 @@ RESEND_API_KEY=your_resend_key
 # Stripe
 STRIPE_KEY=your_stripe_key
 STRIPE_SECRET=your_stripe_secret
+
+# Monocle
+APP_NAME=adonisjs_app
+APP_VERSION=0.0.1
+APP_ENV=development
+MONOCLE_API_KEY=mk_test
 ```
 
 **Frontend** (`apps/frontend/.env`):
@@ -166,6 +173,12 @@ pnpm dev
 
 # Run linting across all workspaces
 pnpm lint
+
+# Run format across all workspaces
+pnpm format
+
+# Run typecheck across all workspaces
+pnpm typecheck
 
 # Run tests across all workspaces
 pnpm test
@@ -233,11 +246,6 @@ pnpm serve
 
 # Run tests
 pnpm test
-
-# Linting and formatting
-pnpm lint
-pnpm format
-pnpm check  # Format and lint fix
 
 # Deploy to Cloudflare
 pnpm deploy

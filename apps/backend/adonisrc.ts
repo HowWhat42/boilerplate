@@ -1,6 +1,7 @@
 import { generateRegistry } from '@tuyau/core/hooks'
 import { defineConfig } from '@adonisjs/core/app'
 import { indexEntities } from '@adonisjs/core'
+import { indexControllers } from '@adonisjs-community/girouette'
 
 export default defineConfig({
   /*
@@ -64,7 +65,7 @@ export default defineConfig({
     () => import('@adonisjs/bouncer/bouncer_provider'),
     () => import('@foadonis/shopkeeper/shopkeeper_provider'),
     () => import('@adonisjs/transmit/transmit_provider'),
-    () => import('@monocle-app/agent/monocle_provider')
+    () => import('@monocle-app/agent/monocle_provider'),
   ],
 
   /*
@@ -75,7 +76,11 @@ export default defineConfig({
   | List of modules to import before starting the application.
   |
   */
-  preloads: [() => import('#start/routes'), () => import('#start/kernel')],
+  preloads: [
+    () => import('#start/routes'),
+    () => import('#start/routes.girouette'),
+    () => import('#start/kernel'),
+  ],
 
   /*
   |--------------------------------------------------------------------------
@@ -104,20 +109,20 @@ export default defineConfig({
 
   hooks: {
     init: [
-      generateRegistry(),
       indexEntities({
-        transformers: {
-          enabled: true,
-          source: './app',
-          glob: ['**/*_transformer.ts'],
-          importAlias: '#app',
-        },
+        transformers: { enabled: true, withSharedProps: true },
         controllers: {
           enabled: true,
           source: './app',
           glob: ['**/*_controller.ts'],
           importAlias: '#app',
         },
+      }),
+      generateRegistry(),
+      indexControllers({
+        source: './app',
+        glob: ['**/*_controller.ts'],
+        importAlias: '#app',
       }),
     ],
   },

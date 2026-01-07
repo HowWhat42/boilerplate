@@ -4,6 +4,10 @@
   "private": true,
   "license": "UNLICENSED",
   "type": "module",
+  "exports": {
+    "./registry": "./.adonisjs/client/registry/index.ts",
+    "./data": "./.adonisjs/client/data.d.ts"
+  },
   "imports": {
     "#exceptions/*": "./app/core/exceptions/*.js",
     "#middleware/*": "./app/core/middleware/*.js",
@@ -16,10 +20,8 @@
     "#auth/*": "./app/auth/*.js",
     "#admin/*": "./app/admin/*.js",
     "#common/*": "./app/common/*.js",
-    "#emails/*": "./emails/*.js"
-  },
-  "exports": {
-    "./api": "./.adonisjs/index.ts"
+    "#emails/*": "./emails/*.js",
+    "#app/*": "./app/*.js"
   },
   "scripts": {
     "start": "node bin/server.js",
@@ -31,14 +33,14 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@adonisjs-community/girouette": "0.1.6-next.3",
+    "@adonisjs-community/girouette": "0.1.6-next.5",
     "@adonisjs-community/modules": "^1.1.0",
     "@adonisjs/auth": "10.0.0-next.3",
     "@adonisjs/bouncer": "4.0.0-next.1",
-    "@adonisjs/core": "7.0.0-next.18",
+    "@adonisjs/core": "7.0.0-next.21",
     "@adonisjs/cors": "3.0.0-next.0",
     "@adonisjs/drive": "4.0.0-next.0",
-    "@adonisjs/lucid": "22.0.0-next.3",
+    "@adonisjs/lucid": "22.0.0-next.4",
     "@adonisjs/mail": "^10.0.0-next.1",
     "@adonisjs/session": "8.0.0-next.2",
     "@adonisjs/transmit": "^2.0.2",

@@ -1,8 +1,10 @@
+/// <reference path="../../../backend/config/auth.ts" />
+
 import { toast } from 'sonner'
 import { createTuyauReactQueryClient } from '@tuyau/react-query'
-import { TuyauHTTPError, createTuyau } from '@tuyau/client'
+import { TuyauHTTPError, createTuyau } from '@tuyau/core/client'
 import { QueryClient } from '@tanstack/react-query'
-import { api } from '@boilerplate/backend/api'
+import { registry } from '@boilerplate/backend/registry'
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -12,10 +14,10 @@ export const queryClient = new QueryClient({
       retry: false,
     },
     mutations: {
-      onError: (error: unknown) => {
+      onError: (error) => {
         if (error instanceof TuyauHTTPError) {
           toast.error('An error occurred', {
-            description: (error.value as Error).message,
+            description: error.message,
           })
         } else {
           toast.error('An error occurred')
@@ -26,8 +28,9 @@ export const queryClient = new QueryClient({
 })
 
 export const client = createTuyau({
-  api,
+  registry,
   baseUrl: import.meta.env.VITE_API_URL || 'http://localhost:3333',
+  headers: { Accept: 'application/json' },
   credentials: 'include',
 })
 

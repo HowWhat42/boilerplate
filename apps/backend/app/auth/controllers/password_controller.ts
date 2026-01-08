@@ -6,11 +6,11 @@ import { forgotPasswordValidator, resetPasswordValidator } from '#auth/validator
 import { PasswordResetService } from '#auth/services/password_reset_service'
 
 @inject()
-@Group({ name: 'auth.password', prefix: '/auth/password' })
+@Group({ prefix: '/auth/password' })
 export default class PasswordController {
   constructor(private passwordResetService: PasswordResetService) {}
 
-  @Post('/forgot', 'forgot')
+  @Post('/forgot')
   async forgotPassword({ request, response }: HttpContext) {
     const { email } = await request.validateUsing(forgotPasswordValidator)
 
@@ -19,7 +19,7 @@ export default class PasswordController {
     return response.ok(result)
   }
 
-  @Post('/reset/:token', 'reset')
+  @Post('/reset/:token')
   async resetPassword({ request, response, params, auth }: HttpContext) {
     const { token } = params
     const payload = await request.validateUsing(resetPasswordValidator)

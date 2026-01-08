@@ -2,15 +2,15 @@ import type { HttpContext } from '@adonisjs/core/http'
 
 import { inject } from '@adonisjs/core'
 import { Get, Group, Middleware } from '@adonisjs-community/girouette'
+import UserTransformer from '#users/transformers/user_transformer'
 import User from '#users/models/user'
 import { middleware } from '#start/kernel'
 import AdminPolicy from '#admin/policies/admin_policy'
-import UserTransformer from '#users/transformers/user_transformer'
 
 @inject()
-@Group({ name: 'admin.users', prefix: '/admin/users' })
+@Group({ prefix: '/admin/users' })
 export default class AdminUsersController {
-  @Get('/', 'index')
+  @Get('/')
   @Middleware(middleware.auth())
   async index({ request, bouncer, serialize }: HttpContext) {
     await bouncer.with(AdminPolicy).authorize('accessAdmin')

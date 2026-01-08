@@ -2,15 +2,15 @@ import type { HttpContext } from '@adonisjs/core/http'
 
 import { inject } from '@adonisjs/core'
 import { Get, Group, Middleware, Post } from '@adonisjs-community/girouette'
+import UserTransformer from '#users/transformers/user_transformer'
 import User from '#users/models/user'
 import { middleware } from '#start/kernel'
 import AdminPolicy from '#admin/policies/admin_policy'
-import UserTransformer from '#users/transformers/user_transformer'
 
 @inject()
-@Group({ name: 'admin.impersonate', prefix: '/admin/impersonate' })
+@Group({ prefix: '/admin/impersonate' })
 export default class AdminImpersonationController {
-  @Post('/:user_id/start', 'start')
+  @Post('/:user_id/start')
   @Middleware(middleware.auth())
   async impersonateUser({ params, session, response, auth, bouncer, serialize }: HttpContext) {
     const currentUser = auth.getUserOrFail()
@@ -32,7 +32,7 @@ export default class AdminImpersonationController {
     })
   }
 
-  @Post('/stop', 'stop')
+  @Post('/stop')
   @Middleware(middleware.auth())
   async stopImpersonation({ session, response, auth, serialize }: HttpContext) {
     const originalAdminId = session.get('originalAdminId')
@@ -54,7 +54,7 @@ export default class AdminImpersonationController {
     })
   }
 
-  @Get('/status', 'status')
+  @Get('/status')
   @Middleware(middleware.auth())
   async impersonationStatus({ session, auth, serialize }: HttpContext) {
     const originalAdminId = session.get('originalAdminId')

@@ -4,10 +4,6 @@
   "private": true,
   "license": "UNLICENSED",
   "type": "module",
-  "exports": {
-    "./registry": "./.adonisjs/client/registry/index.ts",
-    "./data": "./.adonisjs/client/data.d.ts"
-  },
   "imports": {
     "#exceptions/*": "./app/core/exceptions/*.js",
     "#middleware/*": "./app/core/middleware/*.js",
@@ -22,6 +18,10 @@
     "#common/*": "./app/common/*.js",
     "#emails/*": "./emails/*.js",
     "#app/*": "./app/*.js"
+  },
+  "exports": {
+    "./registry": "./.adonisjs/client/registry/index.ts",
+    "./data": "./.adonisjs/client/data.d.ts"
   },
   "scripts": {
     "start": "node bin/server.js",

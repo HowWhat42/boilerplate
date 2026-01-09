@@ -1,7 +1,7 @@
 import { test } from '@japa/runner'
 import testUtils from '@adonisjs/core/services/test_utils'
-import { UserFactory } from '#users/factories/user_factory'
 import User from '#users/models/user'
+import { UserFactory } from '#users/factories/user_factory'
 
 test.group('Auth', (group) => {
   group.each.setup(() => testUtils.db().withGlobalTransaction())
@@ -111,4 +111,3 @@ test.group('Auth', (group) => {
     response.assertStatus(401)
   })
 })
-

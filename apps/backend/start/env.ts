@@ -76,5 +76,5 @@ export default await Env.create(new URL('../', import.meta.url), {
   APP_NAME: Env.schema.string(),
   APP_VERSION: Env.schema.string(),
   APP_ENV: Env.schema.enum(['development', 'staging', 'production'] as const),
-  MONOCLE_API_KEY: Env.schema.string()
+  MONOCLE_API_KEY: Env.schema.string(),
 })

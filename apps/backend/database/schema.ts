@@ -1,5 +1,5 @@
-import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
+import { BaseModel, column } from '@adonisjs/lucid/orm'
 
 export class EmailVerificationTokenSchema extends BaseModel {
   static $columns = ['id', 'userId', 'token', 'expiresAt', 'createdAt', 'updatedAt'] as const
@@ -36,7 +36,18 @@ export class ResetPasswordTokenSchema extends BaseModel {
 }
 
 export class UserSchema extends BaseModel {
-  static $columns = ['id', 'firstName', 'lastName', 'email', 'address', 'password', 'role', 'emailVerifiedAt', 'createdAt', 'updatedAt'] as const
+  static $columns = [
+    'id',
+    'firstName',
+    'lastName',
+    'email',
+    'address',
+    'password',
+    'role',
+    'emailVerifiedAt',
+    'createdAt',
+    'updatedAt',
+  ] as const
   $columns = UserSchema.$columns
   @column({ isPrimary: true })
   declare id: string

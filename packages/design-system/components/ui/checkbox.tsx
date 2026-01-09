@@ -1,28 +1,50 @@
-'use client'
-
 import * as React from 'react'
-import { Check } from 'lucide-react'
-import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
+import { Check, Minus } from 'lucide-react'
+import { cva, VariantProps } from 'class-variance-authority'
+import { Checkbox as BaseCheckbox } from '@base-ui-components/react/checkbox'
 
-import { cn } from '../../lib/utils'
+import { cn } from '@/lib/utils'
 
-const Checkbox = React.forwardRef<
-  React.ElementRef<typeof CheckboxPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
->(({ className, ...props }, ref) => (
-  <CheckboxPrimitive.Root
-    ref={ref}
-    className={cn(
-      'peer h-4 w-4 shrink-0 rounded-xs border border-primary shadow-sm focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground',
-      className,
-    )}
-    {...props}
-  >
-    <CheckboxPrimitive.Indicator className={cn('flex items-center justify-center text-current')}>
-      <Check className="h-4 w-4" />
-    </CheckboxPrimitive.Indicator>
-  </CheckboxPrimitive.Root>
-))
-Checkbox.displayName = CheckboxPrimitive.Root.displayName
+// Define the variants for the Checkbox using cva.
+const checkboxVariants = cva(
+  `
+    group/checkbox peer bg-background shrink-0 rounded-md border border-input ring-offset-background focus-visible:outline-none 
+    focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 
+    aria-invalid:border-destructive/60 aria-invalid:ring-destructive/10 dark:aria-invalid:border-destructive dark:aria-invalid:ring-destructive/20
+    [[data-invalid=true]_&]:border-destructive/60 [[data-invalid=true]_&]:ring-destructive/10  dark:[[data-invalid=true]_&]:border-destructive dark:[[data-invalid=true]_&]:ring-destructive/20
+    data-[checked]:bg-primary data-[checked]:border-primary data-[checked]:text-primary-foreground data-[indeterminate]:bg-primary data-[indeterminate]:border-primary data-[indeterminate]:text-primary-foreground
+    `,
+  {
+    variants: {
+      size: {
+        sm: 'size-4.5 [&_svg]:size-3',
+        md: 'size-5 [&_svg]:size-3.5',
+        lg: 'size-5.5 [&_svg]:size-4',
+      },
+    },
+    defaultVariants: {
+      size: 'md',
+    },
+  },
+)
 
-export { Checkbox }
+function Checkbox({
+  className,
+  size,
+  ...props
+}: React.ComponentProps<typeof BaseCheckbox.Root> & VariantProps<typeof checkboxVariants>) {
+  return (
+    <BaseCheckbox.Root
+      data-slot="checkbox"
+      className={cn(checkboxVariants({ size }), className)}
+      {...props}
+    >
+      <BaseCheckbox.Indicator className={cn('flex items-center justify-center text-current')}>
+        <Check className="group-data-[state=indeterminate]/checkbox:hidden" />
+        <Minus className="hidden group-data-[state=indeterminate]/checkbox:block" />
+      </BaseCheckbox.Indicator>
+    </BaseCheckbox.Root>
+  )
+}
+
+export { Checkbox, checkboxVariants }

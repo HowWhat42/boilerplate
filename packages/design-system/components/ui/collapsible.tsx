@@ -1,9 +1,56 @@
-import * as CollapsiblePrimitive from '@radix-ui/react-collapsible'
+'use client'
 
-const Collapsible = CollapsiblePrimitive.Root
+import React from 'react'
+import { Collapsible as BaseCollapsible } from '@base-ui-components/react/collapsible'
 
-const CollapsibleTrigger = CollapsiblePrimitive.CollapsibleTrigger
+import { cn } from '@/lib/utils'
 
-const CollapsibleContent = CollapsiblePrimitive.CollapsibleContent
+function Collapsible({ ...props }: React.ComponentProps<typeof BaseCollapsible.Root>) {
+  return <BaseCollapsible.Root data-slot="collapsible" {...props} />
+}
 
-export { Collapsible, CollapsibleTrigger, CollapsibleContent }
+function CollapsibleTrigger({
+  children,
+  className,
+  asChild = false,
+  ...props
+}: React.ComponentProps<typeof BaseCollapsible.Trigger> & { asChild?: boolean }) {
+  const triggerProps = {
+    'data-slot': 'alert-dialog-trigger' as const,
+    className,
+    ...props,
+    ...(asChild && {
+      render: children as React.ReactElement<
+        Record<string, unknown>,
+        string | React.JSXElementConstructor<unknown>
+      >,
+    }),
+  }
+
+  return asChild ? (
+    <BaseCollapsible.Trigger {...triggerProps} />
+  ) : (
+    <BaseCollapsible.Trigger {...triggerProps}>{children}</BaseCollapsible.Trigger>
+  )
+}
+
+function CollapsiblePanel({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof BaseCollapsible.Panel>) {
+  return (
+    <BaseCollapsible.Panel
+      data-slot="collapsible-panel"
+      className={cn(
+        'overflow-hidden h-[var(--collapsible-panel-height)] transition-all ease-out data-[ending-style]:h-0 data-[starting-style]:h-0',
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </BaseCollapsible.Panel>
+  )
+}
+
+export { Collapsible, CollapsiblePanel, CollapsibleTrigger }

@@ -2,13 +2,14 @@
 
 import * as React from 'react'
 import { type VariantProps } from 'class-variance-authority'
-import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group'
+import { ToggleGroup as ToggleGroupPrimitive } from '@base-ui-components/react/toggle-group'
+import { Toggle as TogglePrimitive } from '@base-ui-components/react/toggle'
 
-import { toggleVariants } from './toggle'
-import { cn } from '../../lib/utils'
+import { cn } from '@/lib/utils'
+import { toggleVariants } from '@/components/ui/base-toggle'
 
 const ToggleGroupContext = React.createContext<VariantProps<typeof toggleVariants>>({
-  size: 'default',
+  size: 'md',
   variant: 'default',
 })
 
@@ -18,14 +19,14 @@ function ToggleGroup({
   size,
   children,
   ...props
-}: React.ComponentProps<typeof ToggleGroupPrimitive.Root> & VariantProps<typeof toggleVariants>) {
+}: React.ComponentProps<typeof ToggleGroupPrimitive> & VariantProps<typeof toggleVariants>) {
   return (
-    <ToggleGroupPrimitive.Root
+    <ToggleGroupPrimitive
       data-slot="toggle-group"
       data-variant={variant}
       data-size={size}
       className={cn(
-        'group/toggle-group flex w-fit items-center rounded-md data-[variant=outline]:shadow-xs',
+        'group/toggle-group flex items-center rounded-md gap-1 data-[variant=outline]:gap-0 data-[variant=outline]:shadow-xs',
         className,
       )}
       {...props}
@@ -33,7 +34,7 @@ function ToggleGroup({
       <ToggleGroupContext.Provider value={{ variant, size }}>
         {children}
       </ToggleGroupContext.Provider>
-    </ToggleGroupPrimitive.Root>
+    </ToggleGroupPrimitive>
   )
 }
 
@@ -42,28 +43,30 @@ function ToggleGroupItem({
   children,
   variant,
   size,
+  value,
   ...props
-}: React.ComponentProps<typeof ToggleGroupPrimitive.Item> & VariantProps<typeof toggleVariants>) {
+}: React.ComponentProps<'button'> & VariantProps<typeof toggleVariants> & { value: string }) {
   const context = React.useContext(ToggleGroupContext)
 
   return (
-    <ToggleGroupPrimitive.Item
+    <TogglePrimitive
       data-slot="toggle-group-item"
       data-variant={context.variant || variant}
       data-size={context.size || size}
+      value={value}
       className={cn(
         toggleVariants({
           variant: context.variant || variant,
           size: context.size || size,
         }),
-        'min-w-0 flex-1 shrink-0 rounded-none shadow-none first:rounded-l-md last:rounded-r-md focus:z-10 focus-visible:z-10 data-[variant=outline]:border-l-0 data-[variant=outline]:first:border-l',
+        'shrink-0 shadow-none data-[variant=outline]:rounded-none data-[variant=outline]:first:rounded-s-md data-[variant=outline]:last:rounded-e-md focus:z-10 focus-visible:z-10 data-[variant=outline]:border-s-0 data-[variant=outline]:first:border-s',
         className,
       )}
       {...props}
     >
       {children}
-    </ToggleGroupPrimitive.Item>
+    </TogglePrimitive>
   )
 }
 
-export { ToggleGroup, ToggleGroupItem }
+export { ToggleGroup as ToggleGroup, ToggleGroupItem }

@@ -1,16 +1,15 @@
-'use client'
-
 import * as React from 'react'
-import { XIcon } from 'lucide-react'
-import * as DialogPrimitive from '@radix-ui/react-dialog'
+import { X } from 'lucide-react'
+import { Dialog as DialogPrimitive } from '@base-ui-components/react/dialog'
 
-import { cn } from '../../lib/utils'
+import { cn } from '@/lib/utils'
+import { buttonVariants } from '@/components/ui/base-button'
 
 function Dialog({ ...props }: React.ComponentProps<typeof DialogPrimitive.Root>) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />
 }
 
-function DialogTrigger({ ...props }: React.ComponentProps<typeof DialogPrimitive.Trigger>) {
+function DialogTrigger(props: React.ComponentProps<typeof DialogPrimitive.Trigger>) {
   return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />
 }
 
@@ -18,19 +17,36 @@ function DialogPortal({ ...props }: React.ComponentProps<typeof DialogPrimitive.
   return <DialogPrimitive.Portal data-slot="dialog-portal" {...props} />
 }
 
-function DialogClose({ ...props }: React.ComponentProps<typeof DialogPrimitive.Close>) {
-  return <DialogPrimitive.Close data-slot="dialog-close" {...props} />
+function DialogAction({ className, ...props }: React.ComponentProps<typeof DialogPrimitive.Close>) {
+  return (
+    <DialogPrimitive.Close
+      data-slot="dialog-action"
+      className={cn(!props.render && buttonVariants(), className)}
+      {...props}
+    />
+  )
 }
 
-function DialogOverlay({
+function DialogClose({ className, ...props }: React.ComponentProps<typeof DialogPrimitive.Close>) {
+  return (
+    <DialogPrimitive.Close
+      data-slot="dialog-close"
+      className={cn(!props.render && buttonVariants({ variant: 'outline' }), className)}
+      {...props}
+    />
+  )
+}
+
+// Base UI Dialog Backdrop
+function DialogBackdrop({
   className,
   ...props
-}: React.ComponentProps<typeof DialogPrimitive.Overlay>) {
+}: React.ComponentProps<typeof DialogPrimitive.Backdrop>) {
   return (
-    <DialogPrimitive.Overlay
-      data-slot="dialog-overlay"
+    <DialogPrimitive.Backdrop
+      data-slot="dialog-backdrop"
       className={cn(
-        'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50',
+        'fixed inset-0 z-50 bg-black/30 [backdrop-filter:blur(4px)] transition-all duration-150 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0',
         className,
       )}
       {...props}
@@ -38,36 +54,66 @@ function DialogOverlay({
   )
 }
 
+function DialogPopup({
+  className,
+  fullscreen = false,
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Popup> & { fullscreen?: boolean }) {
+  return (
+    <DialogPrimitive.Popup
+      data-slot="dialog-popup"
+      className={cn(
+        `
+          fixed z-50 grid
+          gap-4 border bg-background p-6 shadow-lg shadow-black/5 
+          transition-all duration-150 
+          data-[ending-style]:scale-90 data-[ending-style]:opacity-0 
+          data-[starting-style]:scale-90 data-[starting-style]:opacity-0 
+          sm:rounded-lg
+        `,
+        fullscreen
+          ? 'inset-5'
+          : 'left-[50%] top-[50%] w-full max-w-[calc(100%-2rem)] sm:max-w-lg translate-x-[-50%] translate-y-[-50%]',
+        className,
+      )}
+      {...props}
+    />
+  )
+}
+
+export interface DialogContentProps extends React.ComponentProps<typeof DialogPrimitive.Popup> {
+  showDismissButton?: boolean
+  showBackdrop?: boolean
+  fullscreen?: boolean
+}
+
 function DialogContent({
   className,
   children,
-  showCloseButton = true,
+  showBackdrop = true,
+  showDismissButton = true,
+  fullscreen = false,
   ...props
-}: React.ComponentProps<typeof DialogPrimitive.Content> & {
-  showCloseButton?: boolean
-}) {
+}: DialogContentProps) {
   return (
-    <DialogPortal data-slot="dialog-portal">
-      <DialogOverlay />
-      <DialogPrimitive.Content
-        data-slot="dialog-content"
-        className={cn(
-          'bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg',
-          className,
-        )}
-        {...props}
-      >
+    <DialogPortal>
+      {showBackdrop && <DialogBackdrop />}
+      <DialogPopup fullscreen={fullscreen} {...props} className={className}>
         {children}
-        {showCloseButton && (
+        {showDismissButton && (
           <DialogPrimitive.Close
-            data-slot="dialog-close"
-            className="ring-offset-background focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+            data-slot="alert-dialog-dismiss"
+            className={cn(
+              buttonVariants({ variant: 'dim', size: 'sm' }),
+              'absolute top-2.5 end-2.5',
+              className,
+            )}
           >
-            <XIcon />
+            <X />
             <span className="sr-only">Close</span>
           </DialogPrimitive.Close>
         )}
-      </DialogPrimitive.Content>
+      </DialogPopup>
     </DialogPortal>
   )
 }
@@ -82,11 +128,15 @@ function DialogHeader({ className, ...props }: React.ComponentProps<'div'>) {
   )
 }
 
+function DialogBody({ className, ...props }: React.ComponentProps<'div'>) {
+  return <div data-slot="sheet-body" className={cn('px-4 py-2.5', className)} {...props} />
+}
+
 function DialogFooter({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot="dialog-footer"
-      className={cn('flex flex-col-reverse gap-2 sm:flex-row sm:justify-end', className)}
+      className={cn('flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2.5', className)}
       {...props}
     />
   )
@@ -118,11 +168,13 @@ function DialogDescription({
 export {
   Dialog,
   DialogClose,
+  DialogAction,
   DialogContent,
   DialogDescription,
+  DialogBody,
   DialogFooter,
   DialogHeader,
-  DialogOverlay,
+  DialogBackdrop,
   DialogPortal,
   DialogTitle,
   DialogTrigger,

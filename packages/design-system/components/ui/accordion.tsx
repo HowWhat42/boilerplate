@@ -1,53 +1,201 @@
 'use client'
 
 import * as React from 'react'
-import { ChevronDown } from 'lucide-react'
-import * as AccordionPrimitive from '@radix-ui/react-accordion'
+import { ChevronDown, Plus } from 'lucide-react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { Accordion } from '@base-ui-components/react/accordion'
 
-import { cn } from '../../lib/utils'
+import { cn } from '@/lib/utils'
 
-const Accordion = AccordionPrimitive.Root
+// Variants
+const accordionRootVariants = cva('', {
+  variants: {
+    variant: {
+      default: '',
+      outline: 'space-y-2',
+      solid: 'space-y-2',
+    },
+  },
+  defaultVariants: {
+    variant: 'default',
+  },
+})
 
-const AccordionItem = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
->(({ className, ...props }, ref) => (
-  <AccordionPrimitive.Item ref={ref} className={cn('border-b', className)} {...props} />
-))
-AccordionItem.displayName = 'AccordionItem'
+const accordionItemVariants = cva('', {
+  variants: {
+    variant: {
+      default: 'border-b border-border',
+      outline: 'border border-border rounded-lg px-4',
+      solid: 'rounded-lg bg-accent/70 px-4',
+    },
+  },
+  defaultVariants: {
+    variant: 'default',
+  },
+})
 
-const AccordionTrigger = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
-  <AccordionPrimitive.Header className="flex">
-    <AccordionPrimitive.Trigger
-      ref={ref}
-      className={cn(
-        'flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all hover:underline text-left [&[data-state=open]>svg]:rotate-180',
-        className,
-      )}
-      {...props}
+const accordionHeaderVariants = cva('flex', {
+  variants: {
+    variant: {
+      default: '',
+      outline: '',
+      solid: '',
+    },
+  },
+  defaultVariants: {
+    variant: 'default',
+  },
+})
+
+const accordionTriggerVariants = cva(
+  'flex flex-1 items-center justify-between py-4 gap-2.5 text-foreground font-medium transition-all [&[data-panel-open]>svg]:rotate-180 cursor-pointer',
+  {
+    variants: {
+      variant: {
+        default: '',
+        outline: '',
+        solid: '',
+      },
+      indicator: {
+        arrow: '',
+        plus: '[&>svg>path:last-child]:origin-center [&>svg>path:last-child]:transition-all [&>svg>path:last-child]:duration-200 [&[data-panel-open]>svg>path:last-child]:rotate-90 [&[data-panel-open]>svg>path:last-child]:opacity-0 [&[data-panel-open]>svg]:rotate-180',
+        none: '',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+      indicator: 'arrow',
+    },
+  },
+)
+
+const accordionPanelVariants = cva(
+  'h-[var(--accordion-panel-height)] overflow-hidden text-sm text-accent-foreground transition-[height] ease-out data-[ending-style]:h-0 data-[starting-style]:h-0',
+  {
+    variants: {
+      variant: {
+        default: '',
+        outline: '',
+        solid: '',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+    },
+  },
+)
+
+// Context
+type AccordionContextType = {
+  variant?: 'default' | 'outline' | 'solid'
+  indicator?: 'arrow' | 'plus' | 'none'
+}
+
+const AccordionContext = React.createContext<AccordionContextType>({
+  variant: 'default',
+  indicator: 'arrow',
+})
+
+// Base UI Accordion Root
+interface AccordionRootProps
+  extends React.ComponentProps<typeof Accordion.Root>, VariantProps<typeof accordionRootVariants> {
+  indicator?: 'arrow' | 'plus' | 'none'
+}
+
+function AccordionRoot(props: AccordionRootProps) {
+  const { className, variant = 'default', indicator = 'arrow', children, ...rest } = props
+
+  return (
+    <AccordionContext.Provider value={{ variant: variant || 'default', indicator }}>
+      <Accordion.Root
+        data-slot="accordion"
+        className={cn(accordionRootVariants({ variant }), className)}
+        {...rest}
+      >
+        {children}
+      </Accordion.Root>
+    </AccordionContext.Provider>
+  )
+}
+
+// Base UI Accordion Item
+function AccordionItem(props: React.ComponentProps<typeof Accordion.Item>) {
+  const { className, children, ...rest } = props
+  const { variant } = React.useContext(AccordionContext)
+
+  return (
+    <Accordion.Item
+      data-slot="accordion-item"
+      className={cn(accordionItemVariants({ variant }), className)}
+      {...rest}
     >
       {children}
-      <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200" />
-    </AccordionPrimitive.Trigger>
-  </AccordionPrimitive.Header>
-))
-AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName
+    </Accordion.Item>
+  )
+}
 
-const AccordionContent = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
->(({ className, children, ...props }, ref) => (
-  <AccordionPrimitive.Content
-    ref={ref}
-    className="overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
-    {...props}
-  >
-    <div className={cn('pb-4 pt-0', className)}>{children}</div>
-  </AccordionPrimitive.Content>
-))
-AccordionContent.displayName = AccordionPrimitive.Content.displayName
+// Base UI Accordion Header
+function AccordionHeader(props: React.ComponentProps<typeof Accordion.Header>) {
+  const { className, children, ...rest } = props
+  const { variant } = React.useContext(AccordionContext)
 
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }
+  return (
+    <Accordion.Header
+      data-slot="accordion-header"
+      className={cn(accordionHeaderVariants({ variant }), className)}
+      {...rest}
+    >
+      {children}
+    </Accordion.Header>
+  )
+}
+
+// Base UI Accordion Trigger
+function AccordionTrigger(props: React.ComponentProps<typeof Accordion.Trigger>) {
+  const { className, children, ...rest } = props
+  const { variant, indicator } = React.useContext(AccordionContext)
+
+  return (
+    <Accordion.Trigger
+      data-slot="accordion-trigger"
+      className={cn(accordionTriggerVariants({ variant, indicator }), className)}
+      {...rest}
+    >
+      {children}
+      {indicator === 'plus' && (
+        <Plus className="size-4 shrink-0 transition-transform duration-200" strokeWidth={1} />
+      )}
+      {indicator === 'arrow' && (
+        <ChevronDown
+          className="size-4 shrink-0 transition-transform duration-200"
+          strokeWidth={1}
+        />
+      )}
+    </Accordion.Trigger>
+  )
+}
+
+// Base UI Accordion Panel
+function AccordionPanel(props: React.ComponentProps<typeof Accordion.Panel>) {
+  const { className, children, ...rest } = props
+  const { variant } = React.useContext(AccordionContext)
+
+  return (
+    <Accordion.Panel
+      data-slot="accordion-panel"
+      className={cn(accordionPanelVariants({ variant }), className)}
+      {...rest}
+    >
+      <div className={cn('pb-5 pt-0')}>{children}</div>
+    </Accordion.Panel>
+  )
+}
+
+// Exports with proper naming to match Base UI pattern
+export {
+  AccordionRoot as Accordion,
+  AccordionItem,
+  AccordionHeader,
+  AccordionTrigger,
+  AccordionPanel,
+}

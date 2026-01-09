@@ -10,8 +10,8 @@
 |
 */
 
-import girouette from '@adonisjs-community/girouette/services/main'
 import app from '@adonisjs/core/services/app'
+import girouette from '@adonisjs-community/girouette/services/main'
 
 await girouette.controllers([
   () => import('#app/admin/controllers/admin_impersonation_controller'),

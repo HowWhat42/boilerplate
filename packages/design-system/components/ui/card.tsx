@@ -183,9 +183,16 @@ function CardDescription({ className, ...props }: React.HTMLAttributes<HTMLDivEl
   )
 }
 
+function CardAction({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div data-slot="card-action" className={cn('flex items-center gap-2', className)} {...props} />
+  )
+}
+
 // Exports
 export {
   Card,
+  CardAction,
   CardContent,
   CardDescription,
   CardFooter,

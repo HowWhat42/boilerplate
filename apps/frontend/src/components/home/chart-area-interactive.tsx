@@ -147,6 +147,18 @@ export function ChartAreaInteractive() {
     }
   }, [isMobile])
 
+  const handleToggleChange = (value: string[]) => {
+    if (value.length > 0) {
+      setTimeRange(value[0])
+    }
+  }
+
+  const handleSelectChange = (value: unknown) => {
+    if (typeof value === 'string') {
+      setTimeRange(value)
+    }
+  }
+
   const filteredData = chartData.filter((item) => {
     const date = new Date(item.date)
     const referenceDate = new Date('2024-06-30')
@@ -171,9 +183,9 @@ export function ChartAreaInteractive() {
         </CardDescription>
         <CardAction>
           <ToggleGroup
-            type="single"
-            value={timeRange}
-            onValueChange={setTimeRange}
+            toggleMultiple={false}
+            value={[timeRange]}
+            onValueChange={handleToggleChange}
             variant="outline"
             className="hidden *:data-[slot=toggle-group-item]:!px-4 @[767px]/card:flex"
           >
@@ -181,7 +193,7 @@ export function ChartAreaInteractive() {
             <ToggleGroupItem value="30d">Last 30 days</ToggleGroupItem>
             <ToggleGroupItem value="7d">Last 7 days</ToggleGroupItem>
           </ToggleGroup>
-          <Select value={timeRange} onValueChange={setTimeRange}>
+          <Select value={timeRange} onValueChange={handleSelectChange}>
             <SelectTrigger
               className="flex w-40 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate @[767px]/card:hidden"
               size="sm"

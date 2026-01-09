@@ -35,7 +35,6 @@ export default defineConfig({
     () => import('@adonisjs-community/modules/commands'),
     () => import('@adonisjs/mail/commands'),
     () => import('@adonisjs/bouncer/commands'),
-    () => import('@foadonis/shopkeeper/commands'),
   ],
 
   /*
@@ -63,7 +62,6 @@ export default defineConfig({
     () => import('@adonisjs/drive/drive_provider'),
     () => import('@adonisjs/mail/mail_provider'),
     () => import('@adonisjs/bouncer/bouncer_provider'),
-    () => import('@foadonis/shopkeeper/shopkeeper_provider'),
     () => import('@adonisjs/transmit/transmit_provider'),
     () => import('@monocle-app/agent/monocle_provider'),
   ],

@@ -36,29 +36,29 @@ const routes = {
     tokens: [{"old":"/health","type":0,"val":"health","end":""}],
     types: placeholder as Registry['core']['types'],
   },
-  'admin.impersonate.start': {
+  'admin impersonation.impersonateUser': {
     methods: ["POST"],
     pattern: '/admin/impersonate/:user_id/start',
     tokens: [{"old":"/admin/impersonate/:user_id/start","type":0,"val":"admin","end":""},{"old":"/admin/impersonate/:user_id/start","type":0,"val":"impersonate","end":""},{"old":"/admin/impersonate/:user_id/start","type":1,"val":"user_id","end":""},{"old":"/admin/impersonate/:user_id/start","type":0,"val":"start","end":""}],
-    types: placeholder as Registry['admin.impersonate.start']['types'],
+    types: placeholder as Registry['admin impersonation.impersonateUser']['types'],
   },
-  'admin.impersonate.stop': {
+  'admin impersonation.stopImpersonation': {
     methods: ["POST"],
     pattern: '/admin/impersonate/stop',
     tokens: [{"old":"/admin/impersonate/stop","type":0,"val":"admin","end":""},{"old":"/admin/impersonate/stop","type":0,"val":"impersonate","end":""},{"old":"/admin/impersonate/stop","type":0,"val":"stop","end":""}],
-    types: placeholder as Registry['admin.impersonate.stop']['types'],
+    types: placeholder as Registry['admin impersonation.stopImpersonation']['types'],
   },
-  'admin.impersonate.status': {
+  'admin impersonation.impersonationStatus': {
     methods: ["GET"],
     pattern: '/admin/impersonate/status',
     tokens: [{"old":"/admin/impersonate/status","type":0,"val":"admin","end":""},{"old":"/admin/impersonate/status","type":0,"val":"impersonate","end":""},{"old":"/admin/impersonate/status","type":0,"val":"status","end":""}],
-    types: placeholder as Registry['admin.impersonate.status']['types'],
+    types: placeholder as Registry['admin impersonation.impersonationStatus']['types'],
   },
-  'admin.users.index': {
+  'admin users.index': {
     methods: ["GET"],
     pattern: '/admin/users',
     tokens: [{"old":"/admin/users","type":0,"val":"admin","end":""},{"old":"/admin/users","type":0,"val":"users","end":""}],
-    types: placeholder as Registry['admin.users.index']['types'],
+    types: placeholder as Registry['admin users.index']['types'],
   },
   'auth.register': {
     methods: ["POST"],
@@ -84,29 +84,29 @@ const routes = {
     tokens: [{"old":"/logout","type":0,"val":"logout","end":""}],
     types: placeholder as Registry['auth.logout']['types'],
   },
-  'auth.email.verify': {
+  'email.verifyEmail': {
     methods: ["POST"],
     pattern: '/auth/email/verify/:token',
     tokens: [{"old":"/auth/email/verify/:token","type":0,"val":"auth","end":""},{"old":"/auth/email/verify/:token","type":0,"val":"email","end":""},{"old":"/auth/email/verify/:token","type":0,"val":"verify","end":""},{"old":"/auth/email/verify/:token","type":1,"val":"token","end":""}],
-    types: placeholder as Registry['auth.email.verify']['types'],
+    types: placeholder as Registry['email.verifyEmail']['types'],
   },
-  'auth.email.resend': {
+  'email.resendVerificationEmail': {
     methods: ["POST"],
     pattern: '/auth/email/resend',
     tokens: [{"old":"/auth/email/resend","type":0,"val":"auth","end":""},{"old":"/auth/email/resend","type":0,"val":"email","end":""},{"old":"/auth/email/resend","type":0,"val":"resend","end":""}],
-    types: placeholder as Registry['auth.email.resend']['types'],
+    types: placeholder as Registry['email.resendVerificationEmail']['types'],
   },
-  'auth.password.forgot': {
+  'password.forgotPassword': {
     methods: ["POST"],
     pattern: '/auth/password/forgot',
     tokens: [{"old":"/auth/password/forgot","type":0,"val":"auth","end":""},{"old":"/auth/password/forgot","type":0,"val":"password","end":""},{"old":"/auth/password/forgot","type":0,"val":"forgot","end":""}],
-    types: placeholder as Registry['auth.password.forgot']['types'],
+    types: placeholder as Registry['password.forgotPassword']['types'],
   },
-  'auth.password.reset': {
+  'password.resetPassword': {
     methods: ["POST"],
     pattern: '/auth/password/reset/:token',
     tokens: [{"old":"/auth/password/reset/:token","type":0,"val":"auth","end":""},{"old":"/auth/password/reset/:token","type":0,"val":"password","end":""},{"old":"/auth/password/reset/:token","type":0,"val":"reset","end":""},{"old":"/auth/password/reset/:token","type":1,"val":"token","end":""}],
-    types: placeholder as Registry['auth.password.reset']['types'],
+    types: placeholder as Registry['password.resetPassword']['types'],
   },
 } as const satisfies Record<string, AdonisEndpoint>
 

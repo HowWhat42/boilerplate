@@ -60,7 +60,7 @@ export interface Registry {
       response: Awaited<ReturnType<import('#core/controllers/health_checks_controller').default['handle']>>
     }
   }
-  'admin.impersonate.start': {
+  'admin impersonation.impersonateUser': {
     methods: ["POST"]
     pattern: '/admin/impersonate/:user_id/start'
     types: {
@@ -71,7 +71,7 @@ export interface Registry {
       response: Awaited<ReturnType<import('#app/admin/controllers/admin_impersonation_controller').default['impersonateUser']>>
     }
   }
-  'admin.impersonate.stop': {
+  'admin impersonation.stopImpersonation': {
     methods: ["POST"]
     pattern: '/admin/impersonate/stop'
     types: {
@@ -82,7 +82,7 @@ export interface Registry {
       response: Awaited<ReturnType<import('#app/admin/controllers/admin_impersonation_controller').default['stopImpersonation']>>
     }
   }
-  'admin.impersonate.status': {
+  'admin impersonation.impersonationStatus': {
     methods: ["GET"]
     pattern: '/admin/impersonate/status'
     types: {
@@ -93,7 +93,7 @@ export interface Registry {
       response: Awaited<ReturnType<import('#app/admin/controllers/admin_impersonation_controller').default['impersonationStatus']>>
     }
   }
-  'admin.users.index': {
+  'admin users.index': {
     methods: ["GET"]
     pattern: '/admin/users'
     types: {
@@ -148,7 +148,7 @@ export interface Registry {
       response: Awaited<ReturnType<import('#app/auth/controllers/auth_controller').default['logout']>>
     }
   }
-  'auth.email.verify': {
+  'email.verifyEmail': {
     methods: ["POST"]
     pattern: '/auth/email/verify/:token'
     types: {
@@ -159,7 +159,7 @@ export interface Registry {
       response: Awaited<ReturnType<import('#app/auth/controllers/email_controller').default['verifyEmail']>>
     }
   }
-  'auth.email.resend': {
+  'email.resendVerificationEmail': {
     methods: ["POST"]
     pattern: '/auth/email/resend'
     types: {
@@ -170,7 +170,7 @@ export interface Registry {
       response: Awaited<ReturnType<import('#app/auth/controllers/email_controller').default['resendVerificationEmail']>>
     }
   }
-  'auth.password.forgot': {
+  'password.forgotPassword': {
     methods: ["POST"]
     pattern: '/auth/password/forgot'
     types: {
@@ -181,7 +181,7 @@ export interface Registry {
       response: Awaited<ReturnType<import('#app/auth/controllers/password_controller').default['forgotPassword']>>
     }
   }
-  'auth.password.reset': {
+  'password.resetPassword': {
     methods: ["POST"]
     pattern: '/auth/password/reset/:token'
     types: {

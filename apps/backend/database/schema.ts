@@ -35,56 +35,8 @@ export class ResetPasswordTokenSchema extends BaseModel {
   declare updatedAt: DateTime | null
 }
 
-export class SubscriptionItemSchema extends BaseModel {
-  static $columns = ['id', 'subscriptionId', 'stripeId', 'stripeProduct', 'stripePrice', 'quantity', 'createdAt', 'updatedAt'] as const
-  $columns = SubscriptionItemSchema.$columns
-  @column({ isPrimary: true })
-  declare id: string
-  @column()
-  declare subscriptionId: string | null
-  @column()
-  declare stripeId: string
-  @column()
-  declare stripeProduct: string
-  @column()
-  declare stripePrice: string
-  @column()
-  declare quantity: number | null
-  @column.dateTime({ autoCreate: true })
-  declare createdAt: DateTime
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  declare updatedAt: DateTime | null
-}
-
-export class SubscriptionSchema extends BaseModel {
-  static $columns = ['id', 'userId', 'type', 'stripeId', 'stripeStatus', 'stripePrice', 'quantity', 'trialEndsAt', 'endsAt', 'createdAt', 'updatedAt'] as const
-  $columns = SubscriptionSchema.$columns
-  @column({ isPrimary: true })
-  declare id: string
-  @column()
-  declare userId: string | null
-  @column()
-  declare type: string
-  @column()
-  declare stripeId: string
-  @column()
-  declare stripeStatus: string
-  @column()
-  declare stripePrice: string | null
-  @column()
-  declare quantity: number | null
-  @column.dateTime()
-  declare trialEndsAt: DateTime | null
-  @column.dateTime()
-  declare endsAt: DateTime | null
-  @column.dateTime({ autoCreate: true })
-  declare createdAt: DateTime
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  declare updatedAt: DateTime | null
-}
-
 export class UserSchema extends BaseModel {
-  static $columns = ['id', 'firstName', 'lastName', 'email', 'password', 'role', 'emailVerifiedAt', 'createdAt', 'updatedAt', 'stripeId', 'pmType', 'pmLastFour', 'trialEndsAt'] as const
+  static $columns = ['id', 'firstName', 'lastName', 'email', 'address', 'password', 'role', 'emailVerifiedAt', 'createdAt', 'updatedAt'] as const
   $columns = UserSchema.$columns
   @column({ isPrimary: true })
   declare id: string
@@ -94,6 +46,8 @@ export class UserSchema extends BaseModel {
   declare lastName: string | null
   @column()
   declare email: string
+  @column()
+  declare address: any | null
   @column({ serializeAs: null })
   declare password: string
   @column()
@@ -104,12 +58,4 @@ export class UserSchema extends BaseModel {
   declare createdAt: DateTime
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
-  @column()
-  declare stripeId: string | null
-  @column()
-  declare pmType: string | null
-  @column()
-  declare pmLastFour: string | null
-  @column.dateTime()
-  declare trialEndsAt: DateTime | null
 }

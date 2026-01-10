@@ -67,7 +67,7 @@ export default defineConfig({
     () => import('@foadonis/shopkeeper/shopkeeper_provider'),
     () => import('@facteurjs/adonisjs/facteur_provider'),
     () => import('@adonisjs/transmit/transmit_provider'),
-    () => import('@monocle-app/agent/monocle_provider')
+    () => import('@monocle.sh/adonisjs-agent/monocle_provider'),
   ],
 
   /*
@@ -104,4 +104,10 @@ export default defineConfig({
     ],
     forceExit: false,
   },
+  metaFiles: [
+    {
+      pattern: 'resources/lang/**/*.{json,yaml,yml}',
+      reloadServer: false,
+    },
+  ],
 })

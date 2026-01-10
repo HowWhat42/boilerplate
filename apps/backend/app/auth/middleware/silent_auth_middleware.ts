@@ -1,7 +1,7 @@
 import type { NextFn } from '@adonisjs/core/types/http'
 import type { HttpContext } from '@adonisjs/core/http'
 
-import { Monocle } from '@monocle-app/agent'
+import { Monocle } from '@monocle.sh/adonisjs-agent'
 
 export default class SilentAuthMiddleware {
   async handle(ctx: HttpContext, next: NextFn) {

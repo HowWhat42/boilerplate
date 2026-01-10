@@ -68,6 +68,7 @@ export default defineConfig({
     () => import('@facteurjs/adonisjs/facteur_provider'),
     () => import('@adonisjs/transmit/transmit_provider'),
     () => import('@monocle.sh/adonisjs-agent/monocle_provider'),
+    () => import('@adonisjs/i18n/i18n_provider')
   ],
 
   /*

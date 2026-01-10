@@ -1,4 +1,5 @@
 import { toast } from 'sonner'
+import { getBrowserLocale } from 'intlayer'
 import { createTuyauReactQueryClient } from '@tuyau/react-query'
 import { TuyauHTTPError, createTuyau } from '@tuyau/client'
 import { QueryClient } from '@tanstack/react-query'
@@ -29,6 +30,13 @@ export const client = createTuyau({
   api,
   baseUrl: import.meta.env.VITE_API_URL || 'http://localhost:3333',
   credentials: 'include',
+  hooks: {
+    beforeRequest: [
+      (request) => {
+        request.headers.set('Accept-Language', getBrowserLocale())
+      },
+    ],
+  },
 })
 
 export const tuyau = createTuyauReactQueryClient({ client, queryClient })

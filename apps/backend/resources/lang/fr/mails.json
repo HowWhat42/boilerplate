@@ -1,0 +1,25 @@
+{
+  "verify_email": {
+    "subject": "Vérifiez votre adresse e-mail",
+    "preview": "Vérifiez votre adresse e-mail",
+    "heading": "Vérifiez votre adresse e-mail",
+    "greeting": "Bonjour {fullName},",
+    "welcome": "Bienvenue ! Merci de vous être inscrit. Pour compléter votre inscription, veuillez vérifier votre adresse e-mail en cliquant sur le bouton ci-dessous :",
+    "button": "Vérifier l'adresse e-mail",
+    "alternative": "ou copiez et collez cette URL dans votre navigateur :",
+    "expiry": "Ce lien de vérification expirera dans 7 jours. Si vous n'avez pas créé de compte, vous pouvez ignorer cet e-mail en toute sécurité.",
+    "footer": "Cet e-mail a été envoyé à {fullName}. Si vous ne vous êtes pas inscrit pour un compte, veuillez ignorer cet e-mail."
+  },
+  "reset_password": {
+    "subject": "Réinitialisez votre mot de passe",
+    "preview": "Réinitialisez votre mot de passe",
+    "heading": "Réinitialisez votre mot de passe",
+    "greeting": "Bonjour {fullName},",
+    "request": "Nous avons reçu une demande de réinitialisation de votre mot de passe. Si vous n'avez pas fait cette demande, veuillez ignorer cet e-mail.",
+    "instructions": "Pour réinitialiser votre mot de passe, veuillez cliquer sur le bouton ci-dessous :",
+    "button": "Réinitialiser le mot de passe",
+    "ignore": "Si vous n'avez pas demandé de réinitialisation de mot de passe, veuillez ignorer cet e-mail.",
+    "alternative": "ou copiez et collez cette URL dans votre navigateur :",
+    "footer": "Cette invitation était destinée à {fullName}. Cette réinitialisation a été envoyée depuis {resetFromIp}. Si vous ne vous attendiez pas à cette réinitialisation, vous pouvez ignorer cet e-mail. Si vous êtes préoccupé par la sécurité de votre compte, veuillez répondre à cet e-mail pour nous contacter."
+  }
+}

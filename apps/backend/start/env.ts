@@ -52,6 +52,7 @@ export default await Env.create(new URL('../', import.meta.url), {
   | Variables for configuring the mail package
   |----------------------------------------------------------
   */
+  MAILER: Env.schema.enum(['smtp', 'resend'] as const),
   RESEND_API_KEY: Env.schema.string(),
   SMTP_HOST: Env.schema.string(),
   SMTP_PORT: Env.schema.number(),
@@ -76,5 +77,5 @@ export default await Env.create(new URL('../', import.meta.url), {
   APP_NAME: Env.schema.string(),
   APP_VERSION: Env.schema.string(),
   APP_ENV: Env.schema.enum(['development', 'staging', 'production'] as const),
-  MONOCLE_API_KEY: Env.schema.string()
+  MONOCLE_API_KEY: Env.schema.string(),
 })

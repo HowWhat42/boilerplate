@@ -3,7 +3,7 @@ import { defineConfig, transports, Message as MailMessage } from '@adonisjs/mail
 import env from '#start/env'
 
 const mailConfig = defineConfig({
-  default: 'smtp',
+  default: env.get('MAILER'),
 
   from: {
     name: 'Boilerplate',

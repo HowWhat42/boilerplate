@@ -50,7 +50,7 @@
     "@holoyan/adonisjs-permissions": "^1.3.1",
     "@holoyan/morph-map-js": "^0.1.1",
     "@jrmc/adonis-attachment": "^5.0.1",
-    "@monocle-app/agent": "1.0.0-beta.3",
+    "@monocle.sh/adonisjs-agent": "1.0.0-beta.9",
     "@react-email/components": "^0.5.7",
     "@react-email/render": "^1.4.0",
     "@tuyau/core": "^0.4.2",

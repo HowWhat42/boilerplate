@@ -1,4 +1,4 @@
-import { defineConfig } from '@monocle-app/agent'
+import { defineConfig } from '@monocle.sh/adonisjs-agent'
 import env from '#start/env'
 
 export default defineConfig({

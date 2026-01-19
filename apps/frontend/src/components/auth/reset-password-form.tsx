@@ -24,7 +24,7 @@ interface ResetPasswordFormProps extends React.ComponentProps<'form'> {
 
 export function ResetPasswordForm({ token, className, ...props }: ResetPasswordFormProps) {
   const content = useIntlayer('auth')
-  const resetPasswordMutation = useMutation(resetPasswordMutationOptions(token))
+  const resetPasswordMutation = useMutation(resetPasswordMutationOptions())
   const form = useAppForm({
     defaultValues: {
       password: '',
@@ -35,7 +35,8 @@ export function ResetPasswordForm({ token, className, ...props }: ResetPasswordF
     },
     onSubmit: (data) => {
       resetPasswordMutation.mutateAsync({
-        payload: { password: data.value.password },
+        params: { token },
+        body: { password: data.value.password },
       })
     },
   })

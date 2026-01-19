@@ -1,8 +1,6 @@
-import type { InferResponseType } from '@tuyau/react-query'
-
 import { useMutation, useQuery } from '@tanstack/react-query'
+import { Data } from '@boilerplate/backend/data'
 
-import type { tuyau } from '@/lib/tuyau'
 import type { LocalizedTo } from '@/lib/localized-navigate'
 
 import {
@@ -12,12 +10,10 @@ import {
 } from '@/lib/queries/admin'
 import { localizedNavigate } from '@/lib/localized-navigate'
 
-export type ImpersonationStatus = InferResponseType<typeof tuyau.admin.impersonate.status.$get>
-
 type ImpersonationData = {
   isImpersonating: boolean
-  currentUser: ImpersonationStatus['currentUser'] | null
-  originalAdmin: ImpersonationStatus['originalAdmin'] | null
+  currentUser: Data.Users.User | null
+  originalAdmin: Data.Users.User | null
   isLoading: boolean
   impersonate: (userId: string, redirectTo?: LocalizedTo) => Promise<void>
   stopImpersonation: () => Promise<void>

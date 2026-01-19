@@ -23,7 +23,7 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
     },
     onSubmit: (data) => {
       forgotPasswordMutation.mutateAsync({
-        payload: { email: data.value.email },
+        body: { email: data.value.email },
       })
     },
   })

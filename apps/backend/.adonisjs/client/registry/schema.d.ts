@@ -5,17 +5,6 @@ import type { ExtractBody, ExtractQuery, ExtractQueryForGet } from '@tuyau/core/
 import type { InferInput } from '@vinejs/vine/types'
 
 export interface Registry {
-  'shopkeeper.webhook': {
-    methods: ["POST"]
-    pattern: '/stripe/webhook'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: unknown
-    }
-  }
   'event_stream': {
     methods: ["GET","HEAD"]
     pattern: '/__transmit/events'

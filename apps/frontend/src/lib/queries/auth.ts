@@ -6,7 +6,7 @@ import { localizedNavigate } from '@/lib/localized-navigate'
 
 import { getCurrentUserQueryOptions } from './users'
 
-export const loginMutationOptions = tuyau.login.$post.mutationOptions({
+export const loginMutationOptions = tuyau.auth.login.mutationOptions({
   onSuccess: async () => {
     await queryClient.invalidateQueries({
       queryKey: getCurrentUserQueryOptions().queryKey,
@@ -24,7 +24,7 @@ export const loginMutationOptions = tuyau.login.$post.mutationOptions({
   },
 })
 
-export const logoutMutationOptions = tuyau.logout.$post.mutationOptions({
+export const logoutMutationOptions = tuyau.auth.logout.mutationOptions({
   onSettled: () => {
     toast.success('Logout successful')
     void localizedNavigate({ to: '/auth/login' })
@@ -35,7 +35,7 @@ export const logoutMutationOptions = tuyau.logout.$post.mutationOptions({
 })
 
 export const forgotPasswordMutationOptions = () =>
-  tuyau.auth.password.forgot.$post.mutationOptions({
+  tuyau.password.forgotPassword.mutationOptions({
     onSuccess: async () => {
       toast.success(
         'If an account exists with that email, you will receive an email to reset your password.',
@@ -44,15 +44,15 @@ export const forgotPasswordMutationOptions = () =>
     },
   })
 
-export const resetPasswordMutationOptions = (token: string) =>
-  tuyau.auth.password.reset({ token }).$post.mutationOptions({
+export const resetPasswordMutationOptions = () =>
+  tuyau.password.resetPassword.mutationOptions({
     onSuccess: () => {
       toast.success('Password updated')
     },
   })
 
-export const verifyEmailMutationOptions = (token: string) =>
-  tuyau.auth.email.verify({ token }).$post.mutationOptions({
+export const verifyEmailMutationOptions = () =>
+  tuyau.email.verifyEmail.mutationOptions({
     onSuccess: () => {
       toast.success('Email verified successfully', {
         description: 'You can now log in to your account.',
@@ -70,14 +70,14 @@ export const verifyEmailMutationOptions = (token: string) =>
   })
 
 export const resendVerificationMutationOptions = () =>
-  tuyau.auth.email.resend.$post.mutationOptions({
+  tuyau.email.resendVerificationEmail.mutationOptions({
     onSuccess: () => {
       toast.success('If an account exists with that email, we have sent a verification email.')
     },
   })
 
 export const registerMutationOptions = () =>
-  tuyau.register.$post.mutationOptions({
+  tuyau.auth.register.mutationOptions({
     onSuccess: async () => {
       toast.success('Registration successful', {
         description: 'Please check your email to verify your account.',

@@ -17,9 +17,7 @@ export function ImpersonationIndicator() {
     <div className="flex items-center gap-3 bg-secondary rounded-md p-2 h-8">
       <div className="text-sm">
         <span className="text-muted-foreground">{content.loggedInAs}</span>
-        <span className="font-medium">
-          {currentUser.firstName} {currentUser.lastName}
-        </span>
+        <span className="font-medium">{currentUser.fullName}</span>
       </div>
       <Button
         size="sm"
@@ -29,7 +27,7 @@ export function ImpersonationIndicator() {
         disabled={isLoading}
       >
         <LogOutIcon className="size-4" />
-        {content.returnTo({ name: originalAdmin.firstName })}
+        {content.returnTo({ name: originalAdmin.fullName })}
       </Button>
     </div>
   )

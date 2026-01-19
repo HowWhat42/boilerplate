@@ -6,5 +6,4 @@
 /// <reference path="../../config/logger.ts" />
 /// <reference path="../../config/mail.ts" />
 /// <reference path="../../config/monocle.ts" />
-/// <reference path="../../config/shopkeeper.ts" />
 /// <reference path="../../config/transmit.ts" />

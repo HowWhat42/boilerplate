@@ -23,7 +23,7 @@ export function ResendVerificationForm({ className, ...props }: React.ComponentP
     },
     onSubmit: (data) => {
       resendVerificationMutation.mutateAsync({
-        payload: { email: data.value.email },
+        body: { email: data.value.email },
       })
     },
   })

@@ -53,11 +53,9 @@ export function UsersList() {
               <tbody>
                 {data?.data.map((user) => (
                   <tr key={user.id} className="border-b last:border-0">
-                    <td className="p-3">
-                      {user.firstName} {user.lastName}
-                    </td>
+                    <td className="p-3">{user.fullName}</td>
                     <td className="p-3">{user.email}</td>
-                    <td className="p-3">{new Date(user.createdAt).toLocaleDateString()}</td>
+                    <td className="p-3">{new Date(user.createdAt ?? '').toLocaleDateString()}</td>
                     <td className="p-3 text-right">
                       <Button
                         size="sm"

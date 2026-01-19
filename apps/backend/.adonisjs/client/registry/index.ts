@@ -6,12 +6,6 @@ import type { ApiDefinition } from './tree.d.ts'
 const placeholder: any = {}
 
 const routes = {
-  'shopkeeper.webhook': {
-    methods: ["POST"],
-    pattern: '/stripe/webhook',
-    tokens: [{"old":"/stripe/webhook","type":0,"val":"stripe","end":""},{"old":"/stripe/webhook","type":0,"val":"webhook","end":""}],
-    types: placeholder as Registry['shopkeeper.webhook']['types'],
-  },
   'event_stream': {
     methods: ["GET","HEAD"],
     pattern: '/__transmit/events',

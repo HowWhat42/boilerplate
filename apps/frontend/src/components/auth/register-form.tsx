@@ -39,7 +39,7 @@ export function RegisterForm({ className, ...props }: React.ComponentProps<'form
     },
     onSubmit: (data) => {
       registerMutation.mutateAsync({
-        payload: {
+        body: {
           email: data.value.email,
           firstName: data.value.firstName,
           lastName: data.value.lastName,

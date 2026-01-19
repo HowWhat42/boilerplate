@@ -20,11 +20,11 @@ export const Route = createFileRoute('/$locale/auth/verify-email/')({
 function RouteComponent() {
   const { token } = Route.useSearch()
   const content = useIntlayer('auth')
-  const verifyEmailMutation = useMutation(verifyEmailMutationOptions(token))
+  const verifyEmailMutation = useMutation(verifyEmailMutationOptions())
 
   useEffect(() => {
     // Automatically verify on mount
-    verifyEmailMutation.mutate({})
+    verifyEmailMutation.mutate({ params: { token } })
   }, [])
 
   return (

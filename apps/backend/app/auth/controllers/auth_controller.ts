@@ -13,7 +13,7 @@ import { EmailVerificationService } from '#auth/services/email_verification_serv
 export default class AuthController {
   constructor(private emailVerificationService: EmailVerificationService) {}
   @Post('/register')
-  async register({ request, response, serialize }: HttpContext) {
+  async register({ request, serialize }: HttpContext) {
     const payload = await request.validateUsing(registerValidator)
 
     const user = await User.create({
@@ -25,7 +25,7 @@ export default class AuthController {
 
     await this.emailVerificationService.sendVerificationEmail(user)
 
-    return response.status(201).json({
+    return serialize({
       message: 'Registration successful. Please check your email to verify your account.',
       user: await serialize(UserTransformer.transform(user)),
     })
@@ -39,7 +39,7 @@ export default class AuthController {
 
     await auth.use('web').login(user)
 
-    return await serialize(UserTransformer.transform(user))
+    return serialize(UserTransformer.transform(user))
   }
 
   @Get('/me')
@@ -47,7 +47,7 @@ export default class AuthController {
   async me({ auth, serialize }: HttpContext) {
     const user = auth.getUserOrFail()
 
-    return await serialize(UserTransformer.transform(user))
+    return serialize(UserTransformer.transform(user))
   }
 
   @Post('/logout')

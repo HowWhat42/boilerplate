@@ -8,9 +8,13 @@ import testUtils from '@adonisjs/core/services/test_utils'
 import app from '@adonisjs/core/services/app'
 import { authApiClient } from '@adonisjs/auth/plugins/api_client'
 
+import type { Registry } from '../.adonisjs/client/registry/schema.d.ts'
 /**
  * This file is imported by the "bin/test.ts" entrypoint file
  */
+declare module '@japa/api-client/types' {
+  interface RoutesRegistry extends Registry {}
+}
 
 /**
  * Configure Japa plugins in the plugins array.

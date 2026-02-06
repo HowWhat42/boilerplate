@@ -11,5 +11,6 @@
       "~registry": ["../.adonisjs/client/registry.ts"]
     }
   },
+  "include": ["./**/*.ts", "./**/*.tsx", "./.adonisjs/**/*.ts"],
   "exclude": ["node_modules", "build"]
 }

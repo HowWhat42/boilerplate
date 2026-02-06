@@ -4,276 +4,119 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Full-stack TypeScript monorepo with AdonisJS v6 backend, TanStack Start frontend, and shared design system. Uses pnpm workspaces + Turbo for monorepo management.
+Full-stack TypeScript monorepo boilerplate: **AdonisJS v7** backend, **TanStack Start** frontend, and a **Radix/Tailwind** design system. Managed with pnpm workspaces and Turborepo.
 
-**Key Architecture Pattern**: Modular backend with feature-based organization, type-safe API client via Tuyau, and file-based routing in frontend.
+**Current branch**: `adonis-v7` (AdonisJS v7 pre-release — many packages use `-next` versions)
 
-## Development Commands
+## Commands
 
-### Root Commands (Run from repository root)
+### Root (monorepo)
 ```bash
-# Start PostgreSQL + all dev servers (backend on :3333, frontend on :3000)
-pnpm dev
-
-# Linting with oxlint (project uses oxfmt/oxlint, NOT eslint at root)
-pnpm lint
-
-# Formatting with oxfmt
-pnpm format
-
-# Type-checking across all workspaces
-pnpm typecheck
-
-# Run all tests across workspaces
-pnpm test
-
-# Interactive dependency updates
-pnpm taze
+pnpm dev              # docker compose up -d && turbo dev (starts everything)
+pnpm lint             # oxlint across all workspaces
+pnpm format           # oxfmt across all workspaces
+pnpm typecheck        # turbo typecheck
+pnpm test             # turbo test
 ```
 
-### Backend Commands (cd apps/backend)
+### Backend (`apps/backend`)
 ```bash
-# Development with HMR
-pnpm dev
-node ace serve --hmr
-
-# Production build
-pnpm build
-pnpm start
-
-# Testing
-pnpm test                                    # Run all tests
-node ace test                                # AdonisJS test runner
-node ace test --groups "group-name"          # Run specific test group
-node ace test tests/functional/auth.spec.ts  # Run single test file
-
-# Database operations
-node ace migration:run                       # Run migrations
-node ace migration:rollback                  # Rollback last batch
-node ace migration:rollback --batch=0        # Rollback all
-node ace db:seed                             # Run seeders
-
-# Generate APP_KEY (required for encryption)
-node ace generate:key
-
-# Type-safe API client generation (after route changes)
-node ace tuyau:generate
-
-# Email template development
-pnpm email                                   # Start React Email preview server
-
-# Backend-specific linting/formatting (uses eslint + prettier)
-pnpm lint
-pnpm format
-pnpm typecheck
+node ace serve --hmr              # Dev server with hot module replacement
+node ace test                     # Run all test suites
+node ace test --files "app/**/tests/functional/auth.spec.ts"  # Single test file
+node ace migration:run            # Run pending migrations
+node ace db:seed                  # Seed database
+node ace build                    # Production build
+pnpm email                       # Preview React Email templates (dev server)
 ```
 
-### Frontend Commands (cd apps/frontend)
+### Frontend (`apps/frontend`)
 ```bash
-# Development server
-pnpm dev
-
-# Production build
-pnpm build
-pnpm serve        # Preview production build
-
-# Testing with Vitest
-pnpm test
-
-# Linting/formatting (uses eslint + prettier, NOT oxlint)
-pnpm lint
-pnpm format
-pnpm check        # Run prettier + eslint fix
-
-# Internationalization
-pnpm intlayer build    # Build i18n content
-
-# Cloudflare deployment
-pnpm deploy
+pnpm dev              # Vite dev server
+pnpm build            # Production build
+pnpm deploy           # Deploy to Cloudflare Workers (wrangler)
 ```
 
-## Architecture & Module System
+### Docker services (started automatically by `pnpm dev`)
+- **PostgreSQL 18**: port 5432 (databases: `app`, `app_test`)
+- **MinIO** (S3-compatible): port 9000 (API), 9001 (console)
+- **Redis**: port 6379
+- **Mailpit**: port 1025 (SMTP), 8025 (web UI)
 
-### Backend Module Organization
+## Architecture
 
-AdonisJS backend uses **feature-based modular architecture**. Each domain module (auth, users, admin) contains:
-
+### Monorepo layout
 ```
-app/
-├── auth/
-│   ├── controllers/     # HTTP controllers
-│   ├── middleware/      # Auth-specific middleware
-│   ├── services/        # Business logic
-│   ├── validators/      # VineJS validation schemas
-│   └── tests/           # Module tests
-├── users/
-│   ├── models/          # Lucid ORM models
-│   ├── dtos/            # Data transfer objects (@adocasts.com/dto)
-│   └── factories/       # Database factories for testing
-├── admin/               # Admin features (impersonation, user management)
-├── common/              # Shared utilities across modules
-└── core/
-    ├── middleware/      # Global middleware
-    ├── exceptions/      # Custom exceptions & error handler
-    ├── policies/        # Authorization policies (Bouncer)
-    └── abilities/       # Permission definitions
+apps/backend          # @boilerplate/backend - AdonisJS v7 API
+apps/frontend         # @boilerplate/frontend - TanStack Start SPA
+packages/design-system # @boilerplate/design-system - Radix + Tailwind components
 ```
 
-**Path Aliases** (defined in package.json imports):
-- `#core/*` → `./app/core/*.js`
-- `#users/*` → `./app/users/*.js`
-- `#auth/*` → `./app/auth/*.js`
-- `#admin/*` → `./app/admin/*.js`
-- `#common/*` → `./app/common/*.js`
-- `#middleware/*` → `./app/core/middleware/*.js`
-- `#exceptions/*` → `./app/core/exceptions/*.js`
-- `#config/*` → `./config/*.js`
-- `#database/*` → `./database/*.js`
-- `#start/*` → `./start/*.js`
-- `#emails/*` → `./emails/*.js`
+Shared dependency versions are managed via `pnpm-workspace.yaml` catalog (React 19, TypeScript 5.9, Tailwind 4, Tuyau).
 
-### Route Registration
+### Type-safe API contract
+**Tuyau** generates TypeScript types from AdonisJS controllers, consumed by the frontend via `@tuyau/react-query`. Changes to backend controllers require running `node ace tuyau:generate` to update the shared types exported from `@boilerplate/backend/registry`.
 
-Routes are registered in `start/routes.ts`. Uses **Facteur** (notification system) for route registration:
-```typescript
-router.group(() => facteur.registerRoutes())
-```
+### Backend structure (AdonisJS v7)
 
-Middleware is configured in `start/kernel.ts`:
-- **Server middleware**: Runs on ALL requests (CORS, ACL, container bindings)
-- **Router middleware**: Runs on matched routes (bodyparser, session, auth)
-- **Named middleware**: Explicitly applied to routes/groups (auth, silentAuth, requireSecretToken)
+Feature-based organization under `app/`:
+- `app/auth/` — Auth controllers, middleware, services (session-based auth)
+- `app/admin/` — Admin features (user management, impersonation)
+- `app/users/` — User model and DTOs
+- `app/core/` — Abilities, global middleware, exception handler, policies
+- `app/common/` — Shared utilities
 
-### Frontend Architecture
+**Path aliases** use `#` prefix (Node.js subpath imports in package.json):
+`#auth/*`, `#admin/*`, `#users/*`, `#core/*`, `#common/*`, `#config/*`, `#database/*`, `#start/*`, `#emails/*`
 
-**TanStack Start** with file-based routing:
-```
-src/
-├── routes/              # File-based routes (__root.tsx is layout)
-├── components/          # React components
-├── lib/
-│   ├── queries/         # TanStack Query hooks using Tuyau
-│   ├── schemas/         # Zod validation schemas
-│   └── tuyau.ts         # Type-safe API client setup
-├── hooks/               # Custom React hooks
-├── contents/            # Intlayer i18n content
-└── integrations/        # Third-party integrations (Sentry, etc.)
-```
+**Girouette** auto-discovers controllers (`**/*_controller.ts`) and generates routes in `start/routes.girouette.ts`. Manual routes live in `start/routes.ts`.
 
-**Tuyau Integration**: Type-safe API client automatically synced with backend routes
-- Backend exports API definition: `.adonisjs/index.ts`
-- Frontend imports: `import { api } from '@boilerplate/backend/api'`
-- Generate types: `node ace tuyau:generate` (in backend)
-- React Query integration: `createTuyauReactQueryClient` in `lib/tuyau.ts`
+**Schema-first models**: `database/schema.ts` defines base schema classes (UserSchema, etc.) that models extend. Models add mixins like `withAuthFinder` and `withUUID`.
 
-### Design System
+**Middleware stack** (in order):
+- Server: container bindings → force JSON → CORS
+- Router: Monocle → bodyparser → session → auth init → silent auth → bouncer
+- Named: `auth`, `silentAuth`, `requireSecretToken`
 
-Shared component library in `packages/design-system`:
-- Built on **Radix UI** primitives
-- Styled with **Tailwind CSS**
-- Exported components used by frontend via workspace dependency
+**Testing**: Japa test runner with suites:
+- Unit tests: `app/**/tests/unit/**/*.spec.ts` (2s timeout)
+- Functional tests: `app/**/tests/functional/**/*.spec.ts` (30s timeout)
+- Database is truncated before test runs. Functional/e2e suites start the HTTP server.
 
-## Testing Strategy
+**Important**: Migrations are applied manually — never run `db:push` or auto-apply migrations.
 
-### Backend Testing
-- Uses **Japa** test runner with API client plugin
-- Test suites defined in `adonisrc.ts`:
-  - **unit**: `app/**/tests/unit/**/*.spec.ts` (timeout: 2s)
-  - **functional**: `tests/functional/**/*.spec.ts` (timeout: 30s)
-  - **e2e**: `tests/e2e/**/*.spec.ts` (timeout: 1min)
-- Run with: `node ace test` or `node ace test --groups "unit"`
+### Frontend structure (TanStack Start)
 
-### Frontend Testing
-- Uses **Vitest** + **@testing-library/react**
-- JSDOM environment for component testing
-- Run with: `pnpm test` (from apps/frontend)
+- **Routing**: File-based via TanStack Router under `src/routes/`. Localized routes under `$locale/`.
+- **Data fetching**: TanStack Query with Tuyau's React Query integration (`@tuyau/react-query`)
+- **i18n**: Intlayer with prefix-all routing mode (English default, French supported). Content files in `src/contents/`.
+- **Styling**: Tailwind CSS v4 via `@tailwindcss/vite`
+- **Deployment**: Cloudflare Workers via Nitro adapter. SPA mode enabled.
+- **Path alias**: `@/*` → `./src/*`
 
-## Key Dependencies & Integration Points
+### Design system
 
-### Backend
-- **Authentication**: Session-based (web guard) with AdonisJS Auth
-- **Authorization**: Role-based permissions via `@holoyan/adonisjs-permissions` + Bouncer
-- **Email**: React Email templates rendered with `@react-email/render`
-- **Notifications**: Facteur system for multi-channel notifications
-- **Payments**: Stripe via `@foadonis/shopkeeper`
-- **File Storage**: AdonisJS Drive with S3 support
-- **Monitoring**: Monocle agent for observability
-- **I18n**: AdonisJS i18n with locale detection middleware
+Radix UI primitives styled with Tailwind and `class-variance-authority`. Follows shadcn/ui conventions (New York style, Zinc base color, CSS variables). 50+ components. Imports: `@boilerplate/design-system`.
 
-### Frontend
-- **State Management**: TanStack Query for server state, TanStack Store for client state
-- **Forms**: TanStack Form with Zod validation
-- **I18n**: Intlayer with localized routing and browser locale detection
-- **Notifications**: Sonner for toast notifications
-- **Icons**: Lucide React
-- **Drag & Drop**: dnd-kit
-- **Charts**: Recharts
-- **Error Tracking**: Sentry (TanStack Start integration)
+## Code Style
 
-## Database Workflow
+Enforced by **oxlint** and **oxfmt** (Rust-based tooling):
+- No semicolons, single quotes, trailing commas
+- 100 char line width, arrow parens always
+- Import sort order: descending
+- Backend-specific: `node` plugin. Frontend-specific: `react`, `react-perf` plugins.
+- Ignore patterns: `.adonisjs/**`, `node_modules/**`, `dist/**`, `build/**`
 
-Always apply migrations manually (do not ask about pushing to DB):
-1. Create migration: `node ace make:migration <name>`
-2. Edit migration file in `database/migrations/`
-3. Run migration: `node ace migration:run`
-4. If needed, rollback: `node ace migration:rollback`
+## CI
 
-Seeders location: `database/seeders/`
+GitHub Actions (`checks.yml`) runs on PRs to `main`/`dev`:
+1. `pnpm install` → `pnpm lint` → `pnpm typecheck` → `pnpm test` (with PostgreSQL + Mailpit services)
+2. Trivy security scan on PRs
 
-## Linting & Formatting
+## Environment Variables
 
-**Root level**: Uses `oxlint` + `oxfmt` (configured via `.oxlintrc.json` + `.oxfmtrc.json`)
-**Backend**: Uses `eslint` + `prettier` (AdonisJS prettier config)
-**Frontend**: Uses `eslint` + `prettier`
+Backend env validation is in `apps/backend/start/env.ts`. Key groups: app config, database (PostgreSQL), session, S3 storage (MinIO locally), mail (Resend + SMTP), Stripe, Monocle monitoring.
 
-When working across multiple workspaces, use root-level commands for consistency.
+## Patched Dependencies
 
-## Docker Setup
-
-PostgreSQL runs via Docker Compose:
-```bash
-docker compose up -d      # Start services
-docker compose down       # Stop services
-docker compose logs -f    # View logs
-```
-
-Configuration in `docker-compose.yaml` (root directory).
-
-## Environment Configuration
-
-Backend `.env` critical variables:
-- `APP_KEY`: Generate with `node ace generate:key`
-- `DB_*`: PostgreSQL connection (default: localhost:5432)
-- `DRIVE_DISK`: Storage driver (s3 or local)
-- `SESSION_DRIVER`: Session storage (cookie or redis)
-- `STRIPE_KEY/STRIPE_SECRET`: Payment processing
-- `RESEND_API_KEY`: Email delivery
-
-Frontend `.env`:
-- `VITE_API_URL`: Backend API URL (default: http://localhost:3333)
-
-## Common Patterns
-
-### Adding Backend Routes
-1. Create controller in module (e.g., `app/auth/controllers/`)
-2. Use Facteur pattern or register in `start/routes.ts`
-3. Apply middleware via `use()` or kernel configuration
-4. Regenerate API types: `node ace tuyau:generate`
-
-### Adding Frontend Pages
-1. Create route file in `src/routes/` (e.g., `about.tsx`)
-2. TanStack Router auto-generates route types in `routeTree.gen.ts`
-3. Use `<Link to="/about">` for navigation
-4. Add queries in `lib/queries/` using Tuyau client
-
-### Authorization Pattern
-- Define abilities in `app/core/abilities/`
-- Create policies in `app/core/policies/`
-- Use `@bouncer()` decorator or `bouncer.authorize()` in controllers
-- Permission middleware: `initializeBouncerMiddleware`
-
-### Email Templates
-- Create React components in `emails/`
-- Preview with `pnpm email` (starts dev server)
-- Render with `@react-email/render` in mail services
-- Configure mail driver in `config/mail.ts`
+`@adonisjs/transmit@2.0.2` has a local patch in `patches/`.

@@ -1,26 +1,17 @@
 import { useIntlayer } from 'react-intlayer'
 import { useMutation } from '@tanstack/react-query'
-import { cn } from '@boilerplate/design-system/lib/utils'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@boilerplate/design-system/components/ui/tooltip'
-import { PasswordField } from '@boilerplate/design-system/components/ui/password_field'
-import { PasswordStrength } from '@boilerplate/design-system/components/ui/password-strength'
-import { Input } from '@boilerplate/design-system/components/ui/input'
-import { Form } from '@boilerplate/design-system/components/ui/form'
-import {
-  Field,
-  FieldDescription,
-  FieldLabel,
-  FieldSeparator,
-} from '@boilerplate/design-system/components/ui/field'
-import { Button } from '@boilerplate/design-system/components/ui/button'
 
+import { cn } from '@/lib/utils'
 import { registerFormSchema } from '@/lib/schemas/auth'
 import { registerMutationOptions } from '@/lib/queries/auth'
 import { useAppForm } from '@/hooks/form-hook'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { PasswordStrength } from '@/components/ui/password-strength'
+import { PasswordField } from '@/components/ui/password-field'
+import { Input } from '@/components/ui/input'
+import { Form } from '@/components/ui/form'
+import { Field, FieldDescription, FieldLabel, FieldSeparator } from '@/components/ui/field'
+import { Button } from '@/components/ui/button'
 import { LocalizedLink } from '@/components/common/localized-link'
 
 export function RegisterForm({ className, ...props }: React.ComponentProps<'form'>) {
@@ -111,7 +102,7 @@ export function RegisterForm({ className, ...props }: React.ComponentProps<'form
               <div className="flex items-center gap-2">
                 <FieldLabel htmlFor="password">{content.fields.password}</FieldLabel>
                 <Tooltip>
-                  <TooltipTrigger asChild>
+                  <TooltipTrigger>
                     <div
                       className="flex h-4 w-4 items-center justify-center rounded-full border border-input bg-background text-xs text-muted-foreground hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-1 focus:ring-ring"
                       aria-label="Help information"

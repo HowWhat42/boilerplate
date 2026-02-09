@@ -1,9 +1,9 @@
 import { Outlet, createFileRoute } from '@tanstack/react-router'
 import { FacteurProvider } from '@facteurjs/react'
-import { SidebarInset, SidebarProvider } from '@boilerplate/design-system/components/ui/sidebar'
 
 import { localizedNavigate } from '@/lib/localized-navigate'
 import { useAuth } from '@/hooks/use-auth'
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import { SiteHeader } from '@/components/common/site-header'
 import { AppSidebar } from '@/components/common/app-sidebar'
 

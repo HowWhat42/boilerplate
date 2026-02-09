@@ -1,4 +1,5 @@
 import { createFormHook } from '@tanstack/react-form'
+
 import {
   Field,
   FieldControl,
@@ -7,7 +8,7 @@ import {
   FieldLabel,
   fieldContext,
   formContext,
-} from '@boilerplate/design-system/components/ui/form'
+} from '@/components/ui/form'
 
 export const { useAppForm, withForm } = createFormHook({
   fieldContext,

@@ -12,7 +12,7 @@ import AdminPolicy from '#admin/policies/admin_policy'
 export default class AdminImpersonationController {
   @Post('/:user_id/start')
   @Middleware(middleware.auth())
-  async impersonateUser({ params, session, response, auth, bouncer, serialize }: HttpContext) {
+  async impersonateUser({ params, session, auth, bouncer, serialize }: HttpContext) {
     const currentUser = auth.getUserOrFail()
 
     const { user_id: userId } = params
@@ -25,10 +25,10 @@ export default class AdminImpersonationController {
 
     await auth.use('web').login(targetUser)
 
-    return response.ok({
+    return serialize({
       message: `Now impersonating ${targetUser.firstName} ${targetUser.lastName}`,
-      impersonatedUser: await serialize(UserTransformer.transform(targetUser)),
-      originalAdmin: await serialize(UserTransformer.transform(currentUser)),
+      impersonatedUser: UserTransformer.transform(targetUser),
+      originalAdmin: UserTransformer.transform(currentUser),
     })
   }
 
@@ -48,9 +48,9 @@ export default class AdminImpersonationController {
     session.forget('originalAdminId')
     session.forget('isImpersonating')
 
-    return response.ok({
+    return serialize({
       message: 'Impersonation stopped',
-      user: await serialize(UserTransformer.transform(originalAdmin)),
+      user: UserTransformer.transform(originalAdmin),
     })
   }
 
@@ -71,10 +71,10 @@ export default class AdminImpersonationController {
     const currentUser = auth.getUserOrFail()
     const originalAdmin = await User.findOrFail(originalAdminId)
 
-    return {
+    return serialize({
       isImpersonating: true,
-      currentUser: await serialize(UserTransformer.transform(currentUser)),
-      originalAdmin: await serialize(UserTransformer.transform(originalAdmin)),
-    }
+      currentUser: UserTransformer.transform(currentUser),
+      originalAdmin: UserTransformer.transform(originalAdmin),
+    })
   }
 }

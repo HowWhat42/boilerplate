@@ -1,6 +1,7 @@
 import { IntlayerProvider, useLocale } from 'react-intlayer'
 import { Outlet, createFileRoute } from '@tanstack/react-router'
-import { TooltipProvider } from '@boilerplate/design-system/components/ui/tooltip'
+
+import { TooltipProvider } from '@/components/ui/tooltip'
 
 export const Route = createFileRoute('/$locale')({
   component: LayoutComponent,

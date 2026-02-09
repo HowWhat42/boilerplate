@@ -1,23 +1,20 @@
 'use client'
 
-import type { ChartConfig } from '@boilerplate/design-system/components/ui/chart'
-
 import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
 import * as React from 'react'
-import { useIsMobile } from '@boilerplate/design-system/hooks/use-mobile'
-import { ToggleGroup, ToggleGroupItem } from '@boilerplate/design-system/components/ui/toggle-group'
+
+import type { ChartConfig } from '@/components/ui/chart'
+
+import { useIsMobile } from '@/hooks/use-mobile'
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@boilerplate/design-system/components/ui/select'
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from '@boilerplate/design-system/components/ui/chart'
+} from '@/components/ui/select'
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart'
 import {
   Card,
   CardAction,
@@ -25,7 +22,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@boilerplate/design-system/components/ui/card'
+} from '@/components/ui/card'
 
 export const description = 'An interactive area chart'
 

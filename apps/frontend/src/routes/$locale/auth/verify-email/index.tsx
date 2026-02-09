@@ -3,10 +3,10 @@ import { useIntlayer } from 'react-intlayer'
 import { useEffect } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import { useMutation } from '@tanstack/react-query'
-import { Button } from '@boilerplate/design-system/components/ui/button'
 
 import { verifyEmailMutationOptions } from '@/lib/queries/auth'
 import { localizedNavigate } from '@/lib/localized-navigate'
+import { Button } from '@/components/ui/button'
 
 const searchSchema = z.object({
   token: z.string(),

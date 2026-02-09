@@ -8,7 +8,6 @@ import type {
   VisibilityState,
 } from '@tanstack/react-table'
 import type { DragEndEvent, UniqueIdentifier } from '@dnd-kit/core'
-import type { ChartConfig } from '@boilerplate/design-system/components/ui/chart'
 
 import { z } from 'zod'
 import { toast } from 'sonner'
@@ -55,13 +54,11 @@ import {
   useSensor,
   useSensors,
 } from '@dnd-kit/core'
-import { useIsMobile } from '@boilerplate/design-system/hooks/use-mobile'
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@boilerplate/design-system/components/ui/tabs'
+
+import type { ChartConfig } from '@/components/ui/chart'
+
+import { useIsMobile } from '@/hooks/use-mobile'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
   Table,
   TableBody,
@@ -69,17 +66,17 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@boilerplate/design-system/components/ui/table'
-import { Separator } from '@boilerplate/design-system/components/ui/separator'
+} from '@/components/ui/table'
+import { Separator } from '@/components/ui/separator'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@boilerplate/design-system/components/ui/select'
-import { Label } from '@boilerplate/design-system/components/ui/label'
-import { Input } from '@boilerplate/design-system/components/ui/input'
+} from '@/components/ui/select'
+import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -87,7 +84,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@boilerplate/design-system/components/ui/dropdown-menu'
+} from '@/components/ui/dropdown-menu'
 import {
   Drawer,
   DrawerClose,
@@ -97,15 +94,11 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from '@boilerplate/design-system/components/ui/drawer'
-import { Checkbox } from '@boilerplate/design-system/components/ui/checkbox'
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from '@boilerplate/design-system/components/ui/chart'
-import { Button } from '@boilerplate/design-system/components/ui/button'
-import { Badge } from '@boilerplate/design-system/components/ui/badge'
+} from '@/components/ui/drawer'
+import { Checkbox } from '@/components/ui/checkbox'
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 
 export const schema = z.object({
   id: z.number(),
@@ -149,8 +142,7 @@ const columns: Array<ColumnDef<z.infer<typeof schema>>> = [
       <div className="flex items-center justify-center">
         <Checkbox
           checked={
-            table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && 'indeterminate')
+            table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() ? true : false)
           }
           onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
           aria-label="Select all"
@@ -288,7 +280,7 @@ const columns: Array<ColumnDef<z.infer<typeof schema>>> = [
     id: 'actions',
     cell: () => (
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger>
           <Button
             variant="ghost"
             className="data-[state=open]:bg-muted text-muted-foreground flex size-8"
@@ -419,7 +411,7 @@ export function DataTable({ data: initialData }: { data: Array<z.infer<typeof sc
         </TabsList>
         <div className="flex items-center gap-2">
           <DropdownMenu>
-            <DropdownMenuTrigger asChild>
+            <DropdownMenuTrigger>
               <Button variant="outline" size="sm">
                 <ColumnsIcon />
                 <span className="hidden lg:inline">Customize Columns</span>

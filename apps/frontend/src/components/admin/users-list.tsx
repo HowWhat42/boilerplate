@@ -2,11 +2,11 @@ import { useIntlayer } from 'react-intlayer'
 import { useState } from 'react'
 import { UserIcon } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
-import { Input } from '@boilerplate/design-system/components/ui/input'
-import { Button } from '@boilerplate/design-system/components/ui/button'
 
 import { getUsersListQueryOptions } from '@/lib/queries/admin'
 import { useImpersonation } from '@/hooks/use-impersonation'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 import Loader from '@/components/common/loader'
 
 export function UsersList() {
@@ -72,17 +72,17 @@ export function UsersList() {
             </table>
           </div>
 
-          {data?.meta && (
+          {data?.metadata && (
             <div className="flex items-center justify-between">
               <div className="text-sm text-muted-foreground">
-                {content.showingUsers({ count: data.meta.total })}
+                {content.showingUsers({ count: data.metadata.total })}
               </div>
               <div className="flex gap-2">
                 <Button
                   size="sm"
                   variant="outline"
                   onClick={() => setPage((p) => Math.max(1, p - 1))}
-                  disabled={data.meta.currentPage === 1}
+                  disabled={data.metadata.currentPage === '1'}
                 >
                   {content.previous}
                 </Button>
@@ -90,7 +90,7 @@ export function UsersList() {
                   size="sm"
                   variant="outline"
                   onClick={() => setPage((p) => p + 1)}
-                  disabled={data.meta.currentPage === data.meta.lastPage}
+                  disabled={data.metadata.currentPage === data.metadata.lastPage}
                 >
                   {content.next}
                 </Button>

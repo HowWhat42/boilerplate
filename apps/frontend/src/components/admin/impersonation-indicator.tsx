@@ -1,8 +1,8 @@
 import { useIntlayer } from 'react-intlayer'
 import { LogOutIcon } from 'lucide-react'
-import { Button } from '@boilerplate/design-system/components/ui/button'
 
 import { useImpersonation } from '@/hooks/use-impersonation'
+import { Button } from '@/components/ui/button'
 
 export function ImpersonationIndicator() {
   const content = useIntlayer('admin')

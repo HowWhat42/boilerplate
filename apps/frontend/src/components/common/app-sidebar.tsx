@@ -15,6 +15,8 @@ import {
   SettingsIcon,
   UsersIcon,
 } from 'lucide-react'
+
+import { useAuth } from '@/hooks/use-auth'
 import {
   Sidebar,
   SidebarContent,
@@ -23,9 +25,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from '@boilerplate/design-system/components/ui/sidebar'
-
-import { useAuth } from '@/hooks/use-auth'
+} from '@/components/ui/sidebar'
 import { NavUser } from '@/components/common/nav-user'
 import { NavSecondary } from '@/components/common/nav-secondary'
 import { NavMain } from '@/components/common/nav-main'
@@ -164,9 +164,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-1.5">
+            <SidebarMenuButton className="data-[slot=sidebar-menu-button]:p-1.5!">
               <a href="#">
-                <GemIcon className="!size-5" />
+                <GemIcon className="size-5!" />
                 <span className="text-base font-semibold">Acme Inc.</span>
               </a>
             </SidebarMenuButton>

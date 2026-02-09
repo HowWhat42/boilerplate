@@ -1,14 +1,14 @@
 import { useIntlayer } from 'react-intlayer'
 import { useMutation } from '@tanstack/react-query'
-import { cn } from '@boilerplate/design-system/lib/utils'
-import { Input } from '@boilerplate/design-system/components/ui/input'
-import { Form } from '@boilerplate/design-system/components/ui/form'
-import { Field, FieldDescription, FieldLabel } from '@boilerplate/design-system/components/ui/field'
-import { Button } from '@boilerplate/design-system/components/ui/button'
 
+import { cn } from '@/lib/utils'
 import { forgotPasswordFormSchema } from '@/lib/schemas/auth'
 import { forgotPasswordMutationOptions } from '@/lib/queries/auth'
 import { useAppForm } from '@/hooks/form-hook'
+import { Input } from '@/components/ui/input'
+import { Form } from '@/components/ui/form'
+import { Field, FieldDescription, FieldLabel } from '@/components/ui/field'
+import { Button } from '@/components/ui/button'
 import { LocalizedLink } from '@/components/common/localized-link'
 
 export function ForgotPasswordForm({ className, ...props }: React.ComponentProps<'form'>) {

@@ -1,6 +1,7 @@
 import type { LucideIcon } from 'lucide-react'
 
 import { EllipsisVerticalIcon, FolderIcon, ShareIcon, TrashIcon } from 'lucide-react'
+
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -9,14 +10,14 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from '@boilerplate/design-system/components/ui/sidebar'
+} from '@/components/ui/sidebar'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@boilerplate/design-system/components/ui/dropdown-menu'
+} from '@/components/ui/dropdown-menu'
 
 export function NavDocuments({
   items,
@@ -35,14 +36,14 @@ export function NavDocuments({
       <SidebarMenu>
         {items.map((item) => (
           <SidebarMenuItem key={item.name}>
-            <SidebarMenuButton asChild>
+            <SidebarMenuButton>
               <a href={item.url}>
                 <item.icon />
                 <span>{item.name}</span>
               </a>
             </SidebarMenuButton>
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
+              <DropdownMenuTrigger>
                 <SidebarMenuAction showOnHover className="data-[state=open]:bg-accent rounded-sm">
                   <EllipsisVerticalIcon />
                   <span className="sr-only">More</span>

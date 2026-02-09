@@ -1,19 +1,14 @@
 import { useIntlayer } from 'react-intlayer'
-import { cn } from '@boilerplate/design-system/lib/utils'
-import { PasswordField } from '@boilerplate/design-system/components/ui/password_field'
-import { Input } from '@boilerplate/design-system/components/ui/input'
-import { Form } from '@boilerplate/design-system/components/ui/form'
-import {
-  Field,
-  FieldDescription,
-  FieldLabel,
-  FieldSeparator,
-} from '@boilerplate/design-system/components/ui/field'
-import { Button } from '@boilerplate/design-system/components/ui/button'
 
+import { cn } from '@/lib/utils'
 import { loginFormSchema } from '@/lib/schemas/auth'
 import { useAuth } from '@/hooks/use-auth'
 import { useAppForm } from '@/hooks/form-hook'
+import { PasswordField } from '@/components/ui/password-field'
+import { Input } from '@/components/ui/input'
+import { Form } from '@/components/ui/form'
+import { Field, FieldDescription, FieldLabel, FieldSeparator } from '@/components/ui/field'
+import { Button } from '@/components/ui/button'
 import { LocalizedLink } from '@/components/common/localized-link'
 
 export function LoginForm({ className, ...props }: React.ComponentProps<'form'>) {

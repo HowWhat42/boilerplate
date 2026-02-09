@@ -1,4 +1,5 @@
 import { TrendingDownIcon, TrendingUpIcon } from 'lucide-react'
+
 import {
   Card,
   CardAction,
@@ -6,8 +7,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@boilerplate/design-system/components/ui/card'
-import { Badge } from '@boilerplate/design-system/components/ui/badge'
+} from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
 
 export function SectionCards() {
   return (

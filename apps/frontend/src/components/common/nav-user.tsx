@@ -5,12 +5,14 @@ import {
   LogOutIcon,
   UserCircleIcon,
 } from 'lucide-react'
+
+import { useAuth } from '@/hooks/use-auth'
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from '@boilerplate/design-system/components/ui/sidebar'
+} from '@/components/ui/sidebar'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,14 +21,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@boilerplate/design-system/components/ui/dropdown-menu'
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@boilerplate/design-system/components/ui/avatar'
-
-import { useAuth } from '@/hooks/use-auth'
+} from '@/components/ui/dropdown-menu'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 export function NavUser({
   user,
@@ -44,7 +40,7 @@ export function NavUser({
     <SidebarMenu>
       <SidebarMenuItem>
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
+          <DropdownMenuTrigger>
             <SidebarMenuButton
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"

@@ -65,6 +65,8 @@ export default defineConfig({
     () => import('@adonisjs/transmit/transmit_provider'),
     () => import('@monocle.sh/adonisjs-agent/monocle_provider'),
     () => import('@adonisjs/i18n/i18n_provider'),
+    () => import('#core/providers/api_provider'),
+    () => import('#core/providers/vine_provider'),
   ],
 
   /*

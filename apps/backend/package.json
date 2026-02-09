@@ -4,10 +4,6 @@
   "private": true,
   "license": "UNLICENSED",
   "type": "module",
-  "exports": {
-    "./registry": "./.adonisjs/client/registry/index.ts",
-    "./data": "./.adonisjs/client/data.d.ts"
-  },
   "imports": {
     "#exceptions/*": "./app/core/exceptions/*.js",
     "#middleware/*": "./app/core/middleware/*.js",
@@ -22,6 +18,10 @@
     "#common/*": "./app/common/*.js",
     "#emails/*": "./emails/*.js",
     "#app/*": "./app/*.js"
+  },
+  "exports": {
+    "./registry": "./.adonisjs/client/registry/index.ts",
+    "./data": "./.adonisjs/client/data.d.ts"
   },
   "scripts": {
     "start": "node bin/server.js",
@@ -41,13 +41,14 @@
     "@adonisjs/core": "7.0.0-next.28",
     "@adonisjs/cors": "3.0.0-next.0",
     "@adonisjs/drive": "4.0.0-next.0",
+    "@adonisjs/i18n": "2.2.3",
     "@adonisjs/lucid": "22.0.0-next.7",
     "@adonisjs/mail": "^10.0.0-next.1",
     "@adonisjs/session": "8.0.0-next.5",
     "@adonisjs/transmit": "^3.0.1-next.0",
     "@aws-sdk/client-s3": "^3.972.0",
     "@aws-sdk/s3-request-presigner": "^3.972.0",
-    "@monocle-app/agent": "1.0.0-beta.3",
+    "@monocle.sh/adonisjs-agent": "1.0.0-beta.9",
     "@react-email/components": "^0.5.7",
     "@react-email/render": "^1.4.0",
     "@tuyau/core": "catalog:",

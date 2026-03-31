@@ -2,17 +2,17 @@ import type { HttpContext } from '@adonisjs/core/http'
 
 import { inject } from '@adonisjs/core'
 import { Get, Group, Middleware, Post } from '@adonisjs-community/girouette'
+import UserTransformer from '#users/transformers/user_transformer'
 import User from '#users/models/user'
-import UserDto from '#users/dtos/user'
 import { middleware } from '#start/kernel'
 import AdminPolicy from '#admin/policies/admin_policy'
 
 @inject()
-@Group({ name: 'admin.impersonate', prefix: '/admin/impersonate' })
+@Group({ prefix: '/admin/impersonate' })
 export default class AdminImpersonationController {
-  @Post('/:user_id/start', 'start')
+  @Post('/:user_id/start')
   @Middleware(middleware.auth())
-  async impersonateUser({ params, session, response, auth, bouncer }: HttpContext) {
+  async impersonateUser({ params, session, auth, bouncer, serialize }: HttpContext) {
     const currentUser = auth.getUserOrFail()
 
     const { user_id: userId } = params
@@ -25,16 +25,16 @@ export default class AdminImpersonationController {
 
     await auth.use('web').login(targetUser)
 
-    return response.ok({
+    return serialize({
       message: `Now impersonating ${targetUser.firstName} ${targetUser.lastName}`,
-      impersonatedUser: new UserDto(targetUser),
-      originalAdmin: new UserDto(currentUser),
+      impersonatedUser: UserTransformer.transform(targetUser),
+      originalAdmin: UserTransformer.transform(currentUser),
     })
   }
 
-  @Post('/stop', 'stop')
+  @Post('/stop')
   @Middleware(middleware.auth())
-  async stopImpersonation({ session, response, auth }: HttpContext) {
+  async stopImpersonation({ session, response, auth, serialize }: HttpContext) {
     const originalAdminId = session.get('originalAdminId')
     const isImpersonating = session.get('isImpersonating')
 
@@ -48,15 +48,15 @@ export default class AdminImpersonationController {
     session.forget('originalAdminId')
     session.forget('isImpersonating')
 
-    return response.ok({
+    return serialize({
       message: 'Impersonation stopped',
-      user: new UserDto(originalAdmin),
+      user: UserTransformer.transform(originalAdmin),
     })
   }
 
-  @Get('/status', 'status')
+  @Get('/status')
   @Middleware(middleware.auth())
-  async impersonationStatus({ session, auth }: HttpContext) {
+  async impersonationStatus({ session, auth, serialize }: HttpContext) {
     const originalAdminId = session.get('originalAdminId')
     const isImpersonating = session.get('isImpersonating')
 
@@ -71,10 +71,10 @@ export default class AdminImpersonationController {
     const currentUser = auth.getUserOrFail()
     const originalAdmin = await User.findOrFail(originalAdminId)
 
-    return {
+    return serialize({
       isImpersonating: true,
-      currentUser: new UserDto(currentUser),
-      originalAdmin: new UserDto(originalAdmin),
-    }
+      currentUser: UserTransformer.transform(currentUser),
+      originalAdmin: UserTransformer.transform(originalAdmin),
+    })
   }
 }

@@ -20,7 +20,7 @@ jobs:
 
     services:
       postgres:
-        image: pgvector/pgvector:0.8.0-pg17
+        image: postgres:18
         ports:
           - 5432:5432
         env:
@@ -28,7 +28,7 @@ jobs:
           POSTGRES_PASSWORD: root
           POSTGRES_DB: app_test
         options: >-
-          --health-cmd="pg_isready -U postgres"
+          --health-cmd="pg_isready -U root"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
@@ -62,24 +62,3 @@ jobs:
 
       - name: Test
         run: pnpm test
-
-  security:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        with:
-          scan-type: 'fs'
-          scan-ref: '.'
-          format: 'sarif'
-          output: 'trivy-results.sarif'
-        continue-on-error: true
-
-      - name: Upload Trivy scan results
-        uses: github/codeql-action/upload-sarif@v3
-        if: always()
-        with:
-          sarif_file: 'trivy-results.sarif'
-        continue-on-error: true

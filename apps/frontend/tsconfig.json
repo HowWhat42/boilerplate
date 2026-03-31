@@ -20,6 +20,7 @@
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": false,
     "noEmit": true,
+    "experimentalDecorators": true,
 
     /* Linting */
     "skipLibCheck": true,

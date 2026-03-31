@@ -3,10 +3,10 @@ import { useIntlayer } from 'react-intlayer'
 import { useEffect } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import { useMutation } from '@tanstack/react-query'
-import { Button } from '@boilerplate/design-system/components/ui/button'
 
 import { verifyEmailMutationOptions } from '@/lib/queries/auth'
 import { localizedNavigate } from '@/lib/localized-navigate'
+import { Button } from '@/components/ui/button'
 
 const searchSchema = z.object({
   token: z.string(),
@@ -20,11 +20,11 @@ export const Route = createFileRoute('/$locale/auth/verify-email/')({
 function RouteComponent() {
   const { token } = Route.useSearch()
   const content = useIntlayer('auth')
-  const verifyEmailMutation = useMutation(verifyEmailMutationOptions(token))
+  const verifyEmailMutation = useMutation(verifyEmailMutationOptions())
 
   useEffect(() => {
     // Automatically verify on mount
-    verifyEmailMutation.mutate({})
+    verifyEmailMutation.mutate({ params: { token } })
   }, [])
 
   return (

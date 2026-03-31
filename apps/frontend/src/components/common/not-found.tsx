@@ -1,6 +1,7 @@
 import { useIntlayer } from 'react-intlayer'
 import { ArrowLeft, TriangleAlertIcon } from 'lucide-react'
-import { Button } from '@boilerplate/design-system/components/ui/button'
+
+import { Button } from '@/components/ui/button'
 
 export function NotFound({ children }: { children?: any }) {
   const content = useIntlayer('common')

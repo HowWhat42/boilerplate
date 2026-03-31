@@ -1,7 +1,6 @@
-import { SidebarTrigger } from '@boilerplate/design-system/components/ui/sidebar'
-import { Separator } from '@boilerplate/design-system/components/ui/separator'
-import { Button } from '@boilerplate/design-system/components/ui/button'
-
+import { SidebarTrigger } from '@/components/ui/sidebar'
+import { Separator } from '@/components/ui/separator'
+import { Button } from '@/components/ui/button'
 import { ImpersonationIndicator } from '@/components/admin/impersonation-indicator'
 
 export function SiteHeader() {
@@ -13,7 +12,7 @@ export function SiteHeader() {
         <h1 className="text-base font-medium">Documents</h1>
         <div className="ml-auto flex items-center gap-2">
           <ImpersonationIndicator />
-          <Button variant="ghost" asChild size="sm" className="hidden sm:flex">
+          <Button variant="ghost" size="sm" className="hidden sm:flex">
             <a
               href="https://github.com/shadcn-ui/ui/tree/main/apps/v4/app/(examples)/dashboard"
               rel="noopener noreferrer"

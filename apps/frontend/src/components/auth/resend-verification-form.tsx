@@ -1,14 +1,14 @@
 import { useIntlayer } from 'react-intlayer'
 import { useMutation } from '@tanstack/react-query'
-import { cn } from '@boilerplate/design-system/lib/utils'
-import { Input } from '@boilerplate/design-system/components/ui/input'
-import { Form } from '@boilerplate/design-system/components/ui/form'
-import { Field, FieldDescription, FieldLabel } from '@boilerplate/design-system/components/ui/field'
-import { Button } from '@boilerplate/design-system/components/ui/button'
 
+import { cn } from '@/lib/utils'
 import { resendVerificationFormSchema } from '@/lib/schemas/auth'
 import { resendVerificationMutationOptions } from '@/lib/queries/auth'
 import { useAppForm } from '@/hooks/form-hook'
+import { Input } from '@/components/ui/input'
+import { Form } from '@/components/ui/form'
+import { Field, FieldDescription, FieldLabel } from '@/components/ui/field'
+import { Button } from '@/components/ui/button'
 import { LocalizedLink } from '@/components/common/localized-link'
 
 export function ResendVerificationForm({ className, ...props }: React.ComponentProps<'form'>) {
@@ -23,7 +23,7 @@ export function ResendVerificationForm({ className, ...props }: React.ComponentP
     },
     onSubmit: (data) => {
       resendVerificationMutation.mutateAsync({
-        payload: { email: data.value.email },
+        body: { email: data.value.email },
       })
     },
   })

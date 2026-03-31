@@ -30,9 +30,13 @@ RUN pnpm turbo build --filter=@boilerplate/backend
 
 FROM base AS runner
 WORKDIR /app
+ARG APP_VERSION
 ENV NODE_ENV=production
+ENV APP_VERSION=${APP_VERSION}
 RUN mkdir /app/tmp
 COPY --from=installer /app .
+COPY apps/backend/docker-entrypoint.sh /app/docker-entrypoint.sh
+RUN chmod +x /app/docker-entrypoint.sh
 
 EXPOSE 3333
-CMD ["sh", "-c", "cd apps/backend/build && node bin/server.js"]
+ENTRYPOINT ["/app/docker-entrypoint.sh"]

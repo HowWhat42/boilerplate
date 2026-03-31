@@ -1,20 +1,19 @@
 import type { HttpContext } from '@adonisjs/core/http'
 
 import { inject } from '@adonisjs/core'
-import { Get, Group, Middleware, Post } from '@adonisjs-community/girouette'
+import { Get, Middleware, Post } from '@adonisjs-community/girouette'
+import UserTransformer from '#users/transformers/user_transformer'
 import User from '#users/models/user'
-import UserDto from '#users/dtos/user'
 import { middleware } from '#start/kernel'
 import { registerValidator } from '#auth/validators/register'
 import { loginValidator } from '#auth/validators/login'
 import { EmailVerificationService } from '#auth/services/email_verification_service'
 
 @inject()
-@Group({ name: 'auth' })
 export default class AuthController {
   constructor(private emailVerificationService: EmailVerificationService) {}
-  @Post('/register', 'register')
-  async register({ request, response }: HttpContext) {
+  @Post('/register')
+  async register({ request, serialize }: HttpContext) {
     const payload = await request.validateUsing(registerValidator)
 
     const user = await User.create({
@@ -26,32 +25,32 @@ export default class AuthController {
 
     await this.emailVerificationService.sendVerificationEmail(user)
 
-    return response.status(201).json({
+    return serialize({
       message: 'Registration successful. Please check your email to verify your account.',
-      user: new UserDto(user),
+      user: await serialize(UserTransformer.transform(user)),
     })
   }
 
-  @Post('/login', 'login')
-  async login({ auth, request }: HttpContext) {
+  @Post('/login')
+  async login({ auth, request, serialize }: HttpContext) {
     const { email, password } = await request.validateUsing(loginValidator)
 
     const user = await User.verifyCredentials(email, password)
 
     await auth.use('web').login(user)
 
-    return new UserDto(user)
+    return serialize(UserTransformer.transform(user))
   }
 
-  @Get('/me', 'me')
+  @Get('/me')
   @Middleware([middleware.auth()])
-  async me({ auth }: HttpContext) {
+  async me({ auth, serialize }: HttpContext) {
     const user = auth.getUserOrFail()
 
-    return new UserDto(user)
+    return serialize(UserTransformer.transform(user))
   }
 
-  @Post('/logout', 'logout')
+  @Post('/logout')
   @Middleware(middleware.auth())
   async logout({ auth, response }: HttpContext) {
     await auth.use('web').logout()

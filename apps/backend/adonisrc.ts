@@ -1,4 +1,7 @@
+import { generateRegistry } from '@tuyau/core/hooks'
 import { defineConfig } from '@adonisjs/core/app'
+import { indexEntities } from '@adonisjs/core'
+import { indexControllers } from '@adonisjs-community/girouette'
 
 export default defineConfig({
   /*
@@ -30,10 +33,8 @@ export default defineConfig({
     () => import('@adonisjs/lucid/commands'),
     () => import('@tuyau/core/commands'),
     () => import('@adonisjs-community/modules/commands'),
-    () => import('@jrmc/adonis-attachment/commands'),
     () => import('@adonisjs/mail/commands'),
     () => import('@adonisjs/bouncer/commands'),
-    () => import('@foadonis/shopkeeper/commands'),
   ],
 
   /*
@@ -57,18 +58,15 @@ export default defineConfig({
     () => import('@adonisjs/lucid/database_provider'),
     () => import('@adonisjs/session/session_provider'),
     () => import('@adonisjs/auth/auth_provider'),
-    () => import('@tuyau/core/tuyau_provider'),
     () => import('@adonisjs-community/girouette/girouette_provider'),
-    () => import('@jrmc/adonis-attachment/attachment_provider'),
     () => import('@adonisjs/drive/drive_provider'),
     () => import('@adonisjs/mail/mail_provider'),
     () => import('@adonisjs/bouncer/bouncer_provider'),
-    () => import('@holoyan/adonisjs-permissions/role_permission_provider'),
-    () => import('@foadonis/shopkeeper/shopkeeper_provider'),
-    () => import('@facteurjs/adonisjs/facteur_provider'),
     () => import('@adonisjs/transmit/transmit_provider'),
     () => import('@monocle.sh/adonisjs-agent/monocle_provider'),
-    () => import('@adonisjs/i18n/i18n_provider')
+    () => import('@adonisjs/i18n/i18n_provider'),
+    () => import('#core/providers/api_provider'),
+    () => import('#core/providers/vine_provider'),
   ],
 
   /*
@@ -79,7 +77,11 @@ export default defineConfig({
   | List of modules to import before starting the application.
   |
   */
-  preloads: [() => import('#start/routes'), () => import('#start/kernel')],
+  preloads: [
+    () => import('#start/routes'),
+    () => import('#start/routes.girouette'),
+    () => import('#start/kernel'),
+  ],
 
   /*
   |--------------------------------------------------------------------------
@@ -111,4 +113,29 @@ export default defineConfig({
       reloadServer: false,
     },
   ],
+
+  hooks: {
+    init: [
+      indexEntities({
+        transformers: {
+          enabled: true,
+          source: './app',
+          glob: ['**/*_transformer.ts'],
+          importAlias: '#app',
+        },
+        controllers: {
+          enabled: true,
+          source: './app',
+          glob: ['**/*_controller.ts'],
+          importAlias: '#app',
+        },
+      }),
+      generateRegistry(),
+      indexControllers({
+        source: './app',
+        glob: ['**/*_controller.ts'],
+        importAlias: '#app',
+      }),
+    ],
+  },
 })

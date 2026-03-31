@@ -6,11 +6,11 @@ import { resendVerificationEmailValidator } from '#auth/validators/email_verific
 import { EmailVerificationService } from '#auth/services/email_verification_service'
 
 @inject()
-@Group({ name: 'auth.email', prefix: '/auth/email' })
+@Group({ prefix: '/auth/email' })
 export default class EmailController {
   constructor(private emailVerificationService: EmailVerificationService) {}
 
-  @Post('/verify/:token', 'verify')
+  @Post('/verify/:token')
   async verifyEmail({ response, params }: HttpContext) {
     const { token } = params
     const verificationToken = await this.emailVerificationService.getToken(token)
@@ -24,7 +24,7 @@ export default class EmailController {
     return response.status(200).json(result)
   }
 
-  @Post('/resend', 'resend')
+  @Post('/resend')
   async resendVerificationEmail({ request, response }: HttpContext) {
     const { email } = await request.validateUsing(resendVerificationEmailValidator)
 

@@ -1,23 +1,20 @@
 'use client'
 
-import type { ChartConfig } from '@boilerplate/design-system/components/ui/chart'
-
 import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
 import * as React from 'react'
-import { useIsMobile } from '@boilerplate/design-system/hooks/use-mobile'
-import { ToggleGroup, ToggleGroupItem } from '@boilerplate/design-system/components/ui/toggle-group'
+
+import type { ChartConfig } from '@/components/ui/chart'
+
+import { useIsMobile } from '@/hooks/use-mobile'
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@boilerplate/design-system/components/ui/select'
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from '@boilerplate/design-system/components/ui/chart'
+} from '@/components/ui/select'
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart'
 import {
   Card,
   CardAction,
@@ -25,7 +22,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@boilerplate/design-system/components/ui/card'
+} from '@/components/ui/card'
 
 export const description = 'An interactive area chart'
 
@@ -175,7 +172,7 @@ export function ChartAreaInteractive() {
             value={timeRange}
             onValueChange={setTimeRange}
             variant="outline"
-            className="hidden *:data-[slot=toggle-group-item]:!px-4 @[767px]/card:flex"
+            className="hidden *:data-[slot=toggle-group-item]:px-4! @[767px]/card:flex"
           >
             <ToggleGroupItem value="90d">Last 3 months</ToggleGroupItem>
             <ToggleGroupItem value="30d">Last 30 days</ToggleGroupItem>
@@ -223,7 +220,7 @@ export function ChartAreaInteractive() {
               axisLine={false}
               tickMargin={8}
               minTickGap={32}
-              tickFormatter={(value) => {
+              tickFormatter={(value: string) => {
                 const date = new Date(value)
                 return date.toLocaleDateString('en-US', {
                   month: 'short',

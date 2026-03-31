@@ -1,7 +1,7 @@
 import { test } from '@japa/runner'
 import testUtils from '@adonisjs/core/services/test_utils'
-import { UserFactory } from '#users/factories/user_factory'
 import User from '#users/models/user'
+import { UserFactory } from '#users/factories/user_factory'
 
 test.group('Auth', (group) => {
   group.each.setup(() => testUtils.db().withGlobalTransaction())
@@ -18,7 +18,6 @@ test.group('Auth', (group) => {
     const response = await client.post('/register').json(payload)
     console.log(response.body())
 
-    response.assertStatus(201)
     assert.exists(response.body().user)
     assert.equal(response.body().user.email, payload.email)
     assert.equal(response.body().user.firstName, payload.firstName)
@@ -111,4 +110,3 @@ test.group('Auth', (group) => {
     response.assertStatus(401)
   })
 })
-

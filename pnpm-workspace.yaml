@@ -10,13 +10,13 @@ catalog:
   # React
   react: ^19.2.4
   react-dom: ^19.2.4
-  '@types/react': ^19.2.13
+  '@types/react': ^19.2.14
   '@types/react-dom': ^19.2.3
 
   # TypeScript
   typescript: ^5.9.3
-  '@types/node': ^25.2.2
+  '@types/node': ^25.5.0
 
   # Tailwind
-  tailwindcss: ^4.1.18
-  '@tailwindcss/vite': ^4.1.18
+  tailwindcss: ^4.2.2
+  '@tailwindcss/vite': ^4.2.2

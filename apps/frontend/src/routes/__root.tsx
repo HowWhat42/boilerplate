@@ -8,8 +8,6 @@ import { Toaster } from '@/components/ui/sonner'
 import type { RouterContext } from '../router'
 
 import appCss from '../styles.css?url'
-
-import '@/styles/globals.css'
 import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
 
 export const Route = createRootRouteWithContext<RouterContext>()({

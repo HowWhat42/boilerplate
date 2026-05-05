@@ -7,12 +7,12 @@ export interface ApiDefinition {
   unsubscribe: typeof routes['unsubscribe']
   core: typeof routes['core']
   adminImpersonation: {
-    impersonateUser: typeof routes['admin impersonation.impersonateUser']
-    stopImpersonation: typeof routes['admin impersonation.stopImpersonation']
-    impersonationStatus: typeof routes['admin impersonation.impersonationStatus']
+    impersonateUser: typeof routes['admin_impersonation.impersonate_user']
+    stopImpersonation: typeof routes['admin_impersonation.stop_impersonation']
+    impersonationStatus: typeof routes['admin_impersonation.impersonation_status']
   }
   adminUsers: {
-    index: typeof routes['admin users.index']
+    index: typeof routes['admin_users.index']
   }
   auth: {
     register: typeof routes['auth.register']
@@ -21,11 +21,11 @@ export interface ApiDefinition {
     logout: typeof routes['auth.logout']
   }
   email: {
-    verifyEmail: typeof routes['email.verifyEmail']
-    resendVerificationEmail: typeof routes['email.resendVerificationEmail']
+    verifyEmail: typeof routes['email.verify_email']
+    resendVerificationEmail: typeof routes['email.resend_verification_email']
   }
   password: {
-    forgotPassword: typeof routes['password.forgotPassword']
-    resetPassword: typeof routes['password.resetPassword']
+    forgotPassword: typeof routes['password.forgot_password']
+    resetPassword: typeof routes['password.reset_password']
   }
 }

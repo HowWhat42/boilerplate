@@ -7,10 +7,10 @@
     "format": "oxfmt",
     "lint": "oxlint",
     "typecheck": "turbo typecheck",
-    "test": "turbo test",
-    "taze": "pnpx taze -r"
+    "test": "turbo test"
   },
   "devDependencies": {
+    "@typescript/native-preview": "^7.0.0-dev.20260505.1",
     "oxfmt": "^0.26.0",
     "oxlint": "^1.57.0",
     "oxlint-tsgolint": "^0.11.5",

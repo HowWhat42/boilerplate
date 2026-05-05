@@ -9,7 +9,9 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SplatRouteImport } from './routes/$'
 import { Route as LocaleRouteRouteImport } from './routes/$locale/route'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as LocaleAuthRouteRouteImport } from './routes/$locale/auth/route'
 import { Route as LocaledashboardRouteRouteImport } from './routes/$locale/(dashboard)/route'
 import { Route as LocaledashboardIndexRouteImport } from './routes/$locale/(dashboard)/index'
@@ -21,9 +23,19 @@ import { Route as LocaleAuthLoginIndexRouteImport } from './routes/$locale/auth/
 import { Route as LocaleAuthForgotPasswordIndexRouteImport } from './routes/$locale/auth/forgot-password/index'
 import { Route as LocaledashboardAdminIndexRouteImport } from './routes/$locale/(dashboard)/admin/index'
 
+const SplatRoute = SplatRouteImport.update({
+  id: '/$',
+  path: '/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LocaleRouteRoute = LocaleRouteRouteImport.update({
   id: '/$locale',
   path: '/$locale',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LocaleAuthRouteRoute = LocaleAuthRouteRouteImport.update({
@@ -82,20 +94,24 @@ const LocaledashboardAdminIndexRoute =
   } as any)
 
 export interface FileRoutesByFullPath {
-  '/$locale': typeof LocaleRouteRouteWithChildren
-  '/$locale/': typeof LocaledashboardIndexRoute
+  '/': typeof IndexRoute
+  '/$locale': typeof LocaledashboardRouteRouteWithChildren
+  '/$': typeof SplatRoute
   '/$locale/auth': typeof LocaleAuthRouteRouteWithChildren
-  '/$locale/admin': typeof LocaledashboardAdminIndexRoute
-  '/$locale/auth/forgot-password': typeof LocaleAuthForgotPasswordIndexRoute
-  '/$locale/auth/login': typeof LocaleAuthLoginIndexRoute
-  '/$locale/auth/resend-verification': typeof LocaleAuthResendVerificationIndexRoute
-  '/$locale/auth/reset-password': typeof LocaleAuthResetPasswordIndexRoute
-  '/$locale/auth/signup': typeof LocaleAuthSignupIndexRoute
-  '/$locale/auth/verify-email': typeof LocaleAuthVerifyEmailIndexRoute
+  '/$locale/': typeof LocaledashboardIndexRoute
+  '/$locale/admin/': typeof LocaledashboardAdminIndexRoute
+  '/$locale/auth/forgot-password/': typeof LocaleAuthForgotPasswordIndexRoute
+  '/$locale/auth/login/': typeof LocaleAuthLoginIndexRoute
+  '/$locale/auth/resend-verification/': typeof LocaleAuthResendVerificationIndexRoute
+  '/$locale/auth/reset-password/': typeof LocaleAuthResetPasswordIndexRoute
+  '/$locale/auth/signup/': typeof LocaleAuthSignupIndexRoute
+  '/$locale/auth/verify-email/': typeof LocaleAuthVerifyEmailIndexRoute
 }
 export interface FileRoutesByTo {
-  '/$locale/auth': typeof LocaleAuthRouteRouteWithChildren
+  '/': typeof IndexRoute
   '/$locale': typeof LocaledashboardIndexRoute
+  '/$': typeof SplatRoute
+  '/$locale/auth': typeof LocaleAuthRouteRouteWithChildren
   '/$locale/admin': typeof LocaledashboardAdminIndexRoute
   '/$locale/auth/forgot-password': typeof LocaleAuthForgotPasswordIndexRoute
   '/$locale/auth/login': typeof LocaleAuthLoginIndexRoute
@@ -106,7 +122,9 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
   '/$locale': typeof LocaleRouteRouteWithChildren
+  '/$': typeof SplatRoute
   '/$locale/(dashboard)': typeof LocaledashboardRouteRouteWithChildren
   '/$locale/auth': typeof LocaleAuthRouteRouteWithChildren
   '/$locale/(dashboard)/': typeof LocaledashboardIndexRoute
@@ -121,20 +139,24 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/$locale'
-    | '/$locale/'
+    | '/$'
     | '/$locale/auth'
-    | '/$locale/admin'
-    | '/$locale/auth/forgot-password'
-    | '/$locale/auth/login'
-    | '/$locale/auth/resend-verification'
-    | '/$locale/auth/reset-password'
-    | '/$locale/auth/signup'
-    | '/$locale/auth/verify-email'
+    | '/$locale/'
+    | '/$locale/admin/'
+    | '/$locale/auth/forgot-password/'
+    | '/$locale/auth/login/'
+    | '/$locale/auth/resend-verification/'
+    | '/$locale/auth/reset-password/'
+    | '/$locale/auth/signup/'
+    | '/$locale/auth/verify-email/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/$locale/auth'
+    | '/'
     | '/$locale'
+    | '/$'
+    | '/$locale/auth'
     | '/$locale/admin'
     | '/$locale/auth/forgot-password'
     | '/$locale/auth/login'
@@ -144,7 +166,9 @@ export interface FileRouteTypes {
     | '/$locale/auth/verify-email'
   id:
     | '__root__'
+    | '/'
     | '/$locale'
+    | '/$'
     | '/$locale/(dashboard)'
     | '/$locale/auth'
     | '/$locale/(dashboard)/'
@@ -158,16 +182,32 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
   LocaleRouteRoute: typeof LocaleRouteRouteWithChildren
+  SplatRoute: typeof SplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/$': {
+      id: '/$'
+      path: '/$'
+      fullPath: '/$'
+      preLoaderRoute: typeof SplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/$locale': {
       id: '/$locale'
       path: '/$locale'
       fullPath: '/$locale'
       preLoaderRoute: typeof LocaleRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/$locale/auth': {
@@ -179,8 +219,8 @@ declare module '@tanstack/react-router' {
     }
     '/$locale/(dashboard)': {
       id: '/$locale/(dashboard)'
-      path: '/'
-      fullPath: '/$locale/'
+      path: ''
+      fullPath: '/$locale'
       preLoaderRoute: typeof LocaledashboardRouteRouteImport
       parentRoute: typeof LocaleRouteRoute
     }
@@ -194,49 +234,49 @@ declare module '@tanstack/react-router' {
     '/$locale/auth/verify-email/': {
       id: '/$locale/auth/verify-email/'
       path: '/verify-email'
-      fullPath: '/$locale/auth/verify-email'
+      fullPath: '/$locale/auth/verify-email/'
       preLoaderRoute: typeof LocaleAuthVerifyEmailIndexRouteImport
       parentRoute: typeof LocaleAuthRouteRoute
     }
     '/$locale/auth/signup/': {
       id: '/$locale/auth/signup/'
       path: '/signup'
-      fullPath: '/$locale/auth/signup'
+      fullPath: '/$locale/auth/signup/'
       preLoaderRoute: typeof LocaleAuthSignupIndexRouteImport
       parentRoute: typeof LocaleAuthRouteRoute
     }
     '/$locale/auth/reset-password/': {
       id: '/$locale/auth/reset-password/'
       path: '/reset-password'
-      fullPath: '/$locale/auth/reset-password'
+      fullPath: '/$locale/auth/reset-password/'
       preLoaderRoute: typeof LocaleAuthResetPasswordIndexRouteImport
       parentRoute: typeof LocaleAuthRouteRoute
     }
     '/$locale/auth/resend-verification/': {
       id: '/$locale/auth/resend-verification/'
       path: '/resend-verification'
-      fullPath: '/$locale/auth/resend-verification'
+      fullPath: '/$locale/auth/resend-verification/'
       preLoaderRoute: typeof LocaleAuthResendVerificationIndexRouteImport
       parentRoute: typeof LocaleAuthRouteRoute
     }
     '/$locale/auth/login/': {
       id: '/$locale/auth/login/'
       path: '/login'
-      fullPath: '/$locale/auth/login'
+      fullPath: '/$locale/auth/login/'
       preLoaderRoute: typeof LocaleAuthLoginIndexRouteImport
       parentRoute: typeof LocaleAuthRouteRoute
     }
     '/$locale/auth/forgot-password/': {
       id: '/$locale/auth/forgot-password/'
       path: '/forgot-password'
-      fullPath: '/$locale/auth/forgot-password'
+      fullPath: '/$locale/auth/forgot-password/'
       preLoaderRoute: typeof LocaleAuthForgotPasswordIndexRouteImport
       parentRoute: typeof LocaleAuthRouteRoute
     }
     '/$locale/(dashboard)/admin/': {
       id: '/$locale/(dashboard)/admin/'
       path: '/admin'
-      fullPath: '/$locale/admin'
+      fullPath: '/$locale/admin/'
       preLoaderRoute: typeof LocaledashboardAdminIndexRouteImport
       parentRoute: typeof LocaledashboardRouteRoute
     }
@@ -294,7 +334,9 @@ const LocaleRouteRouteWithChildren = LocaleRouteRoute._addFileChildren(
 )
 
 const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
   LocaleRouteRoute: LocaleRouteRouteWithChildren,
+  SplatRoute: SplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

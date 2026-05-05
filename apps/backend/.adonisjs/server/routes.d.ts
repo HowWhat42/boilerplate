@@ -8,24 +8,24 @@ export type ScannedRoutes = {
     'subscribe': { paramsTuple?: []; params?: {} }
     'unsubscribe': { paramsTuple?: []; params?: {} }
     'core': { paramsTuple?: []; params?: {} }
-    'admin impersonation.impersonateUser': { paramsTuple: [ParamValue]; params: {'user_id': ParamValue} }
-    'admin impersonation.stopImpersonation': { paramsTuple?: []; params?: {} }
-    'admin impersonation.impersonationStatus': { paramsTuple?: []; params?: {} }
-    'admin users.index': { paramsTuple?: []; params?: {} }
+    'admin_impersonation.impersonate_user': { paramsTuple: [ParamValue]; params: {'user_id': ParamValue} }
+    'admin_impersonation.stop_impersonation': { paramsTuple?: []; params?: {} }
+    'admin_impersonation.impersonation_status': { paramsTuple?: []; params?: {} }
+    'admin_users.index': { paramsTuple?: []; params?: {} }
     'auth.register': { paramsTuple?: []; params?: {} }
     'auth.login': { paramsTuple?: []; params?: {} }
     'auth.me': { paramsTuple?: []; params?: {} }
     'auth.logout': { paramsTuple?: []; params?: {} }
-    'email.verifyEmail': { paramsTuple: [ParamValue]; params: {'token': ParamValue} }
-    'email.resendVerificationEmail': { paramsTuple?: []; params?: {} }
-    'password.forgotPassword': { paramsTuple?: []; params?: {} }
-    'password.resetPassword': { paramsTuple: [ParamValue]; params: {'token': ParamValue} }
+    'email.verify_email': { paramsTuple: [ParamValue]; params: {'token': ParamValue} }
+    'email.resend_verification_email': { paramsTuple?: []; params?: {} }
+    'password.forgot_password': { paramsTuple?: []; params?: {} }
+    'password.reset_password': { paramsTuple: [ParamValue]; params: {'token': ParamValue} }
   }
   GET: {
     'event_stream': { paramsTuple?: []; params?: {} }
     'core': { paramsTuple?: []; params?: {} }
-    'admin impersonation.impersonationStatus': { paramsTuple?: []; params?: {} }
-    'admin users.index': { paramsTuple?: []; params?: {} }
+    'admin_impersonation.impersonation_status': { paramsTuple?: []; params?: {} }
+    'admin_users.index': { paramsTuple?: []; params?: {} }
     'auth.me': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
@@ -35,15 +35,15 @@ export type ScannedRoutes = {
   POST: {
     'subscribe': { paramsTuple?: []; params?: {} }
     'unsubscribe': { paramsTuple?: []; params?: {} }
-    'admin impersonation.impersonateUser': { paramsTuple: [ParamValue]; params: {'user_id': ParamValue} }
-    'admin impersonation.stopImpersonation': { paramsTuple?: []; params?: {} }
+    'admin_impersonation.impersonate_user': { paramsTuple: [ParamValue]; params: {'user_id': ParamValue} }
+    'admin_impersonation.stop_impersonation': { paramsTuple?: []; params?: {} }
     'auth.register': { paramsTuple?: []; params?: {} }
     'auth.login': { paramsTuple?: []; params?: {} }
     'auth.logout': { paramsTuple?: []; params?: {} }
-    'email.verifyEmail': { paramsTuple: [ParamValue]; params: {'token': ParamValue} }
-    'email.resendVerificationEmail': { paramsTuple?: []; params?: {} }
-    'password.forgotPassword': { paramsTuple?: []; params?: {} }
-    'password.resetPassword': { paramsTuple: [ParamValue]; params: {'token': ParamValue} }
+    'email.verify_email': { paramsTuple: [ParamValue]; params: {'token': ParamValue} }
+    'email.resend_verification_email': { paramsTuple?: []; params?: {} }
+    'password.forgot_password': { paramsTuple?: []; params?: {} }
+    'password.reset_password': { paramsTuple: [ParamValue]; params: {'token': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {

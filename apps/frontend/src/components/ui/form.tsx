@@ -102,6 +102,20 @@ function FieldLabel({ className, ...props }: React.ComponentProps<typeof scn.Fie
   )
 }
 
+function FieldControl({ children }: { children: React.ReactElement }) {
+  const { formControlId, formDescriptionId, formMessageId, hasError } = useFieldComponentContext()
+
+  if (!React.isValidElement(children)) {
+    throw new Error('FieldControl expects a single React element child.')
+  }
+
+  return React.cloneElement(children, {
+    id: formControlId,
+    'aria-describedby': hasError ? `${formDescriptionId} ${formMessageId}` : formDescriptionId,
+    'aria-invalid': hasError ? true : undefined,
+  } as React.Attributes & Record<string, unknown>)
+}
+
 function FieldDescription({
   className,
   ...props
@@ -137,6 +151,7 @@ export {
   Form,
   Field,
   FieldLabel,
+  FieldControl,
   FieldDescription,
   FieldError,
   fieldContext,
